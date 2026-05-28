@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import ArticleCard from '@/components/ui/article-card';
+import ArticleCard from '@/components/ui/customs/article-card';
 
 interface Article {
   id: string;
