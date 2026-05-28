@@ -121,8 +121,8 @@ export default function Footer() {
               Tentang Kami
             </h3>
             <ul className="space-y-3">
-              {tentangKamiLinks.map((link) => (
-                <li key={link.href}>
+              {tentangKamiLinks.map((link, index) => (
+                <li key={`tentang-kami-${index}`}>
                   <Link
                     href={link.href}
                     className="text-gray-100 hover:text-yellow-300 transition-colors underline hover:no-underline"

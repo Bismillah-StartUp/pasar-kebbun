@@ -45,6 +45,7 @@ export default function HeadViews() {
           fill
           className="object-cover"
           priority={currentIndex === 0}
+          sizes="100vw"
         />
       </div>
 
@@ -59,6 +60,7 @@ export default function HeadViews() {
           alt={`Landing view ${nextIndex + 1}`}
           fill
           className="object-cover"
+          sizes="100vw"
         />
       </div>
 
