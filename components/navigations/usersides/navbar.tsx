@@ -11,8 +11,8 @@ export default function Navbar() {
     { label: 'Beranda', href: '/' },
     { label: 'Kuliner', href: '/kuliner' },
     { label: 'UMKM', href: '/umkm' },
-    { label: 'Event', href: '/events' },
-    { label: 'Fasilitas', href: '/fasilities' },
+    { label: 'Event', href: '/event' },
+    { label: 'Fasilitas', href: '/fasilitas' },
     { label: 'Tentang Kami', href: '/about' },
   ];
 
