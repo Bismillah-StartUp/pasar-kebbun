@@ -3,21 +3,13 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
-const DEFAULT_IMAGES = [
-  '/assets/images/landings/landing_one.png',
-  '/assets/images/landings/landing_two.png',
-  '/assets/images/landings/landing_three.png',
-  '/assets/images/landings/landing_four.png',
-  '/assets/images/landings/landing_five.png',
-];
-
 const TRANSITION_INTERVAL = 5000; // 5 seconds per image
 
 interface HeadViewsProps {
-  images?: string[];
+  images: string[];
 }
 
-export default function HeadViews({ images = DEFAULT_IMAGES }: HeadViewsProps) {
+export default function HeadViews({ images }: HeadViewsProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);

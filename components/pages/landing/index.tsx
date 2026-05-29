@@ -22,6 +22,14 @@ interface Article {
   href: string;
 }
 
+const LANDING_IMAGES = [
+  '/assets/images/landings/landing_one.png',
+  '/assets/images/landings/landing_two.png',
+  '/assets/images/landings/landing_three.png',
+  '/assets/images/landings/landing_four.png',
+  '/assets/images/landings/landing_five.png',
+];
+
 export default function LandingPage() {
   const articles: Article[] = [
     {
@@ -112,7 +120,7 @@ export default function LandingPage() {
       <Navbar />
 
       {/* Hero Section - HeadViews */}
-      <HeadViews />
+      <HeadViews images={LANDING_IMAGES} />
 
       {/* About Section */}
       <section className="w-full py-12 px-4 sm:px-6 lg:px-8 bg-white">
