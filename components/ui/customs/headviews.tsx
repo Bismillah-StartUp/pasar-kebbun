@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
-const IMAGES = [
+const DEFAULT_IMAGES = [
   '/assets/images/landings/landing_one.png',
   '/assets/images/landings/landing_two.png',
   '/assets/images/landings/landing_three.png',
@@ -13,7 +13,11 @@ const IMAGES = [
 
 const TRANSITION_INTERVAL = 5000; // 5 seconds per image
 
-export default function HeadViews() {
+interface HeadViewsProps {
+  images?: string[];
+}
+
+export default function HeadViews({ images = DEFAULT_IMAGES }: HeadViewsProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -22,14 +26,14 @@ export default function HeadViews() {
     const interval = setInterval(() => {
       setIsTransitioning(true);
       setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % IMAGES.length);
-        setNextIndex((prev) => (prev + 1) % IMAGES.length);
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+        setNextIndex((prev) => (prev + 1) % images.length);
         setIsTransitioning(false);
       }, 600); // Duration of the eraser effect
     }, TRANSITION_INTERVAL);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-gray-900">
@@ -40,7 +44,7 @@ export default function HeadViews() {
         }`}
       >
         <Image
-          src={IMAGES[currentIndex]}
+          src={images[currentIndex]}
           alt={`Landing view ${currentIndex + 1}`}
           fill
           className="object-cover"
@@ -56,7 +60,7 @@ export default function HeadViews() {
         }`}
       >
         <Image
-          src={IMAGES[nextIndex]}
+          src={images[nextIndex]}
           alt={`Landing view ${nextIndex + 1}`}
           fill
           className="object-cover"
@@ -69,7 +73,7 @@ export default function HeadViews() {
 
       {/* Navigation Dots */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
-        {IMAGES.map((_, index) => (
+        {images.map((_, index) => (
           <button
             key={index}
             onClick={() => {
@@ -95,7 +99,7 @@ export default function HeadViews() {
         onClick={() => {
           setIsTransitioning(true);
           setTimeout(() => {
-            const prev = currentIndex === 0 ? IMAGES.length - 1 : currentIndex - 1;
+            const prev = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
             setCurrentIndex(prev);
             setNextIndex((prev + 1) % IMAGES.length);
             setIsTransitioning(false);
@@ -123,8 +127,8 @@ export default function HeadViews() {
         onClick={() => {
           setIsTransitioning(true);
           setTimeout(() => {
-            setCurrentIndex((prev) => (prev + 1) % IMAGES.length);
-            setNextIndex((prev) => (prev + 2) % IMAGES.length);
+            setCurrentIndex((prev) => (prev + 1) % images.length);
+            setNextIndex((prev) => (prev + 2) % images.length);
             setIsTransitioning(false);
           }, 300);
         }}
@@ -148,7 +152,7 @@ export default function HeadViews() {
 
       {/* Image Counter */}
       <div className="absolute top-6 right-6 z-10 bg-black/50 text-white px-4 py-2 rounded-full text-sm font-semibold">
-        {currentIndex + 1} / {IMAGES.length}
+        {currentIndex + 1} / {images.length}
       </div>
     </div>
   );

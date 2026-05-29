@@ -10,7 +10,7 @@ export default function Navbar() {
   const menuItems = [
     { label: 'Beranda', href: '/' },
     { label: 'Kuliner', href: '/kuliner' },
-    { label: 'UMKM', href: '/tenants' },
+    { label: 'UMKM', href: '/umkm' },
     { label: 'Event', href: '/events' },
     { label: 'Fasilitas', href: '/fasilities' },
     { label: 'Tentang Kami', href: '/about' },
