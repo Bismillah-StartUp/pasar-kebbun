@@ -100,7 +100,7 @@ export default function CulinariesList() {
           <p className="text-gray-600">Nikmati kelezatan autentik kuliner tradisional Madura</p>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-16">
           {culinaries.map((culinary) => (
             <CulinaryCard
               key={culinary.id}
