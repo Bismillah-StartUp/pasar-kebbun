@@ -3,9 +3,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const menuItems = [
     { label: 'Beranda', href: '/' },
@@ -15,6 +17,13 @@ export default function Navbar() {
     { label: 'Fasilitas', href: '/fasilitas' },
     { label: 'Tentang Kami', href: '/about' },
   ];
+
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(href);
+  };
 
   return (
     <nav className="bg-linear-to-r from-green-700 to-green-800 shadow-lg">
@@ -35,13 +44,21 @@ export default function Navbar() {
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
             {menuItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-white font-semibold hover:text-green-200 transition-colors duration-200 text-sm lg:text-base"
-              >
-                {item.label}
-              </Link>
+              <div key={item.href} className="relative group">
+                <Link
+                  href={item.href}
+                  className="text-white font-semibold hover:text-green-200 transition-colors duration-200 text-sm lg:text-base pb-3"
+                >
+                  {item.label}
+                </Link>
+                <div
+                  className={`absolute left-0 right-0 h-1 rounded-full transition-colors duration-200 ${
+                    isActive(item.href)
+                      ? 'bg-white'
+                      : 'bg-transparent'
+                  }`}
+                />
+              </div>
             ))}
           </div>
 
@@ -77,7 +94,11 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-white font-semibold hover:bg-green-600 px-3 py-2 rounded-md transition-colors"
+                  className={`text-white font-semibold px-3 py-2 rounded-md transition-colors ${
+                    isActive(item.href)
+                      ? 'bg-green-600 border-l-4 border-white'
+                      : 'hover:bg-green-600'
+                  }`}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
