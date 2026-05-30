@@ -59,16 +59,6 @@ export default function ArticleSlides({
     return () => clearInterval(interval);
   }, [autoplay, autoplayInterval, articles.length, itemsVisible]);
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) =>
-      prev === 0 ? articles.length - itemsVisible : prev - 1
-    );
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % (articles.length - itemsVisible + 1));
-  };
-
   const canSlide = articles.length > itemsVisible;
 
   return (
@@ -110,70 +100,9 @@ export default function ArticleSlides({
             </div>
           </div>
 
-          {/* Navigation Buttons */}
-          {canSlide && (
-            <>
-              <button
-                onClick={handlePrev}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 sm:-translate-x-16 z-10 bg-green-700 hover:bg-green-800 text-white p-3 rounded-full transition-all duration-200"
-                aria-label="Previous articles"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </button>
 
-              <button
-                onClick={handleNext}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 sm:translate-x-16 z-10 bg-green-700 hover:bg-green-800 text-white p-3 rounded-full transition-all duration-200"
-                aria-label="Next articles"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
-            </>
-          )}
 
-          {/* Navigation Dots */}
-          {canSlide && (
-            <div className="flex justify-center gap-2 mt-8">
-              {Array.from({ length: articles.length - itemsVisible + 1 }).map(
-                (_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentIndex(index)}
-                    className={`h-3 rounded-full transition-all duration-300 ${
-                      index === currentIndex
-                        ? 'w-8 bg-green-700'
-                        : 'w-3 bg-gray-300 hover:bg-gray-400'
-                    }`}
-                    aria-label={`Go to slide ${index + 1}`}
-                  ></button>
-                )
-              )}
-            </div>
-          )}
+
         </div>
       </div>
     </section>

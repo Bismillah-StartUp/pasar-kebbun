@@ -6,13 +6,14 @@ import HeadViews from '@/components/ui/customs/headviews';
 import ArticleSlides from '@/components/pages/landing/partials/article-slides';
 import Link from 'next/link';
 import {
-  FaMapPin,
-  FaClock,
   FaUtensils,
-  FaShoppingBag,
-  FaStar,
   FaUsers,
+  FaStore,
 } from 'react-icons/fa';
+import { BsClock } from 'react-icons/bs';
+import { IoCalendarSharp } from 'react-icons/io5';
+import { FaLocationDot } from 'react-icons/fa6';
+import { pathImages } from '@/libs/utils';
 
 interface Article {
   id: string;
@@ -23,46 +24,46 @@ interface Article {
 }
 
 const LANDING_IMAGES = [
-  '/assets/images/landings/landing_one.png',
-  '/assets/images/landings/landing_two.png',
-  '/assets/images/landings/landing_three.png',
-  '/assets/images/landings/landing_four.png',
-  '/assets/images/landings/landing_five.png',
+  pathImages('landings/landing_one.png'),
+  pathImages('landings/landing_two.png'),
+  pathImages('landings/landing_three.png'),
+  pathImages('landings/landing_four.png'),
+  pathImages('landings/landing_five.png'),
 ];
 
 export default function LandingPage() {
   const articles: Article[] = [
     {
       id: '1',
-      image: '/assets/images/landings/landing_one.png',
+      image: pathImages('landings/landing_one.png'),
       title: 'Pasar Kebbun Sumenep, Wisata Nostalgia di Madura',
       source: 'detik.com',
       href: '#',
     },
     {
       id: '2',
-      image: '/assets/images/landings/landing_two.png',
+      image: pathImages('landings/landing_two.png'),
       title: 'Pasar Kebun: Wisata Kuliner Tradisional Bernuansa Tempo Dulu',
       source: 'rri.co.id',
       href: '#',
     },
     {
       id: '3',
-      image: '/assets/images/landings/landing_three.png',
+      image: pathImages('landings/landing_three.png'),
       title: 'Pasar Kebun Jadi Objek Wisata Unik dengan Suasana Tempo Dulu',
       source: 'portalja.com',
       href: '#',
     },
     {
       id: '4',
-      image: '/assets/images/landings/landing_four.png',
+      image: pathImages('landings/landing_four.png'),
       title: 'Waktu yang Tepat untuk Berkunjung ke Pasar Kebun Sumenep',
       source: 'javapos.com',
       href: '#',
     },
     {
       id: '5',
-      image: '/assets/images/landings/landing_five.png',
+      image: pathImages('landings/landing_five.png'),
       title: 'Pasar Kebun Beami Dibuka, Jadi Objek Wisata Kuliner Baru di Sumenep',
       source: 'gosumenep.com',
       href: '#',
@@ -72,14 +73,14 @@ export default function LandingPage() {
   const features = [
     {
       id: 1,
-      icon: FaMapPin,
+      icon: FaLocationDot,
       title: 'Lokasi',
       description: 'Desa Saroka, Saronggi,\nKecamatan Saronggi, Sumenep,\nJawa Timur',
       link: '#',
     },
     {
       id: 2,
-      icon: FaClock,
+      icon: BsClock,
       title: 'Jam Operasional',
       description: 'Setiap Hari\n08:00-14:00 Wis\n17:00-23:00 Wis',
       link: '#',
@@ -93,14 +94,14 @@ export default function LandingPage() {
     },
     {
       id: 4,
-      icon: FaShoppingBag,
+      icon: FaStore,
       title: 'UMKM',
       description: '15+ UMKM Asli Madura',
       link: '#',
     },
     {
       id: 5,
-      icon: FaStar,
+      icon: IoCalendarSharp,
       title: 'Event',
       description: '48+ Event Penyelenggaraan\ndalam Setahun',
       link: '#',
@@ -116,13 +117,10 @@ export default function LandingPage() {
 
   return (
     <main className="w-full min-h-screen bg-white">
-      {/* Navbar */}
       <Navbar />
 
-      {/* Hero Section - HeadViews */}
       <HeadViews images={LANDING_IMAGES} />
 
-      {/* About Section */}
       <section className="w-full py-12 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-4xl font-bold text-green-700 mb-2 text-center">
@@ -139,39 +137,37 @@ export default function LandingPage() {
             pertunjukan seni dan kesempatan menikimati keindahan alam sektor melalui aktivitas seperti menyewa perahu kecil.
           </p>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {features.map((feature) => {
               const IconComponent = feature.icon;
               return (
-                <Link
+                <div
                   key={feature.id}
-                  href={feature.link}
-                  className="group flex flex-col items-center justify-center p-8 bg-linear-to-br from-green-600 to-green-700 rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105"
+                  className="flex flex-col items-center justify-center py-6"
                 >
-                  <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="w-16 h-16 text-white" />
+                  <div className="mb-6 flex items-center justify-center w-20 h-20 rounded-full bg-green-700 transition-transform duration-300">
+                    <IconComponent className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3 text-center">
+                  <h3 className="text-xl font-bold text-green-700 mb-3 text-center">
                     {feature.title}
                   </h3>
-                  <p className="text-center text-gray-100 text-sm whitespace-pre-line mb-4">
+                  <p className="text-center text-gray-600 text-sm whitespace-pre-line mb-4">
                     {feature.description}
                   </p>
-                  <button className="mt-auto bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-2 px-6 rounded-full transition-colors duration-200 text-sm">
-                    Lihat Disini
-                  </button>
-                </Link>
+                  <Link href={feature.link}>
+                    <button className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-2 px-6 rounded-full transition-colors duration-200 text-sm hover:cursor-pointer">
+                      Lihat Disini
+                    </button>
+                  </Link>
+                </div>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* Article Slides Section */}
       <ArticleSlides articles={articles} />
 
-      {/* Footer */}
       <Footer />
     </main>
   );

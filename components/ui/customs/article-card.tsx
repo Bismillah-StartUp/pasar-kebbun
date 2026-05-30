@@ -18,35 +18,30 @@ export default function ArticleCard({
 }: ArticleCardProps) {
   return (
     <div
-      className={`group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ${className}`}
+      className={`group flex flex-col items-center justify-start bg-green-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full ${className}`}
     >
-      {/* Image Container */}
-      <div className="relative h-48 w-full overflow-hidden bg-gray-200">
+      <div className="relative w-full h-48 bg-gray-200">
         <Image
           src={image}
           alt={title}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
+          className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
 
-      {/* Content Container */}
-      <div className="bg-white p-5 flex flex-col justify-between min-h-50">
-        {/* Title */}
-        <h3 className="text-lg font-bold text-gray-800 line-clamp-3 mb-3 group-hover:text-green-700 transition-colors">
+      <div className="p-6 flex flex-col items-center justify-center gap-4 flex-1 w-full">
+        <h3 className="text-lg font-bold text-white text-center line-clamp-3">
           {title}
         </h3>
 
-        {/* Source */}
-        <p className="text-sm text-gray-500 mb-4 line-clamp-1">{source}</p>
+        <p className="text-sm text-gray-200 text-center line-clamp-1">{source}</p>
 
-        {/* Button */}
         <Link
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-2 px-6 rounded-full transition-colors duration-200 w-fit"
+          className="inline-flex items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-2 px-6 rounded-full transition-colors duration-200 mt-auto"
         >
           Baca Disini
         </Link>
