@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import HeadViews from '@/components/ui/customs/headviews';
-import { Share2, Music, Send } from 'lucide-react';
+import { FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
 
 const LANDING_IMAGES = [
   '/assets/images/landings/landing_one.png',
@@ -93,7 +93,7 @@ export default function AboutSection() {
             {/* Instagram */}
             <div className="flex flex-col items-center">
               <div className="w-24 h-24 rounded-full bg-green-700 flex items-center justify-center mb-4">
-                <Share2 className="w-12 h-12 text-white" />
+                <FaInstagram className="w-12 h-12 text-white" />
               </div>
               <h4 className="text-xl font-bold text-green-700 mb-2">Instagram</h4>
               <p className="text-gray-700 text-center mb-4">pasarkebbun</p>
@@ -105,7 +105,7 @@ export default function AboutSection() {
             {/* TikTok */}
             <div className="flex flex-col items-center">
               <div className="w-24 h-24 rounded-full bg-green-700 flex items-center justify-center mb-4">
-                <Music className="w-12 h-12 text-white" />
+                <FaTiktok className="w-12 h-12 text-white" />
               </div>
               <h4 className="text-xl font-bold text-green-700 mb-2">Tik Tok</h4>
               <p className="text-gray-700 text-center mb-4">pasarkebbun</p>
@@ -117,7 +117,7 @@ export default function AboutSection() {
             {/* WhatsApp */}
             <div className="flex flex-col items-center">
               <div className="w-24 h-24 rounded-full bg-green-700 flex items-center justify-center mb-4">
-                <Send className="w-12 h-12 text-white" />
+                <FaWhatsapp className="w-12 h-12 text-white" />
               </div>
               <h4 className="text-xl font-bold text-green-700 mb-2">WhatsApp</h4>
               <p className="text-gray-700 text-center mb-4">087773300978</p>

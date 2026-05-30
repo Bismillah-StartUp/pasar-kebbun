@@ -1,5 +1,5 @@
 import HeadViews from '@/components/ui/customs/headviews';
-import { Clock, Calendar } from 'lucide-react';
+import { FaClock, FaCalendar } from 'react-icons/fa';
 
 const WEEKLY_IMAGES = [
   '/assets/images/events/weekly/weekly_one.png',
@@ -66,7 +66,7 @@ export default function EventsSection() {
             <div className="bg-white rounded-lg shadow-md p-8 text-center">
               <div className="flex justify-center mb-4">
                 <div className="w-20 h-20 rounded-full bg-green-700 flex items-center justify-center">
-                  <Clock className="w-10 h-10 text-white" />
+                  <FaClock className="w-10 h-10 text-white" />
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-green-700 mb-4">Jam Operasional</h3>
@@ -84,7 +84,7 @@ export default function EventsSection() {
             <div className="bg-white rounded-lg shadow-md p-8 text-center">
               <div className="flex justify-center mb-4">
                 <div className="w-20 h-20 rounded-full bg-green-700 flex items-center justify-center">
-                  <Calendar className="w-10 h-10 text-white" />
+                  <FaCalendar className="w-10 h-10 text-white" />
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-green-700 mb-4">Jadwal</h3>

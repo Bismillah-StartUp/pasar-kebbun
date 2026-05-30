@@ -6,13 +6,13 @@ import HeadViews from '@/components/ui/customs/headviews';
 import ArticleSlides from '@/components/pages/landing/partials/article-slides';
 import Link from 'next/link';
 import {
-  MapPin,
-  Clock,
-  UtensilsCrossed,
-  ShoppingBag,
-  Sparkles,
-  Users,
-} from 'lucide-react';
+  FaMapPin,
+  FaClock,
+  FaUtensils,
+  FaShoppingBag,
+  FaStar,
+  FaUsers,
+} from 'react-icons/fa';
 
 interface Article {
   id: string;
@@ -72,42 +72,42 @@ export default function LandingPage() {
   const features = [
     {
       id: 1,
-      icon: MapPin,
+      icon: FaMapPin,
       title: 'Lokasi',
       description: 'Desa Saroka, Saronggi,\nKecamatan Saronggi, Sumenep,\nJawa Timur',
       link: '#',
     },
     {
       id: 2,
-      icon: Clock,
+      icon: FaClock,
       title: 'Jam Operasional',
       description: 'Setiap Hari\n08:00-14:00 Wis\n17:00-23:00 Wis',
       link: '#',
     },
     {
       id: 3,
-      icon: UtensilsCrossed,
+      icon: FaUtensils,
       title: 'Kuliner',
       description: '80+ Produk Makanan dan\nMinuman Tradisional',
       link: '#',
     },
     {
       id: 4,
-      icon: ShoppingBag,
+      icon: FaShoppingBag,
       title: 'UMKM',
       description: '15+ UMKM Asli Madura',
       link: '#',
     },
     {
       id: 5,
-      icon: Sparkles,
+      icon: FaStar,
       title: 'Event',
       description: '48+ Event Penyelenggaraan\ndalam Setahun',
       link: '#',
     },
     {
       id: 6,
-      icon: Users,
+      icon: FaUsers,
       title: 'Pengunjung',
       description: '200-500 Pengunjung/\nOperasional',
       link: '#',
