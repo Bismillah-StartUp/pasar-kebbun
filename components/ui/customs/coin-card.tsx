@@ -11,42 +11,39 @@ export interface CoinCardProps {
 export default function CoinCard({ denomination, pricePerCoin, items }: CoinCardProps) {
   const totalPrice = pricePerCoin * denomination;
   const coinImage = `/assets/images/tenants/coins/${['one', 'two', 'three', 'four'][denomination - 1]}.png`;
+  
+  // Format mata uang sesuai dengan "Rp 2.500,00"
+  const formattedPrice = new Intl.NumberFormat('id-ID', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(totalPrice);
 
   return (
-    <div className="flex flex-col items-center gap-4 rounded-lg border border-amber-200 bg-linear-to-b from-amber-50 to-amber-100 p-6 shadow-md hover:shadow-lg transition-shadow">
-      {/* Coin Image */}
-      <div className="relative h-32 w-32 shrink-0">
-        <Image
-          src={coinImage}
-          alt={`${denomination} Coin`}
-          fill
-          className="object-contain"
-          priority
-        />
+    <div className="flex flex-row items-start gap-6 py-6 border-b border-gray-100 last:border-0 md:gap-10">
+      {/* Kolom Kiri: Gambar Koin & Info Harga */}
+      <div className="flex flex-col items-center justify-center w-30 sm:w-37.5 shrink-0 text-center">
+        <div className="relative h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28">
+          <Image
+            src={coinImage}
+            alt={`${denomination} Coin`}
+            fill
+            className="object-contain"
+            sizes="(min-width: 640px) 112px, 80px"
+          />
+        </div>
+
+        <div className="mt-2 text-[#15803d] font-bold text-xs sm:text-sm md:text-base leading-tight">
+          <p>{denomination} Koin</p>
+          <p className="mt-0.5">/ Rp {formattedPrice}</p>
+        </div>
       </div>
 
-      {/* Denomination and Price */}
-      <div className="text-center">
-        <p className="text-sm font-medium text-amber-900">
-          {denomination} Koin
-        </p>
-        <p className="text-2xl font-bold text-amber-900">
-          Rp {totalPrice.toLocaleString('id-ID')}
-        </p>
-      </div>
-
-      {/* Items List */}
-      <div className="w-full border-t border-amber-200 pt-4">
-        <p className="mb-2 text-xs font-semibold text-amber-900">Dapat dibeli:</p>
-        <p className="text-xs leading-relaxed text-amber-800">
+      {/* Kolom Kanan: Daftar Kuliner */}
+      <div className="flex-1 pt-2 sm:pt-4">
+        <p className="text-[#166534] font-medium text-[13px] sm:text-sm md:text-[15px] leading-relaxed text-left">
           {items.join(', ')}
         </p>
       </div>
-
-      {/* Purchase Button */}
-      <button className="w-full rounded-md bg-amber-600 py-2 px-4 font-semibold text-white transition-colors hover:bg-amber-700 active:bg-amber-800">
-        Beli
-      </button>
     </div>
   );
 }
