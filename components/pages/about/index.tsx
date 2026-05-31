@@ -12,119 +12,109 @@ const LANDING_IMAGES = [
 
 export default function AboutSection() {
   return (
-    <div className="flex flex-col w-full">
-      {/* Hero Section - HeadViews */}
-      <section className="w-full">
+    <div className="flex flex-col w-full bg-white">
+        <section className="w-full">
         <HeadViews images={LANDING_IMAGES} />
       </section>
 
-      {/* Sejarah Pasar Kebbun */}
       <section className="w-full bg-white py-12 px-4">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="text-4xl font-bold text-green-700 text-center mb-6">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-4 tracking-wide">
             Sejarah Pasar Kebbun
           </h2>
-          <p className="text-gray-700 leading-relaxed text-justify">
-            Terbentuknya pasar kebbun bermula dari ide anak muda yang kemudian peduli terhadap tradisi, budaya dan kuliner terdahulu yang hari ini hampir dilupakan, karena maraknya kuliner yang serba instan. Nah dan silulah saya bersama teman-teman melalu teman-teman melilai dan mengonsep, pasar kebbun tersebut dengan nuansa lampau. Dan di launching pada hari 20 Agustus 2025.
+          <p className="text-green-800 font-medium leading-relaxed text-justify md:text-center text-[15px] sm:text-base">
+            Terbentuknya pasar kebbun bermula dari ide anak muda yang kemudian peduli terhadap tradisi, budaya dan kuliner terdahulu yang hari ini hampir dilupakan, karena maraknya kuliner yang serba instan. Nah dan disitulah saya bersama teman-teman mulai dan mengonsep, pasar kebbun tersebut dengan nuansa lampau. Dan dilaunching pada hari 20 Agustus 2025.
           </p>
         </div>
       </section>
 
-      {/* Visi Misi */}
-      <section className="w-full bg-gray-50 py-12 px-4">
-        <div className="mx-auto max-w-4xl">
-          <h3 className="text-3xl font-bold text-green-700 text-center mb-4">
+      <section className="w-full bg-white py-12 px-4">
+        <div className="mx-auto max-w-4xl text-center">
+          <h3 className="text-3xl font-bold text-green-800 mb-4 tracking-wide">
             Visi Misi
           </h3>
-          <p className="text-gray-700 leading-relaxed text-center">
-            Visi misi dan tujuan untuk melestariakn tradisi, merawat bumi, dan meningkatkan ekonomi.
+          <p className="text-green-800 font-medium leading-relaxed text-center text-[15px] sm:text-base">
+            Visi misi dan tujuan untuk melestarikan tradisi, merawat bumi, dan meningkatkan ekonomi.
           </p>
         </div>
       </section>
 
-      {/* Pengelola */}
       <section className="w-full bg-white py-12 px-4">
-        <div className="mx-auto max-w-4xl">
-          <h3 className="text-3xl font-bold text-green-700 text-center mb-4">
+        <div className="mx-auto max-w-4xl text-center">
+          <h3 className="text-3xl font-bold text-green-800 mb-4 tracking-wide">
             Pengelola
           </h3>
-          <p className="text-gray-700 leading-relaxed text-center">
-            Pasar Kebbun Sumenep adalah inisiatif wisata kuliner dan edukasi swasta yang didirikan oleh Fojar Siddiq serta didukong bersama anak-anak muda Desa Saroka dan sektornya.
+          <p className="text-green-800 font-medium leading-relaxed text-center text-[15px] sm:text-base">
+            Pasar Kebbun Sumenep adalah inisiatif wisata kuliner dan edukasi swasta yang didirikan oleh Fajar Siddiq serta didukung bersama anak-anak muda Desa Saroka dan sektornya.
           </p>
         </div>
       </section>
 
-      {/* Logo dan Filosofi */}
-      <section className="w-full bg-gray-50 py-12 px-4">
+      <section className="w-full bg-white py-12 px-4">
         <div className="mx-auto max-w-4xl">
-          <h3 className="text-3xl font-bold text-green-700 text-center mb-8">
+          <h3 className="text-3xl font-bold text-green-800 text-center mb-8 tracking-wide">
             Logo dan Filosofi
           </h3>
           
-          <div className="bg-white rounded-lg p-8 mb-8">
-            <div className="relative w-full h-96">
-              <Image
-                src="/assets/images/abouts/filosofi.png"
-                alt="Logo Pasar Kebbun"
-                width={50}
-                height={50}
-                className="object-cover rounded-lg"
-              />
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg p-6 text-center">
-            <h4 className="text-2xl font-bold text-green-700 mb-4">FILOSOFI LOGO</h4>
-            <p className="text-gray-700 leading-relaxed">
-              Pasar Kebbun merepresentasikan harmoni antara budaya, alam, dan tradisi. Logo kami menggambarkan sambungan antara alam yang hijau dan deklaratif simbol ui hujan yang megah. Setiap elemen di dalam logo menunjukan komitmen untuk melestarikan budaya tradisional yang adi luhung.
-            </p>
+          <div className="justify-center flex">
+            <Image
+              src="/assets/images/abouts/filosofi.png"
+              alt="Logo Pasar Kebbun"
+              width={800}
+              height={400}
+              className="rounded-lg"
+            />
           </div>
         </div>
       </section>
 
-      {/* Kontak Kami */}
-      <section className="w-full bg-white py-12 px-4">
+      <section className="w-full bg-white py-16 px-4">
         <div className="mx-auto max-w-4xl">
-          <h3 className="text-3xl font-bold text-green-700 text-center mb-8">
-            Kontak Kami
+          <h3 className="text-3xl font-bold text-green-800 text-center mb-12 tracking-wide">
+            Klik Disini
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Instagram */}
-            <div className="flex flex-col items-center">
-              <div className="w-24 h-24 rounded-full bg-green-700 flex items-center justify-center mb-4">
-                <FaInstagram className="w-12 h-12 text-white" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-6">
+            
+            <div className="flex flex-col items-center text-center justify-between min-h-50">
+              <div className="flex flex-col items-center">
+                <div className="w-20 h-20 rounded-full border-[5px] border-green-800 bg-green-700 flex items-center justify-center mb-3">
+                  <FaInstagram className="w-10 h-10 text-white" />
+                </div>
+                <h4 className="text-xl font-bold text-green-800 mb-0.5">Instagram</h4>
+                <p className="text-green-800 font-medium text-sm">@fojarsiddiq</p>
               </div>
-              <h4 className="text-xl font-bold text-green-700 mb-2">Instagram</h4>
-              <p className="text-gray-700 text-center mb-4">pasarkebbun</p>
-              <button className="px-6 py-2 bg-yellow-400 text-black font-bold rounded-md hover:bg-yellow-500 transition-colors">
-                Lihat Detail
+              <button className="mt-4 px-6 py-1.5 bg-[#f59e0b] hover:bg-[#d97706] text-white font-bold text-xs uppercase rounded-md transition-all tracking-wider shadow-sm">
+                Klik Disini
               </button>
             </div>
 
-            {/* TikTok */}
-            <div className="flex flex-col items-center">
-              <div className="w-24 h-24 rounded-full bg-green-700 flex items-center justify-center mb-4">
-                <FaTiktok className="w-12 h-12 text-white" />
+            <div className="flex flex-col items-center text-center justify-between min-h-50">
+              <div className="flex flex-col items-center">
+                <div className="w-20 h-20 rounded-full border-[5px] border-green-800 bg-green-700 flex items-center justify-center mb-3">
+                  <FaTiktok className="w-9 h-9 text-white" />
+                </div>
+                <h4 className="text-xl font-bold text-green-800 mb-0.5">Tik Tok</h4>
+                <p className="text-green-800 font-medium text-sm">@pasarsiddiq</p>
               </div>
-              <h4 className="text-xl font-bold text-green-700 mb-2">Tik Tok</h4>
-              <p className="text-gray-700 text-center mb-4">pasarkebbun</p>
-              <button className="px-6 py-2 bg-yellow-400 text-black font-bold rounded-md hover:bg-yellow-500 transition-colors">
-                Lihat Detail
+              <button className="mt-4 px-6 py-1.5 bg-[#f59e0b] hover:bg-[#d97706] text-white font-bold text-xs uppercase rounded-md transition-all tracking-wider shadow-sm">
+                Klik Disini
               </button>
             </div>
 
-            {/* WhatsApp */}
-            <div className="flex flex-col items-center">
-              <div className="w-24 h-24 rounded-full bg-green-700 flex items-center justify-center mb-4">
-                <FaWhatsapp className="w-12 h-12 text-white" />
+            <div className="flex flex-col items-center text-center justify-between min-h-[200px]">
+              <div className="flex flex-col items-center">
+                <div className="w-20 h-20 rounded-full border-[5px] border-green-800 bg-green-700 flex items-center justify-center mb-3">
+                  <FaWhatsapp className="w-10 h-10 text-white" />
+                </div>
+                <h4 className="text-xl font-bold text-green-800 mb-0.5">WhatsApp</h4>
+                <p className="text-green-800 font-medium text-sm">0813 255 8883</p>
               </div>
-              <h4 className="text-xl font-bold text-green-700 mb-2">WhatsApp</h4>
-              <p className="text-gray-700 text-center mb-4">087773300978</p>
-              <button className="px-6 py-2 bg-yellow-400 text-black font-bold rounded-md hover:bg-yellow-500 transition-colors">
-                Lihat Detail
+              <button className="mt-4 px-6 py-1.5 bg-[#f59e0b] hover:bg-[#d97706] text-white font-bold text-xs uppercase rounded-md transition-all tracking-wider shadow-sm">
+                Klik Disini
               </button>
             </div>
+
           </div>
         </div>
       </section>

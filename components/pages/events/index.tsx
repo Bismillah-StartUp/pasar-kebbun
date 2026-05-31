@@ -1,5 +1,6 @@
 import HeadViews from '@/components/ui/customs/headviews';
-import { FaClock, FaCalendar } from 'react-icons/fa';
+import { BsClock } from 'react-icons/bs';
+import { IoCalendarSharp } from 'react-icons/io5';
 
 const WEEKLY_IMAGES = [
   '/assets/images/events/weekly/weekly_one.png',
@@ -31,7 +32,7 @@ export default function EventsSection() {
               Event Mingguan
             </h2>
             <p className="text-gray-700 leading-relaxed text-center">
-              Setiap hari Minggu, mulai pukul 06.00 hingga 14.00 WIB menghadirkan pertunjukan mingguan di Pasar Kebbun bersifat hiburan seni dan budaya lokal yang disajikan secara bergantian untuk menghubur pengalaman kuliner dengan apresiasi terhadap seni dan budaya lokal Madura, membuat kunjungan terasa lebih hidup dan bernomortalgia.
+              Setiap hari Minggu, mulai pukul 06.00 hingga 14.00 WIB menghadirkan pertunjukan mingguan di Pasar Kebbun  bersifat hiburan seni dan budaya lokal yang disajikan secara bergantian untuk menghibur pengunjung. Pertunjukan ini untuk memadukan pengalaman wisata kuliner dengan apresiasi terhadap seni dan budaya lokal Madura, membuat kunjungan terasa lebih hidup dan bernostalgia.
             </p>
           </div>
         </div>
@@ -49,52 +50,83 @@ export default function EventsSection() {
               Event Bulanan
             </h2>
             <p className="text-gray-700 leading-relaxed mb-6 text-center">
-              Pasar Kebbun Sumenep saat bulan purnama dikenal dengan acara rani bernama bulan purnama di &ldquo;Pasar Kebbun&rdquo; merupakan edisi khusus yang berbeda dari jadwal pasar pagi. Pasar Purnama diadakan secara insidental atau sesuai jadwal yang diumumkan oleh pengelola, biasanya pada malam hari saat bulan purnama penuh.
+              Pasar Kebbun Sumenep saat bulan purnama dikenal dengan acara rutin bernama &ldquo;Bulan Purnama di Pasar Kebbun&ldquo; merupakan edisi khusus yang berbeda dari jadwal pasar pagi. Pasar Poernama diadakan secara insidental atau sesuai jadwal yang diumumkan oleh pengelola, biasanya pada malam saat bulan purnama penuh.
             </p>
             <p className="text-gray-700 leading-relaxed text-center">
-              Fokus utama menciptakan suasana malam yang romantis dan magis di area pasar dan memberikan pengalaman alternatif bagi pengunjung yang ingin menikimati keindahan alam dan suasana pasar di malam hari, dengan sentuhan budaya lokal yang kental.
+              Fokus utama menciptakan suasana malam yang romantis dan magis di area pasar dan memberikan pengalaman alternatif bagi pengunjung yang ingin menikmati keindahan alam dan suasana pasar di malam hari, dengan sentuhan budaya lokal yang kental.
             </p>
           </div>
         </div>
       </section>
 
       {/* Operating Hours & Schedule Section */}
-      <section className="w-full bg-gray-50 py-12 px-4">
+      <section className="w-full bg-white py-16 px-4">
         <div className="mx-auto max-w-4xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Operating Hours */}
-            <div className="bg-white rounded-lg shadow-md p-8 text-center">
-              <div className="flex justify-center mb-4">
-                <div className="w-20 h-20 rounded-full bg-green-700 flex items-center justify-center">
-                  <FaClock className="w-10 h-10 text-white" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-8">
+            
+            {/* Jam Operasional */}
+            {/* md:min-h-[340px] memastikan kedua kolom memiliki tinggi minimum yang sama untuk kalkulasi justify-between */}
+            <div className="flex flex-col items-center text-center justify-between md:min-h-85">
+              {/* Kontainer Atas: Ikon + Judul + Teks */}
+              <div className="flex flex-col items-center">
+                {/* Lingkaran Ikon */}
+                <div className="mb-5">
+                  <div className="w-24 h-24 rounded-full border-[6px] border-[#065f46] bg-[#15803d] flex items-center justify-center shadow-inner">
+                    <BsClock className="w-11 h-11 text-white" />
+                  </div>
+                </div>
+                
+                {/* Judul */}
+                <h3 className="text-3xl font-bold text-[#166534] mb-4 tracking-wide">
+                  Jam Operasional
+                </h3>
+                
+                {/* Konten Teks */}
+                <div className="text-[#166534] text-[15px] sm:text-base font-medium space-y-1 max-w-sm">
+                  <p>Setiap Minggu 06.00-14.00 WIB</p>
+                  <p>Setiap Malam Bulan Purnama</p>
+                  <p>17.00-23.00 WIB</p>
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-green-700 mb-4">Jam Operasional</h3>
-              <div className="space-y-2 text-gray-700">
-                <p className="font-semibold">Setiap Minggu 06:00-14:00 WIB</p>
-                <p>Setiap Malam Bulan Purnama</p>
-                <p>17:00-23:00 WIB</p>
+              
+              {/* Tombol Aksi - Selalu di bawah */}
+              <div className="mt-8 md:mt-0">
+                <button className="px-7 py-2 bg-[#f59e0b] hover:bg-[#d97706] text-white font-bold text-sm rounded-full transition-all tracking-wide shadow-sm">
+                  Lihat Disini
+                </button>
               </div>
-              <button className="mt-6 px-6 py-2 bg-yellow-400 text-black font-bold rounded-md hover:bg-yellow-500 transition-colors">
-                Lihat Detail
-              </button>
             </div>
 
-            {/* Schedule */}
-            <div className="bg-white rounded-lg shadow-md p-8 text-center">
-              <div className="flex justify-center mb-4">
-                <div className="w-20 h-20 rounded-full bg-green-700 flex items-center justify-center">
-                  <FaCalendar className="w-10 h-10 text-white" />
+            {/* Jadwal */}
+            <div className="flex flex-col items-center text-center justify-between md:min-h-85">
+              {/* Kontainer Atas: Ikon + Judul + Teks */}
+              <div className="flex flex-col items-center">
+                {/* Lingkaran Ikon */}
+                <div className="mb-5">
+                  <div className="w-24 h-24 rounded-full border-[6px] border-[#065f46] bg-[#15803d] flex items-center justify-center shadow-inner">
+                    <IoCalendarSharp className="w-11 h-11 text-white" />
+                  </div>
+                </div>
+                
+                {/* Judul */}
+                <h3 className="text-3xl font-bold text-[#166534] mb-4 tracking-wide">
+                  Jadwal
+                </h3>
+                
+                {/* Konten Teks */}
+                <div className="text-[#166534] text-[15px] sm:text-base font-medium max-w-xs leading-relaxed">
+                  <p>Informasi update jadwal event terbaru</p>
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-green-700 mb-4">Jadwal</h3>
-              <div className="space-y-2 text-gray-700">
-                <p>Informasi update jadwal event terbaru dan aktivitas spesial yang akan datang</p>
+              
+              {/* Tombol Aksi - Selalu di bawah */}
+              <div className="mt-8 md:mt-0">
+                <button className="px-7 py-2 bg-[#f59e0b] hover:bg-[#d97706] text-white font-bold text-sm rounded-full transition-all tracking-wide shadow-sm">
+                  Lihat Disini
+                </button>
               </div>
-              <button className="mt-6 px-6 py-2 bg-yellow-400 text-black font-bold rounded-md hover:bg-yellow-500 transition-colors">
-                Lihat Jadwal
-              </button>
             </div>
+
           </div>
         </div>
       </section>
