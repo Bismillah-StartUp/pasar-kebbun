@@ -1,6 +1,6 @@
 export default function SideAuth() {
   return (
-    <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-green-700 to-green-800 flex-col justify-between p-8 text-white">
+    <div className="hidden lg:flex w-1/2 bg-linear-to-br from-green-700 to-green-800 flex-col justify-between p-8 text-white">
       {/* Logo */}
       <div className="flex items-center gap-3">
         <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">

@@ -35,7 +35,7 @@ export default function KulinerPage() {
         <NavHeader title="Kuliner" />
 
         {/* Main Workspace */}
-        <main className="p-6 flex flex-col gap-5 max-w-[1600px] w-full mx-auto">
+        <main className="p-6 flex flex-col gap-5 max-w-400 w-full mx-auto">
           
           {/* Baris Filter, Cari, dan Tambah Data */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-2">
