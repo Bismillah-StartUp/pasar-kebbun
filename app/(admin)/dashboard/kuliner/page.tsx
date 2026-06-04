@@ -2,6 +2,7 @@
 
 import NavHeader from '@/components/navigations/dashboards/navheader';
 import Sidebar from '@/components/navigations/dashboards/sidebar';
+import Link from 'next/link';
 import { useState } from 'react';
 import { BiSolidPencil } from 'react-icons/bi';
 import { FiSearch, FiPlus, FiEye, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
@@ -72,10 +73,12 @@ export default function KulinerPage() {
               </div>
 
               {/* Tombol Tambah Kuliner */}
-              <button className="flex items-center gap-1.5 px-4 py-2 bg-[#035A1A] hover:bg-[#024d16] text-white font-bold text-xs rounded-full shadow-sm transition-all whitespace-nowrap">
-                <FiPlus className="w-4 h-4" />
-                Tambah Kuliner
-              </button>
+              <Link href="kuliner/create">
+                <button className="flex items-center gap-1.5 px-4 py-2 bg-[#035A1A] hover:bg-[#024d16] text-white font-bold text-xs rounded-full shadow-sm transition-all whitespace-nowrap">
+                  <FiPlus className="w-4 h-4" />
+                  Tambah Kuliner
+                </button>
+              </Link>
             </div>
 
           </div>

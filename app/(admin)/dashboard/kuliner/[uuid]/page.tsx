@@ -62,7 +62,7 @@ export default function DetailKulinerPage() {
           {/* Tombol Kembali ke List */}
           <div className="flex justify-start">
             <Link 
-              href="/kuliner" 
+              href="/dashboard/kuliner" 
               className="flex items-center gap-1.5 text-xs font-bold text-slate-400 hover:text-slate-600 transition-colors"
             >
               <FiChevronLeft className="w-4 h-4" />

@@ -12,10 +12,10 @@ export default function TambahKulinerPage() {
 
   // Dummy state gambar untuk mereplikasi visual 4/5 foto yang sudah terunggah di mockup
   const uploadedPhotos = [
-    { id: 1, src: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400', isUtama: true },
-    { id: 2, src: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400', isUtama: false },
-    { id: 3, src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400', isUtama: false },
-    { id: 4, src: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400', isUtama: false },
+    { id: 1, src: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400', isPrimary: true },
+    { id: 2, src: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400', isPrimary: false },
+    { id: 3, src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400', isPrimary: false },
+    { id: 4, src: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400', isPrimary: false },
   ];
 
   return (
@@ -42,7 +42,7 @@ export default function TambahKulinerPage() {
           {/* Tombol Kembali */}
           <div className="flex justify-start">
             <Link 
-              href="/kuliner" 
+              href="/dashboard/kuliner" 
               className="flex items-center gap-1.5 text-xs font-bold text-slate-400 hover:text-slate-600 transition-colors"
             >
               <FiChevronLeft className="w-4 h-4" />
@@ -134,7 +134,7 @@ export default function TambahKulinerPage() {
                         height={200}
                       />
                       {/* Badge UTAMA untuk foto pertama */}
-                      {photo.isUtama && (
+                      {photo.isPrimary && (
                         <span className="absolute top-2 left-2 px-2 py-0.5 bg-[#035A1A] text-white text-[9px] font-black tracking-widest rounded uppercase shadow-sm">
                           Utama
                         </span>
