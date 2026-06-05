@@ -14,7 +14,7 @@ export default function Sidebar() {
   const menuItems = [
     { name: 'Dashboard', href: '/dashboard', icon: FiGrid },
     { name: 'Kuliner', href: '/dashboard/kuliner', icon: MdOutlineRestaurant },
-    { name: 'Berita', href: '/berita', icon: HiOutlineNewspaper },
+    { name: 'Berita', href: '/dashboard/news', icon: HiOutlineNewspaper },
     { name: 'Profil', href: '/profil', icon: FiUser },
   ];
 
