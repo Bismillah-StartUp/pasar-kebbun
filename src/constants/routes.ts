@@ -1,0 +1,23 @@
+export const ROUTES = {
+  USER: {
+    HOME: '/',
+    KULINER: '/kuliner',
+    UMKM: '/umkm',
+    EVENT: '/event',
+    FASILITAS: '/fasilitas',
+    ABOUT: '/about',
+  },
+  ADMIN: {
+    LOGIN: '/login',
+    FORGOT_PASSWORD: '/forgot',
+    RESET_PASSWORD: '/password',
+    DASHBOARD: '/dashboard',
+    KULINER: '/dashboard/kuliner',
+    KULINER_CREATE: '/dashboard/kuliner/create',
+    KULINER_DETAIL: (uuid: string) => `/dashboard/kuliner/${uuid}`,
+    NEWS: '/dashboard/news',
+    NEWS_CREATE: '/dashboard/news/create',
+    NEWS_DETAIL: (uuid: string) => `/dashboard/news/${uuid}`,
+    PROFILE: '/dashboard/profile',
+  },
+} as const;

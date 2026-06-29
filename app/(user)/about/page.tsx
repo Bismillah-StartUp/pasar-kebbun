@@ -1,5 +1,4 @@
-import Navbar from '@/components/navigations/usersides/navbar';
-import Footer from '@/components/navigations/usersides/footer';
+import { Navbar, Footer } from '@/components/layout';
 import AboutSection from '@/components/pages/about';
 
 export default function AboutPage() {
