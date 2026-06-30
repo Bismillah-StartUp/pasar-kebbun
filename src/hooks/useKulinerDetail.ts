@@ -11,9 +11,9 @@ export function useKulinerDetail(uuid: string) {
   useEffect(() => {
     let isMounted = true;
 
-    getKulinerByUuid(uuid).then((data) => {
+    getKulinerByUuid(uuid).then((res) => {
       if (isMounted) {
-        setKuliner(data);
+        setKuliner(res.data);
         setIsLoading(false);
       }
     });

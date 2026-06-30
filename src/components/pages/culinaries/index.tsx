@@ -1,8 +1,11 @@
 import CulinaryCard from '@/components/ui/customs/culinary-card';
-import { getAllKuliner } from '@/services/kuliner.service';
+import prisma from '@/lib/prisma';
 
 export default async function CulinariesList() {
-  const culinaries = await getAllKuliner();
+  const culinaries = await prisma.culinary.findMany({
+    include: { photos: { orderBy: { order: 'asc' } } },
+    orderBy: { createdAt: 'desc' },
+  });
 
   return (
     <div className="py-12 bg-gray-50">
@@ -15,11 +18,11 @@ export default async function CulinariesList() {
         <div className="space-y-16">
           {culinaries.map((culinary) => (
             <CulinaryCard
-              key={culinary.id}
-              image={culinary.foto[0]}
-              title={culinary.nama}
-              description={culinary.penjelasan}
-              hargaKoin={culinary.hargaKoin}
+              key={culinary.uuid}
+              image={culinary.photos[0]?.url ?? ''}
+              title={culinary.name}
+              description={culinary.description}
+              hargaKoin={culinary.coinPrice}
             />
           ))}
         </div>

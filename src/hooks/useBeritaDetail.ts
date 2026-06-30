@@ -11,9 +11,9 @@ export function useBeritaDetail(uuid: string) {
   useEffect(() => {
     let isMounted = true;
 
-    getBeritaByUuid(uuid).then((data) => {
+    getBeritaByUuid(uuid).then((res) => {
       if (isMounted) {
-        setBerita(data);
+        setBerita(res.data);
         setIsLoading(false);
       }
     });
