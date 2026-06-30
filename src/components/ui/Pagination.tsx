@@ -11,31 +11,45 @@ interface PaginationProps {
 export function Pagination({ currentPage, totalPages, onPageChange, className }: PaginationProps) {
   if (totalPages <= 1) return null;
 
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+
   return (
-    <div className={cn('flex items-center justify-between', className)}>
-      <span className="text-xs font-medium text-slate-400">
-        Halaman {currentPage} dari {totalPages}
-      </span>
-      <div className="flex items-center gap-2">
+    <div className={cn('flex items-center justify-end gap-1', className)}>
+      <button
+        type="button"
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage <= 1}
+        className="p-2 bg-white border border-slate-200 rounded-lg text-slate-500 hover:bg-slate-50 disabled:opacity-40 disabled:hover:bg-white transition-colors"
+        aria-label="Halaman sebelumnya"
+      >
+        <FiChevronLeft className="w-4 h-4" />
+      </button>
+
+      {pages.map((page) => (
         <button
+          key={page}
           type="button"
-          onClick={() => onPageChange(currentPage - 1)}
-          disabled={currentPage <= 1}
-          className="p-2 bg-white border border-slate-200 rounded-lg text-slate-500 hover:bg-slate-50 disabled:opacity-40 disabled:hover:bg-white transition-colors"
-          aria-label="Halaman sebelumnya"
+          onClick={() => onPageChange(page)}
+          className={cn(
+            'w-8 h-8 text-xs font-bold rounded-lg transition-colors',
+            page === currentPage
+              ? 'bg-primary text-white'
+              : 'bg-white border border-slate-200 text-slate-500 hover:bg-slate-50'
+          )}
         >
-          <FiChevronLeft className="w-4 h-4" />
+          {page}
         </button>
-        <button
-          type="button"
-          onClick={() => onPageChange(currentPage + 1)}
-          disabled={currentPage >= totalPages}
-          className="p-2 bg-white border border-slate-200 rounded-lg text-slate-500 hover:bg-slate-50 disabled:opacity-40 disabled:hover:bg-white transition-colors"
-          aria-label="Halaman berikutnya"
-        >
-          <FiChevronRight className="w-4 h-4" />
-        </button>
-      </div>
+      ))}
+
+      <button
+        type="button"
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage >= totalPages}
+        className="p-2 bg-white border border-slate-200 rounded-lg text-slate-500 hover:bg-slate-50 disabled:opacity-40 disabled:hover:bg-white transition-colors"
+        aria-label="Halaman berikutnya"
+      >
+        <FiChevronRight className="w-4 h-4" />
+      </button>
     </div>
   );
 }

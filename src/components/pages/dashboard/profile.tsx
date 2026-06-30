@@ -13,7 +13,6 @@ export default function ProfilePage() {
 
   return (
     <Card className="max-w-lg">
-      <h2 className="text-base font-black text-slate-800 tracking-tight mb-6">Profil Admin</h2>
       <ProfileForm user={user} onSubmit={updateProfile} />
     </Card>
   );

@@ -18,7 +18,8 @@ export default function KulinerCreatePage() {
     <>
       <BackLink href={ROUTES.ADMIN.KULINER} />
 
-      <Card>
+      <Card className="flex flex-col gap-6">
+        <h2 className="text-base font-black text-slate-800 tracking-tight select-none">Tambah Kuliner</h2>
         <KulinerForm submitLabel="Tambah +" onSubmit={handleSubmit} />
       </Card>
     </>

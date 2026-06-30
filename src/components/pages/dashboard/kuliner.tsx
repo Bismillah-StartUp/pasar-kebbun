@@ -85,12 +85,16 @@ export default function KulinerListPage() {
           emptyMessage={isLoading ? 'Memuat data...' : 'Belum ada data kuliner'}
         />
 
-        <Pagination currentPage={page} totalPages={totalPages} onPageChange={goToPage} />
-
-        <p className="text-xs font-medium text-slate-400">
-          Menampilkan <span className="text-slate-700 font-semibold">{data.length}</span> dari{' '}
-          <span className="text-slate-700 font-semibold">{total}</span> data
-        </p>
+        <div className="flex items-center justify-between">
+          <p className="text-xs font-medium text-slate-400">
+            Menampilkan{' '}
+            <span className="text-slate-700 font-semibold">
+              {total === 0 ? 0 : (page - 1) * 7 + 1}–{Math.min(page * 7, total)}
+            </span>{' '}
+            dari <span className="text-slate-700 font-semibold">{total}</span> data
+          </p>
+          <Pagination currentPage={page} totalPages={totalPages} onPageChange={goToPage} />
+        </div>
       </div>
     </>
   );

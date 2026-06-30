@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────
+// ADMIN USER
+// ─────────────────────────────────────────
+model AdminUser {
+  id        Int      @id @default(autoincrement())
+  uuid      String   @unique @default(uuid())
+  fullName  String
+  email     String   @unique
+  username  String   @unique
+  password  String   // bcrypt hash
+  avatarId  String?  // Cloudinary public_id
+  avatarUrl String?  // Cloudinary secure_url
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("admin_users")
+}
+
+// ─────────────────────────────────────────
+// CULINARY
+// ─────────────────────────────────────────
+model Culinary {
+  id          Int             @id @default(autoincrement())
+  uuid        String          @unique @default(uuid())
+  name        String
+  slug        String          @unique
+  type        CulinaryType
+  description String          @db.Text
+  coinPrice   Int             // 1–4 coins
+  photos      CulinaryPhoto[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@map("culinaries")
+}
+
+model CulinaryPhoto {
+  id         Int      @id @default(autoincrement())
+  uuid       String   @unique @default(uuid())
+  publicId   String   // Cloudinary public_id
+  url        String   // Cloudinary secure_url
+  isPrimary  Boolean  @default(false)
+  order      Int      @default(0)
+  culinary   Culinary @relation(fields: [culinaryId], references: [id], onDelete: Cascade)
+  culinaryId Int
+
+  @@map("culinary_photos")
+}
+
+enum CulinaryType {
+  FOOD
+  DRINK
+}
+
+// ─────────────────────────────────────────
+// NEWS
+// ─────────────────────────────────────────
+model News {
+  id        Int          @id @default(autoincrement())
+  uuid      String       @unique @default(uuid())
+  title     String
+  link      String
+  imageUrl  String       // Cloudinary secure_url
+  publicId  String       // Cloudinary public_id (for deletion)
+  category  NewsCategory
+  date      DateTime     @default(now())
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  @@map("news")
+}
+
+enum NewsCategory {
+  EVENT
+  CULINARY
+  UMKM
+  GENERAL
+}
+
+// ─────────────────────────────────────────
+// NOTIFICATION
+// ─────────────────────────────────────────
+model Notification {
+  id        Int      @id @default(autoincrement())
+  uuid      String   @unique @default(uuid())
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("notifications")
+}

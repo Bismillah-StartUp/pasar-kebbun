@@ -14,7 +14,7 @@ export function useAdminProfile() {
       .finally(() => setIsLoading(false));
   }, []);
 
-  const updateProfile = async (values: Partial<AdminUser>) => {
+  const updateProfile = async (values: Partial<AdminUser> & { password?: string }) => {
     const updated = await updateAdminProfile(values);
     setUser(updated);
   };
