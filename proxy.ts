@@ -1,20 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ROUTES } from '@/constants/routes';
+import { verifyToken, COOKIE_NAME } from '@/lib/auth';
 
-const SESSION_COOKIE_NAME = 'session_token';
+export async function proxy(request: NextRequest) {
+  const token = request.cookies.get(COOKIE_NAME)?.value;
+  const { pathname } = request.nextUrl;
 
-export function proxy(request: NextRequest) {
-  const sessionToken = request.cookies.get(SESSION_COOKIE_NAME)?.value;
+  const isAdminRoute = pathname.startsWith('/dashboard');
+  const isLoginPage = pathname === '/login';
 
-  if (!sessionToken) {
-    const loginUrl = new URL(ROUTES.ADMIN.LOGIN, request.url);
-    loginUrl.searchParams.set('redirect', request.nextUrl.pathname);
-    return NextResponse.redirect(loginUrl);
+  if (isAdminRoute) {
+    if (!token) {
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
+    const payload = await verifyToken(token);
+    if (!payload) {
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
+  }
+
+  if (isLoginPage && token) {
+    const payload = await verifyToken(token);
+    if (payload) {
+      return NextResponse.redirect(new URL('/dashboard', request.url));
+    }
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*'],
+  matcher: ['/dashboard/:path*', '/login'],
 };

@@ -5,7 +5,7 @@ export default function SideAuth() {
     <div className="hidden lg:flex w-[42%] flex-col justify-between p-12 text-white relative overflow-hidden">
       {/* Background image */}
       <Image
-        src="/assets/images/pasar-bg.jpg"
+        src="/assets/images/landings/landing_one.png"
         alt="Pasar Kebbun"
         fill
         className="object-cover"
