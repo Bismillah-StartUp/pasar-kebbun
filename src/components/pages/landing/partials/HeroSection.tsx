@@ -1,0 +1,62 @@
+'use client';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { ROUTES } from '@/constants/routes';
+
+const IMAGES = [
+  '/assets/images/landings/landing_one.png',
+  '/assets/images/landings/landing_two.png',
+  '/assets/images/landings/landing_three.png',
+  '/assets/images/landings/landing_four.png',
+  '/assets/images/landings/landing_five.png',
+];
+
+export default function HeroSection() {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setActive((p) => (p + 1) % IMAGES.length), 5000);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <div className="relative w-full h-screen overflow-hidden bg-gray-900">
+      {IMAGES.map((src, i) => (
+        <div
+          key={src}
+          className="absolute inset-0 transition-opacity duration-700"
+          style={{ opacity: i === active ? 1 : 0, zIndex: i === active ? 1 : 0 }}
+        >
+          <Image src={src} alt={`Pasar Kebbun ${i + 1}`} fill className="object-cover" priority={i === 0} sizes="100vw" />
+        </div>
+      ))}
+      <div className="absolute inset-0 bg-black/50" style={{ zIndex: 2 }} />
+      <div className="absolute inset-0 flex flex-col justify-end pb-16 px-8 md:px-16 lg:px-24 z-10">
+        <p className="text-xs font-semibold tracking-widest text-white/70 uppercase mb-3">
+          Pasar Rakyat Berwawasan Alam
+        </p>
+        <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-6 max-w-xl">
+          Tradisi &amp; Alam<br />Dalam Satu Pasar
+        </h1>
+        <div className="flex items-start gap-6 mb-10 max-w-xs">
+          <p className="text-sm text-white/80 leading-relaxed">
+            Temukan ragam kuliner tradisional, produk UMKM lokal, dan pengalaman pasar rakyat yang hidup setiap Minggu pagi.
+          </p>
+        </div>
+        <div className="flex items-center gap-3 flex-wrap">
+          <Link href={ROUTES.USER.UMKM}
+            className="flex items-center gap-2 bg-accent text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-accent/90 transition-colors">
+            Jelajahi UMKM
+            <span className="text-base">›</span>
+          </Link>
+          <Link href={ROUTES.USER.ABOUT}
+            className="text-sm font-semibold text-white border border-white/60 px-5 py-2.5 rounded-full hover:bg-white/10 transition-colors">
+            Kenali Kami
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,120 +1,126 @@
 import Image from 'next/image';
-import HeadViews from '@/components/ui/customs/headviews';
+import Link from 'next/link';
 import { FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
+import PageHero from '@/components/pages/(user)/partials/PageHero';
+import SectionLabel from '@/components/pages/(user)/partials/SectionLabel';
 
-const LANDING_IMAGES = [
-  '/assets/images/landings/landing_one.png',
-  '/assets/images/landings/landing_two.png',
-  '/assets/images/landings/landing_three.png',
-  '/assets/images/landings/landing_four.png',
-  '/assets/images/landings/landing_five.png',
-];
-
-export default function AboutSection() {
+export default function AboutPage() {
   return (
-    <div className="flex flex-col w-full bg-white">
-        <section className="w-full">
-        <HeadViews images={LANDING_IMAGES} />
-      </section>
+    <div className="w-full bg-white">
+      <PageHero
+        image="/assets/images/landings/landing_three.png"
+        title="Tentang Kami"
+      />
 
-      <section className="w-full bg-white py-12 px-4">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-4 tracking-wide">
-            Sejarah Pasar Kebbun
+      {/* Sejarah */}
+      <section className="w-full py-14 px-4">
+        <div className="max-w-6xl mx-auto">
+          <SectionLabel text="Sejarah" />
+          <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4">
+            Berawal dari Semangat Melestarikan Budaya Lokal
           </h2>
-          <p className="text-green-800 font-medium leading-relaxed text-justify md:text-center text-[15px] sm:text-base">
-            Terbentuknya pasar kebbun bermula dari ide anak muda yang kemudian peduli terhadap tradisi, budaya dan kuliner terdahulu yang hari ini hampir dilupakan, karena maraknya kuliner yang serba instan. Nah dan disitulah saya bersama teman-teman mulai dan mengonsep, pasar kebbun tersebut dengan nuansa lampau. Dan dilaunching pada hari 20 Agustus 2025.
+          <p className="text-sm text-gray-600 leading-relaxed max-w-3xl">
+            Terbentuknya pasar kebbun bermula dari ide anak muda yang kemudian peduli terhadap tradisi, budaya dan kuliner terdahulu yang hari ini hampir dilupakan, karena maraknya kuliner yang serba serbi kekinian. Nah dari situlah saya bersama teman-teman memulai dan mengonsep, pasar kebbun tersebut dengan nuansa lampau. Dan di launching pada tgl 20 april 2025.
           </p>
         </div>
       </section>
 
-      <section className="w-full bg-white py-12 px-4">
-        <div className="mx-auto max-w-4xl text-center">
-          <h3 className="text-3xl font-bold text-green-800 mb-4 tracking-wide">
-            Visi Misi
-          </h3>
-          <p className="text-green-800 font-medium leading-relaxed text-center text-[15px] sm:text-base">
-            Visi misi dan tujuan untuk melestarikan tradisi, merawat bumi, dan meningkatkan ekonomi.
-          </p>
+      {/* Visi Misi */}
+      <section className="w-full py-10 px-4 bg-gray-50">
+        <div className="max-w-6xl mx-auto text-center">
+          <SectionLabel text="Fondasi Kami" />
+          <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-6">Visi &amp; Misi</h2>
+          <div className="border border-primary/30 rounded-xl px-8 py-6 max-w-2xl mx-auto">
+            <p className="text-primary font-semibold text-base leading-relaxed">
+              Visi misi dan tujuan untuk melestarikan tradisi, merawat bumi,<br className="hidden md:block" /> dan meningkatkan ekonomi.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="w-full bg-white py-12 px-4">
-        <div className="mx-auto max-w-4xl text-center">
-          <h3 className="text-3xl font-bold text-green-800 mb-4 tracking-wide">
-            Pengelola
-          </h3>
-          <p className="text-green-800 font-medium leading-relaxed text-center text-[15px] sm:text-base">
-            Pasar Kebbun Sumenep adalah inisiatif wisata kuliner dan edukasi swasta yang didirikan oleh Fajar Siddiq serta didukung bersama anak-anak muda Desa Saroka dan sektornya.
-          </p>
+      {/* Pengelola & Filosofi */}
+      <section className="w-full py-14 px-4">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          <div>
+            <SectionLabel text="Identitas Brand" />
+            <h2 className="text-2xl font-black text-gray-900 mb-4">Pengelola &amp; Filosofi</h2>
+            <p className="text-sm text-gray-600 leading-relaxed mb-3">
+              Pasar Kebun Sumenep adalah inisiatif wisata kuliner dan edukasi swasta yang didirikan oleh Fajor Siddiq serta dikelola bersama anak-anak muda Desa Saroka dan sekitarnya.
+            </p>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Pasar Kwebbun mencerminkan harmoni antara budaya, alam, dan kearifan lokal, menghadirkan nuansa masa lampau di tengah kebun yang subur dan dikelilingi sumber air, ini bukan hanya pasar, tetapi juga pusat wisata yang menghidupkan kembali warisan budaya dan menciptakan pengalaman autentik bagi setiap pengunjung.
+            </p>
+          </div>
+          <div className="flex justify-center md:justify-end">
+            <div className="w-40 h-40 rounded-full overflow-hidden bg-primary flex items-center justify-center">
+              <Image
+                src="/assets/icons/logo-pk-white.png"
+                alt="Logo Pasar Kebbun"
+                width={120}
+                height={120}
+                className="object-contain"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="w-full bg-white py-12 px-4">
-        <div className="mx-auto max-w-4xl">
-          <h3 className="text-3xl font-bold text-green-800 text-center mb-8 tracking-wide">
-            Logo dan Filosofi
-          </h3>
-          
-          <div className="justify-center flex">
-            <Image
-              src="/assets/images/abouts/filosofi.png"
-              alt="Logo Pasar Kebbun"
-              width={800}
-              height={400}
-              className="rounded-lg"
+      {/* Virtual Tour */}
+      <section className="w-full py-14 px-4 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <SectionLabel text="Temukan Kami" />
+          <h2 className="text-2xl font-black text-gray-900 mb-1">Lokasi Pasar Kebbun</h2>
+          <p className="text-sm text-gray-500 mb-6">Dsn. Mora&apos;an, Desa Saroka, Kecamatan Saronggi, Sumenep, Jawa Timur</p>
+          <div className="rounded-xl overflow-hidden border border-gray-200 w-full h-80">
+            <iframe
+              src="https://www.google.com/maps?q=Pasar+Kebbun+Sumenep&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
         </div>
       </section>
 
-      <section className="w-full bg-white py-16 px-4">
-        <div className="mx-auto max-w-4xl">
-          <h3 className="text-3xl font-bold text-green-800 text-center mb-12 tracking-wide">
-            Klik Disini
-          </h3>
+      {/* Kontak */}
+      <section className="w-full py-14 px-4">
+        <div className="max-w-6xl mx-auto">
+          <SectionLabel text="Hubungi Kami" />
+          <h2 className="text-2xl font-black text-gray-900 mb-8">Kontak Kami</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-6">
-            
-            <div className="flex flex-col items-center text-center justify-between min-h-50">
-              <div className="flex flex-col items-center">
-                <div className="w-20 h-20 rounded-full border-[5px] border-green-800 bg-green-700 flex items-center justify-center mb-3">
-                  <FaInstagram className="w-10 h-10 text-white" />
-                </div>
-                <h4 className="text-xl font-bold text-green-800 mb-0.5">Instagram</h4>
-                <p className="text-green-800 font-medium text-sm">@fojarsiddiq</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Link href="https://instagram.com/pasarkebbun" target="_blank"
+              className="border border-gray-100 rounded-xl p-6 flex flex-col gap-3 hover:shadow-md transition-shadow">
+              <FaInstagram className="w-7 h-7 text-primary" />
+              <div>
+                <p className="font-bold text-gray-900 text-sm">Instagram</p>
+                <p className="text-primary text-xs font-semibold">@pasarkebbun</p>
+                <p className="text-xs text-gray-400 mt-1">Update harian, foto, &amp; konten menarik</p>
               </div>
-              <button className="mt-4 px-6 py-1.5 bg-[#f59e0b] hover:bg-[#d97706] text-white font-bold text-xs uppercase rounded-md transition-all tracking-wider shadow-sm">
-                Klik Disini
-              </button>
-            </div>
+            </Link>
 
-            <div className="flex flex-col items-center text-center justify-between min-h-50">
-              <div className="flex flex-col items-center">
-                <div className="w-20 h-20 rounded-full border-[5px] border-green-800 bg-green-700 flex items-center justify-center mb-3">
-                  <FaTiktok className="w-9 h-9 text-white" />
-                </div>
-                <h4 className="text-xl font-bold text-green-800 mb-0.5">Tik Tok</h4>
-                <p className="text-green-800 font-medium text-sm">@pasarsiddiq</p>
+            <Link href="https://tiktok.com/@pasarkebbun" target="_blank"
+              className="border border-gray-100 rounded-xl p-6 flex flex-col gap-3 hover:shadow-md transition-shadow">
+              <FaTiktok className="w-7 h-7 text-primary" />
+              <div>
+                <p className="font-bold text-gray-900 text-sm">TikTok</p>
+                <p className="text-primary text-xs font-semibold">@pasarkebbun</p>
+                <p className="text-xs text-gray-400 mt-1">Video kegiatan, event &amp; kehidupan pasar</p>
               </div>
-              <button className="mt-4 px-6 py-1.5 bg-[#f59e0b] hover:bg-[#d97706] text-white font-bold text-xs uppercase rounded-md transition-all tracking-wider shadow-sm">
-                Klik Disini
-              </button>
-            </div>
+            </Link>
 
-            <div className="flex flex-col items-center text-center justify-between min-h-[200px]">
-              <div className="flex flex-col items-center">
-                <div className="w-20 h-20 rounded-full border-[5px] border-green-800 bg-green-700 flex items-center justify-center mb-3">
-                  <FaWhatsapp className="w-10 h-10 text-white" />
-                </div>
-                <h4 className="text-xl font-bold text-green-800 mb-0.5">WhatsApp</h4>
-                <p className="text-green-800 font-medium text-sm">0813 255 8883</p>
+            <Link href="https://wa.me/6208771330678" target="_blank"
+              className="border border-gray-100 rounded-xl p-6 flex flex-col gap-3 hover:shadow-md transition-shadow">
+              <FaWhatsapp className="w-7 h-7 text-primary" />
+              <div>
+                <p className="font-bold text-gray-900 text-sm">WhatsApp</p>
+                <p className="text-primary text-xs font-semibold">0877-1330-0678</p>
+                <p className="text-xs text-gray-400 mt-1">Pertanyaan &amp; pendaftaran pedagang UMKM</p>
               </div>
-              <button className="mt-4 px-6 py-1.5 bg-[#f59e0b] hover:bg-[#d97706] text-white font-bold text-xs uppercase rounded-md transition-all tracking-wider shadow-sm">
-                Klik Disini
-              </button>
-            </div>
-
+            </Link>
           </div>
         </div>
       </section>

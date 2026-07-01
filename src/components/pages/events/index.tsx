@@ -1,132 +1,80 @@
-import HeadViews from '@/components/ui/customs/headviews';
-import { BsClock } from 'react-icons/bs';
+import Image from 'next/image';
+import PageHero from '@/components/pages/(user)/partials/PageHero';
+import SectionLabel from '@/components/pages/(user)/partials/SectionLabel';
+import { HiOutlineClock } from 'react-icons/hi';
 import { IoCalendarSharp } from 'react-icons/io5';
 
-const WEEKLY_IMAGES = [
-  '/assets/images/events/weekly/weekly_one.png',
-  '/assets/images/events/weekly/weekly_two.png',
-  '/assets/images/events/weekly/weekly_three.png',
-  '/assets/images/events/weekly/weekly_four.png',
-  '/assets/images/events/weekly/weekly_five.png',
-  '/assets/images/events/weekly/weekly_six.png',
-];
-
-const MONTHLY_IMAGES = [
-  '/assets/images/events/monthly/monthly_one.png',
-  '/assets/images/events/monthly/monthly_two.png',
-  '/assets/images/events/monthly/monthly_three.png',
-];
-
-export default function EventsSection() {
+export default function EventsPage() {
   return (
-    <div className="flex flex-col w-full">
-      {/* Weekly Events Section */}
-      <section className="w-full">
-        {/* Hero Section - Weekly Carousel */}
-        <HeadViews images={WEEKLY_IMAGES} />
+    <div className="w-full bg-white">
+      <PageHero
+        image="/assets/images/events/weekly/weekly_one.png"
+        title="Event"
+      />
 
-        {/* Weekly Event Description */}
-        <div className="w-full bg-white py-12 px-4">
-          <div className="mx-auto max-w-4xl">
-            <h2 className="mb-4 text-4xl font-bold text-green-700 text-center">
-              Event Mingguan
-            </h2>
-            <p className="text-gray-700 leading-relaxed text-center">
-              Setiap hari Minggu, mulai pukul 06.00 hingga 14.00 WIB menghadirkan pertunjukan mingguan di Pasar Kebbun  bersifat hiburan seni dan budaya lokal yang disajikan secara bergantian untuk menghibur pengunjung. Pertunjukan ini untuk memadukan pengalaman wisata kuliner dengan apresiasi terhadap seni dan budaya lokal Madura, membuat kunjungan terasa lebih hidup dan bernostalgia.
+      {/* Info Cards */}
+      <section className="w-full py-10 px-4">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="border border-gray-100 rounded-xl p-5 flex items-start gap-4">
+            <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+              <HiOutlineClock className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <p className="text-[10px] font-semibold tracking-widest text-gray-400 uppercase mb-1">Jam Operasional</p>
+              <p className="text-sm font-semibold text-gray-800">Setiap Minggu 06.00–14.00 WIB</p>
+              <p className="text-sm font-semibold text-gray-800">Setiap Malam Bulan Purnama 17.00–23.00 WIB</p>
+            </div>
+          </div>
+          <div className="border border-gray-100 rounded-xl p-5 flex items-start gap-4">
+            <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+              <IoCalendarSharp className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <p className="text-[10px] font-semibold tracking-widest text-gray-400 uppercase mb-1">Jadwal</p>
+              <p className="text-sm font-semibold text-gray-800">Informasi update jadwal event terbaru</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Event Mingguan */}
+      <section className="w-full py-10 px-4">
+        <div className="max-w-6xl mx-auto">
+          <SectionLabel text="Rutin Setiap Minggu" />
+          <h2 className="text-2xl font-black text-gray-900 mb-8">Event Mingguan</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="relative w-full h-60 rounded-xl overflow-hidden">
+              <Image
+                src="/assets/images/events/weekly/weekly_one.png"
+                alt="Event Mingguan"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Setiap hari Minggu, mulai pukul 06.00 hingga 14.00 WIB menghadirkan pertunjukan mingguan di Pasar Kebbun bersifat hiburan seni dan budaya lokal yang disajikan secara bergantian untuk menghibur pengunjung. Pertunjukan ini untuk memadukan pengalaman wisata kuliner dengan apresiasi terhadap seni dan budaya lokal Madura, membuat kunjungan terasa lebih hidup dan bernostalgia.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Monthly Events Section */}
-      <section className="w-full">
-        {/* Hero Section - Monthly Carousel */}
-        <HeadViews images={MONTHLY_IMAGES} />
-
-        {/* Monthly Event Description */}
-        <div className="w-full bg-white py-12 px-4">
-          <div className="mx-auto max-w-4xl">
-            <h2 className="mb-4 text-4xl font-bold text-green-700 text-center">
-              Event Bulanan
-            </h2>
-            <p className="text-gray-700 leading-relaxed mb-6 text-center">
-              Pasar Kebbun Sumenep saat bulan purnama dikenal dengan acara rutin bernama &ldquo;Bulan Purnama di Pasar Kebbun&ldquo; merupakan edisi khusus yang berbeda dari jadwal pasar pagi. Pasar Poernama diadakan secara insidental atau sesuai jadwal yang diumumkan oleh pengelola, biasanya pada malam saat bulan purnama penuh.
+      {/* Event Bulanan */}
+      <section className="w-full py-10 px-4 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <SectionLabel text="Rutin Setiap Bulan" />
+          <h2 className="text-2xl font-black text-gray-900 mb-8">Event Bulanan</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <p className="text-sm text-gray-600 leading-relaxed order-2 md:order-1">
+              Pasar Kebbun Sumenep saat bulan purnama dikenal dengan acara rutin bernama &ldquo;Bulan Purnama di Pasar Kebbun&rdquo; merupakan edisi khusus yang berbeda dari jadwal pasar pagi. Pasar Poernama diadakan secara insidental atau sesuai jadwal yang diumumkan oleh pengelola, biasanya pada malam saat bulan purnama penuh. Fokus utama menciptakan suasana malam yang romantis dan magis di area pasar dan memberikan pengalaman alternatif bagi pengunjung yang ingin menikmati keindahan alam dan suasana pasar di malam hari, dengan sentuhan budaya lokal yang kental.
             </p>
-            <p className="text-gray-700 leading-relaxed text-center">
-              Fokus utama menciptakan suasana malam yang romantis dan magis di area pasar dan memberikan pengalaman alternatif bagi pengunjung yang ingin menikmati keindahan alam dan suasana pasar di malam hari, dengan sentuhan budaya lokal yang kental.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Operating Hours & Schedule Section */}
-      <section className="w-full bg-white py-16 px-4">
-        <div className="mx-auto max-w-4xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-8">
-            
-            {/* Jam Operasional */}
-            {/* md:min-h-[340px] memastikan kedua kolom memiliki tinggi minimum yang sama untuk kalkulasi justify-between */}
-            <div className="flex flex-col items-center text-center justify-between md:min-h-85">
-              {/* Kontainer Atas: Ikon + Judul + Teks */}
-              <div className="flex flex-col items-center">
-                {/* Lingkaran Ikon */}
-                <div className="mb-5">
-                  <div className="w-24 h-24 rounded-full border-[6px] border-[#065f46] bg-[#15803d] flex items-center justify-center shadow-inner">
-                    <BsClock className="w-11 h-11 text-white" />
-                  </div>
-                </div>
-                
-                {/* Judul */}
-                <h3 className="text-3xl font-bold text-[#166534] mb-4 tracking-wide">
-                  Jam Operasional
-                </h3>
-                
-                {/* Konten Teks */}
-                <div className="text-[#166534] text-[15px] sm:text-base font-medium space-y-1 max-w-sm">
-                  <p>Setiap Minggu 06.00-14.00 WIB</p>
-                  <p>Setiap Malam Bulan Purnama</p>
-                  <p>17.00-23.00 WIB</p>
-                </div>
-              </div>
-              
-              {/* Tombol Aksi - Selalu di bawah */}
-              <div className="mt-8 md:mt-0">
-                <button className="px-7 py-2 bg-[#f59e0b] hover:bg-[#d97706] text-white font-bold text-sm rounded-full transition-all tracking-wide shadow-sm">
-                  Lihat Disini
-                </button>
-              </div>
+            <div className="relative w-full h-60 rounded-xl overflow-hidden order-1 md:order-2">
+              <Image
+                src="/assets/images/events/monthly/monthly_one.png"
+                alt="Event Bulanan"
+                fill
+                className="object-cover"
+              />
             </div>
-
-            {/* Jadwal */}
-            <div className="flex flex-col items-center text-center justify-between md:min-h-85">
-              {/* Kontainer Atas: Ikon + Judul + Teks */}
-              <div className="flex flex-col items-center">
-                {/* Lingkaran Ikon */}
-                <div className="mb-5">
-                  <div className="w-24 h-24 rounded-full border-[6px] border-[#065f46] bg-[#15803d] flex items-center justify-center shadow-inner">
-                    <IoCalendarSharp className="w-11 h-11 text-white" />
-                  </div>
-                </div>
-                
-                {/* Judul */}
-                <h3 className="text-3xl font-bold text-[#166534] mb-4 tracking-wide">
-                  Jadwal
-                </h3>
-                
-                {/* Konten Teks */}
-                <div className="text-[#166534] text-[15px] sm:text-base font-medium max-w-xs leading-relaxed">
-                  <p>Informasi update jadwal event terbaru</p>
-                </div>
-              </div>
-              
-              {/* Tombol Aksi - Selalu di bawah */}
-              <div className="mt-8 md:mt-0">
-                <button className="px-7 py-2 bg-[#f59e0b] hover:bg-[#d97706] text-white font-bold text-sm rounded-full transition-all tracking-wide shadow-sm">
-                  Lihat Disini
-                </button>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>

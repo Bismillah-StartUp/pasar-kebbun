@@ -1,130 +1,105 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
+import { HiOutlineLocationMarker, HiOutlineClock, HiOutlinePhone } from 'react-icons/hi';
 import { ROUTES } from '@/constants/routes';
 
+const HALAMAN_LINKS = [
+  { label: 'Beranda', href: ROUTES.USER.HOME },
+  { label: 'Tentang Kami', href: ROUTES.USER.ABOUT },
+  { label: 'Fasilitas', href: ROUTES.USER.FASILITAS },
+  { label: 'Event', href: ROUTES.USER.EVENT },
+  { label: 'UMKM', href: ROUTES.USER.UMKM },
+  { label: 'Kuliner', href: ROUTES.USER.KULINER },
+];
+
 export function Footer() {
-  const informasiLinks = [
-    { label: 'Kuliner', href: ROUTES.USER.KULINER },
-    { label: 'UMKM', href: ROUTES.USER.UMKM },
-    { label: 'Event', href: ROUTES.USER.EVENT },
-    { label: 'Fasilitas', href: ROUTES.USER.FASILITAS },
-  ];
-
-  const tentangKamiLinks = [
-    { label: 'Visi Misi', href: ROUTES.USER.ABOUT },
-    { label: 'Struktur Pengelola', href: ROUTES.USER.ABOUT },
-    { label: 'Kontak Kami', href: ROUTES.USER.ABOUT },
-    { label: 'Login Admin', href: ROUTES.ADMIN.LOGIN },
-  ];
-
   return (
-    <footer className="bg-linear-to-r from-green-700 to-green-800 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-8">
-          {/* Left Section - Logo & Address */}
-          <div className="flex flex-col">
-            <div className="flex items-start gap-6 mb-8">
-              <Link href={ROUTES.USER.HOME} className="shrink-0">
+    <footer className="bg-primary text-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+          {/* Kolom 1 — Brand */}
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 rounded-full overflow-hidden bg-white flex items-center justify-center shrink-0">
                 <Image
-                  src="/assets/icons/logo-pk-white.png"
-                  alt="Pasar Kebun Logo"
-                  width={120}
-                  height={120}
-                  className="h-auto w-auto"
+                  src="/assets/icons/logo-pk-green.png"
+                  alt="Pasar Kebbun"
+                  width={44}
+                  height={44}
+                  className="object-contain"
                 />
+              </div>
+              <div>
+                <p className="font-bold text-sm leading-tight">PASAR KEBBUN</p>
+                <p className="text-accent text-[11px] font-semibold leading-tight">Wisata Kuliner, Budaya, dan Alam</p>
+              </div>
+            </div>
+            <p className="text-white/70 text-sm leading-relaxed mb-6">
+              Ruang publik yang memadukan nilai tradisional dengan nuansa alam, mendukung UMKM lokal dan melestarikan budaya daerah.
+            </p>
+            <div className="flex items-center gap-2">
+              <Link href="https://instagram.com/pasarkebbun" target="_blank" aria-label="Instagram"
+                className="w-9 h-9 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 transition-colors">
+                <FaInstagram className="w-4 h-4" />
               </Link>
-              <div className="flex flex-col justify-start">
-                <p className="text-sm text-gray-100 leading-relaxed">
-                  Desa Saroka, Kec. Saronggi,<br />
-                  Kabupaten Sumenep, Jawa Timur
-                </p>
-              </div>
-            </div>
-
-            {/* Social Media */}
-            <div className="flex items-center gap-4">
-              <p className="font-bold whitespace-nowrap">FOLLOW KAMI!!!</p>
-              <div className="flex gap-3">
-                <Link
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                >
-                  <FaInstagram className="w-8 h-8 text-white hover:text-pink-400 transition-colors" />
-                </Link>
-                <Link
-                  href="https://tiktok.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="TikTok"
-                >
-                  <FaTiktok className="w-8 h-8 text-white hover:text-gray-300 transition-colors" />
-                </Link>
-                <Link
-                  href="https://wa.me"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="WhatsApp"
-                >
-                  <FaWhatsapp className="w-8 h-8 text-white hover:text-green-300 transition-colors" />
-                </Link>
-              </div>
+              <Link href="https://wa.me/6208771330678" target="_blank" aria-label="WhatsApp"
+                className="w-9 h-9 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 transition-colors">
+                <FaWhatsapp className="w-4 h-4" />
+              </Link>
+              <Link href="https://tiktok.com/@pasarkebbun" target="_blank" aria-label="TikTok"
+                className="w-9 h-9 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 transition-colors">
+                <FaTiktok className="w-4 h-4" />
+              </Link>
             </div>
           </div>
 
-          {/* Right Section - Links */}
-          <div className="grid grid-cols-2 gap-12">
-            {/* Informasi Column */}
-            <div>
-              <h3 className="text-lg font-bold mb-4 text-orange-300">
-                Informasi
-              </h3>
-              <ul className="space-y-3">
-                {informasiLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-gray-100 hover:text-yellow-300 transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Tentang Kami Column */}
-            <div>
-              <h3 className="text-lg font-bold mb-4 text-orange-300">
-                Tentang Kami
-              </h3>
-              <ul className="space-y-3">
-                {tentangKamiLinks.map((link, index) => (
-                  <li key={`tentang-kami-${index}`}>
-                    <Link
-                      href={link.href}
-                      className="text-gray-100 hover:text-yellow-300 transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Kolom 2 — Halaman */}
+          <div>
+            <h4 className="text-xs font-bold tracking-widest uppercase text-accent mb-4">Halaman</h4>
+            <ul className="space-y-2.5">
+              {HALAMAN_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href}
+                    className="flex items-center gap-2 text-sm text-white/80 hover:text-white transition-colors">
+                    <span className="text-accent text-xs">›</span>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
+
+          {/* Kolom 3 — Kontak */}
+          <div>
+            <h4 className="text-xs font-bold tracking-widest uppercase text-accent mb-4">Kontak</h4>
+            <ul className="space-y-3.5">
+              <li className="flex items-start gap-2.5 text-sm text-white/80">
+                <HiOutlineLocationMarker className="w-4 h-4 mt-0.5 text-accent shrink-0" />
+                <span>Desa Saroka, Kec. Saronggi, Kabupaten Sumenep, Jawa Timur</span>
+              </li>
+              <li className="flex items-start gap-2.5 text-sm text-white/80">
+                <HiOutlineClock className="w-4 h-4 mt-0.5 text-accent shrink-0" />
+                <span>Setiap Minggu 06.00–14.00 WIB<br />Setiap Malam Bulan Purnama 17.00–23.00 WIB</span>
+              </li>
+              <li className="flex items-center gap-2.5 text-sm text-white/80">
+                <FaInstagram className="w-4 h-4 text-accent shrink-0" />
+                <span>@pasarkebbun</span>
+              </li>
+              <li className="flex items-center gap-2.5 text-sm text-white/80">
+                <HiOutlinePhone className="w-4 h-4 text-accent shrink-0" />
+                <span>087713300678</span>
+              </li>
+            </ul>
+          </div>
+
         </div>
+      </div>
 
-        {/* Divider */}
-        <div className="border-t border-white border-opacity-20 my-8"></div>
-
-        {/* Copyright */}
-        <div className="text-center text-sm text-gray-100">
-          <p>© 2026 PASAR KEBBUN | All Rights Reserved</p>
+      <div className="border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <p className="text-xs text-white/40 text-center">© 2026 Pasar Kebbun. Seluruh hak cipta dilindungi.</p>
         </div>
       </div>
     </footer>
