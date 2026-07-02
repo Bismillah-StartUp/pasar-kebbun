@@ -2,16 +2,17 @@ import Image from 'next/image';
 import PageHero from '@/components/pages/(user)/partials/PageHero';
 import SectionLabel from '@/components/pages/(user)/partials/SectionLabel';
 
+const COIN_IMAGE = '/assets/images/tenants/coins/one.png';
+
 const COIN_TIERS = [
   {
     denomination: 1,
     rupiah: 'Rp 2.500',
-    image: '/assets/images/tenants/coins/one.png',
     items: [
       "Dhu'-Bundhu'", "Saot Sabreng", "Lemmet", "Lopes", "Lapis", "Gulali", "Pastel",
       "Kue Nol-Monol", "Onde-Onde", "Es Gabus", "Korket Labu", "Temppe Guring",
       "Geddeng Guring", "Tahu Bengis", "Lumpia Kebbun", "Telor Tepung", "Telor Celleng",
-      "Pes-pes", "Silong", "Molen", "Nagesare", "Leppet", "Sabreng Geddeng", "Saot Sabreng",
+      "Pes-pes", "Silong", "Molen", "Nagesare", "Leppet", "Sabreng Geddeng",
       "Tangguli", "Koceng(korket cengi)", "Jambleng", "Martabak Chabul", "Dasar Guring",
       "Kocor", "Sate Tahu", "Bakpao", "Dhudul Jagung", "Kue Talam",
     ],
@@ -19,7 +20,6 @@ const COIN_TIERS = [
   {
     denomination: 2,
     rupiah: 'Rp 5.000',
-    image: '/assets/images/tenants/coins/two.png',
     items: [
       "Ba'-Daba'", "Katemel", "Kalepon", "Rap Orap", "Pentol Kebbun", "Pentol Goreng",
       "Bothok", "Telur Asin", "Tahu Kocek", "Pisang Rebus", "Kellana Kacang", "Centir",
@@ -31,7 +31,6 @@ const COIN_TIERS = [
   {
     denomination: 3,
     rupiah: 'Rp 7.500',
-    image: '/assets/images/tenants/coins/three.png',
     items: [
       "Bapel", "Kopcor", "Los-Elos", "Nasi Kowal", "Gettas", "Tajhin", "Ra'-Ora'",
       "Tajhin Rojek", "Tajhin La'-Ola'", "Ja' Iris", "Kaldu Pentol", "Nasi Panggeng",
@@ -41,7 +40,6 @@ const COIN_TIERS = [
   {
     denomination: 4,
     rupiah: 'Rp 10.000',
-    image: '/assets/images/tenants/coins/four.png',
     items: [
       "Palotan Pendeng", "Nasi Bai' Delem", "Nasi Tobik Marongg", "Pentol Gepek",
       "Rolade Nasi Pecel", "Nasi Jagung", "Rujak Kebbun", "Soto Kebbun", "Sate Ayam",
@@ -49,6 +47,29 @@ const COIN_TIERS = [
     ],
   },
 ];
+
+const COIN_POSITIONS: Record<number, string[]> = {
+  1: ['top-0 left-1/2 -translate-x-1/2'],
+  2: ['top-0 left-0', 'top-0 left-14 sm:left-20'],
+  3: ['top-0 left-0', 'top-0 left-14 sm:left-20', 'top-12 left-7 sm:top-16 sm:left-10'],
+  4: [
+    'top-0 left-0', 'top-0 left-14 sm:left-20',
+    'top-12 left-0 sm:top-16 sm:left-0', 'top-12 left-14 sm:top-16 sm:left-20',
+  ],
+};
+
+function CoinCluster({ count }: { count: number }) {
+  const positions = COIN_POSITIONS[count] ?? COIN_POSITIONS[1];
+  return (
+    <div className="relative w-32 h-32 sm:w-44 sm:h-44">
+      {positions.map((position, index) => (
+        <div key={index} className={`absolute w-24 h-24 sm:w-28 sm:h-28 ${position}`}>
+          <Image src={COIN_IMAGE} alt="Koin Pasar Kebbun" fill className="object-contain" />
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function TenantsPage() {
   return (
@@ -72,31 +93,30 @@ export default function TenantsPage() {
       </section>
 
       {/* Daftar Harga */}
-      <section className="w-full py-10 px-4 bg-gray-50">
+      <section className="w-full py-14 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-xl md:text-2xl font-black text-gray-900 text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-black text-gray-900 text-center mb-12">
             Daftar Harga Kuliner UMKM
           </h2>
 
-          <div className="space-y-10">
-            {COIN_TIERS.map((tier) => (
-              <div key={tier.denomination} className="flex flex-col sm:flex-row gap-6 items-start">
-                <div className="shrink-0">
-                  <Image
-                    src={tier.image}
-                    alt={`${tier.denomination} Koin`}
-                    width={90}
-                    height={90}
-                    className="object-contain"
-                  />
+          <div>
+            {COIN_TIERS.map((tier, tierIndex) => (
+              <div
+                key={tier.denomination}
+                className={`flex flex-col sm:flex-row gap-8 items-start py-8 ${
+                  tierIndex > 0 ? 'border-t border-gray-100' : ''
+                }`}
+              >
+                <div className="shrink-0 w-32 sm:w-44 flex justify-center sm:justify-start">
+                  <CoinCluster count={tier.denomination} />
                 </div>
                 <div>
-                  <p className="text-xs font-black text-accent uppercase tracking-widest mb-2">
+                  <p className="text-sm font-black text-accent uppercase tracking-widest mb-3">
                     {tier.denomination} Koin / {tier.rupiah} Bisa Dapat:
                   </p>
-                  <div className="flex flex-wrap gap-x-2 gap-y-1">
-                    {tier.items.map((item) => (
-                      <span key={item} className="text-xs text-gray-600 after:content-['•'] after:ml-2 after:text-gray-300 last:after:content-none">
+                  <div className="flex flex-wrap gap-x-2 gap-y-2">
+                    {tier.items.map((item, index) => (
+                      <span key={`${tier.denomination}-${index}`} className="text-sm text-gray-700 before:content-['•'] before:mr-2 before:text-base before:text-accent">
                         {item}
                       </span>
                     ))}
