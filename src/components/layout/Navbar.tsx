@@ -8,11 +8,12 @@ import { ROUTES } from '@/constants/routes';
 
 const NAV_ITEMS = [
   { label: 'Beranda', href: ROUTES.USER.HOME },
-  { label: 'Tentang Kami', href: ROUTES.USER.ABOUT },
   { label: 'Kuliner', href: ROUTES.USER.KULINER },
+  { label: 'Berita', href: ROUTES.USER.BERITA },
   { label: 'UMKM', href: ROUTES.USER.UMKM },
   { label: 'Event', href: ROUTES.USER.EVENT },
   { label: 'Fasilitas', href: ROUTES.USER.FASILITAS },
+  { label: 'Tentang Kami', href: ROUTES.USER.ABOUT },
 ];
 
 export function Navbar() {
@@ -30,7 +31,7 @@ export function Navbar() {
           <Link href={ROUTES.USER.HOME} className="shrink-0">
             <div className="w-10 h-10 rounded-full overflow-hidden bg-white flex items-center justify-center">
               <Image
-                src="/assets/icons/logo-pk-green.png"
+                src="/assets/icons/logo-pk-white.png"
                 alt="Pasar Kebbun"
                 width={36}
                 height={36}

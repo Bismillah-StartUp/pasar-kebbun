@@ -6,6 +6,7 @@ export const ROUTES = {
     EVENT: '/event',
     FASILITAS: '/fasilitas',
     ABOUT: '/about',
+    BERITA: '/berita',
   },
   ADMIN: {
     LOGIN: '/login',
