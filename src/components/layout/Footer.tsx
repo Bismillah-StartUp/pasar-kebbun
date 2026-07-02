@@ -24,7 +24,7 @@ export function Footer() {
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 rounded-full overflow-hidden bg-white flex items-center justify-center shrink-0">
                 <Image
-                  src="/assets/icons/logo-pk-green.png"
+                  src="/assets/icons/logo-pk-white.png"
                   alt="Pasar Kebbun"
                   width={44}
                   height={44}
