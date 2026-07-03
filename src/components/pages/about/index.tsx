@@ -52,15 +52,13 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="flex justify-center md:justify-end">
-            <div className="w-40 h-40 rounded-full overflow-hidden bg-primary flex items-center justify-center">
-              <Image
-                src="/assets/icons/logo-pk-white.png"
-                alt="Logo Pasar Kebbun"
-                width={120}
-                height={120}
-                className="object-contain"
-              />
-            </div>
+            <Image
+              src="/assets/icons/logo-pk-green.png"
+              alt="Logo Pasar Kebbun"
+              width={160}
+              height={160}
+              className="object-contain"
+            />
           </div>
         </div>
       </section>
