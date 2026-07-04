@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getKulinerList } from '@/services/kuliner.service';
+import { getKulinerList, deleteKuliner } from '@/services/kuliner.service';
 import type { Kuliner } from '@/types/kuliner.types';
 import { useDebounce } from './useDebounce';
 import { usePagination } from './usePagination';
@@ -33,6 +33,12 @@ export function useKuliner() {
       .finally(() => setIsLoading(false));
   }, [activeTab, debouncedSearch, page]);
 
+  const removeKuliner = async (uuid: string) => {
+    await deleteKuliner(uuid);
+    setData((prev) => prev.filter((item) => item.id !== uuid));
+    setTotal((prev) => prev - 1);
+  };
+
   return {
     data,
     total,
@@ -44,5 +50,6 @@ export function useKuliner() {
     setSearch,
     page,
     goToPage: (targetPage: number) => goToPage(targetPage, totalPages),
+    removeKuliner,
   };
 }

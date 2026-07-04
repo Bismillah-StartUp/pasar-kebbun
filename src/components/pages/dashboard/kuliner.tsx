@@ -1,8 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FiPlus, FiEye } from 'react-icons/fi';
-import { BiSolidPencil } from 'react-icons/bi';
+import { FiPlus, FiEye, FiTrash2 } from 'react-icons/fi';
 import { Tabs, SearchBar, DataTable, Pagination, Badge } from '@/components/ui';
 import type { DataTableColumn } from '@/components/ui/DataTable';
 import { useKuliner, type KulinerTabFilter } from '@/hooks/useKuliner';
@@ -12,8 +11,14 @@ import type { Kuliner } from '@/types/kuliner.types';
 const TAB_OPTIONS: readonly KulinerTabFilter[] = ['Semua', 'Makanan', 'Minuman'];
 
 export default function KulinerListPage() {
-  const { data, total, totalPages, isLoading, activeTab, setActiveTab, search, setSearch, page, goToPage } =
+  const { data, total, totalPages, isLoading, activeTab, setActiveTab, search, setSearch, page, goToPage, removeKuliner } =
     useKuliner();
+
+  const handleDelete = (uuid: string) => {
+    if (confirm('Apakah Anda yakin ingin menghapus kuliner ini?')) {
+      removeKuliner(uuid);
+    }
+  };
 
   const columns: DataTableColumn<Kuliner>[] = [
     {
@@ -47,13 +52,14 @@ export default function KulinerListPage() {
           >
             <FiEye className="w-4 h-4" />
           </Link>
-          <Link
-            href={ROUTES.ADMIN.KULINER_DETAIL(item.id)}
-            className="p-1.5 bg-amber-50 hover:bg-amber-100 text-amber-500 rounded-lg transition-colors"
-            aria-label="Edit"
+          <button
+            type="button"
+            onClick={() => handleDelete(item.id)}
+            className="p-1.5 bg-red-50 hover:bg-red-100 text-red-500 rounded-lg transition-colors"
+            aria-label="Hapus"
           >
-            <BiSolidPencil className="w-4 h-4" />
-          </Link>
+            <FiTrash2 className="w-4 h-4" />
+          </button>
         </div>
       ),
     },
