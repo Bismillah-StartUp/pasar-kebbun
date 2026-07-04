@@ -10,8 +10,8 @@ export function pathImages(src: string) {
   return `/assets/images/${src}`
 }
 
-export function formatDate(date: Date) {
-  return new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(date)
+export function formatDate(date: Date | string) {
+  return new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(date))
 }
 
 export function formatRupiah(koin: number) {
@@ -25,4 +25,10 @@ export function slugify(text: string) {
     .trim()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
+}
+
+export const MAX_IMAGE_SIZE_BYTES = 5 * 1024 * 1024
+
+export function isImageTooLarge(file: File) {
+  return file.size > MAX_IMAGE_SIZE_BYTES
 }

@@ -2,6 +2,7 @@ export const ROUTES = {
   USER: {
     HOME: '/',
     KULINER: '/kuliner',
+    KULINER_DETAIL: (slug: string) => `/kuliner/${slug}`,
     UMKM: '/umkm',
     EVENT: '/event',
     FASILITAS: '/fasilitas',

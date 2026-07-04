@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { HiOutlineUpload } from 'react-icons/hi';
 import { FiPlus, FiCamera, FiX } from 'react-icons/fi';
-import { cn } from '@/lib/utils';
+import { cn, isImageTooLarge } from '@/lib/utils';
 
 interface UploadedPhoto {
   id: string;
@@ -44,10 +44,23 @@ export function FileUpload({
   const handleReplaceFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file && replacingId && onReplacePhoto) {
-      onReplacePhoto(replacingId, file);
+      if (isImageTooLarge(file)) {
+        alert('Ukuran foto maksimal 5MB.');
+      } else {
+        onReplacePhoto(replacingId, file);
+      }
     }
     setReplacingId(null);
     e.target.value = '';
+  };
+
+  const handleFilesSelected = (files: FileList) => {
+    const oversized = Array.from(files).some(isImageTooLarge);
+    if (oversized) {
+      alert('Ukuran foto maksimal 5MB.');
+      return;
+    }
+    onFilesSelected(files);
   };
 
   return (
@@ -64,7 +77,7 @@ export function FileUpload({
         accept={accept}
         multiple
         hidden
-        onChange={(e) => e.target.files && onFilesSelected(e.target.files)}
+        onChange={(e) => e.target.files && handleFilesSelected(e.target.files)}
       />
 
       {onReplacePhoto && (

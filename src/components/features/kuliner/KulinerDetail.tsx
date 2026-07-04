@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { FiTrash2, FiCamera, FiChevronDown, FiX, FiPlus } from 'react-icons/fi';
 import { BiPencil } from 'react-icons/bi';
-import { cn } from '@/lib/utils';
+import { cn, isImageTooLarge } from '@/lib/utils';
 import type { Kuliner, KulinerJenis } from '@/types/kuliner.types';
 
 export interface KulinerEditValues {
@@ -49,9 +49,13 @@ export function KulinerDetail({ kuliner, onDelete, onSave, isSaving }: KulinerDe
   const handleReplaceFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file && replacingIndex !== null) {
-      setPhotos((prev) =>
-        prev.map((photo, index) => (index === replacingIndex ? { ...photo, file, src: URL.createObjectURL(file) } : photo))
-      );
+      if (isImageTooLarge(file)) {
+        alert('Ukuran foto maksimal 5MB.');
+      } else {
+        setPhotos((prev) =>
+          prev.map((photo, index) => (index === replacingIndex ? { ...photo, file, src: URL.createObjectURL(file) } : photo))
+        );
+      }
     }
     setReplacingIndex(null);
     e.target.value = '';
@@ -60,10 +64,13 @@ export function KulinerDetail({ kuliner, onDelete, onSave, isSaving }: KulinerDe
   const handleAddFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
-      const newPhotos = Array.from(files)
-        .slice(0, MAX_PHOTOS - photos.length)
-        .map((file) => ({ src: URL.createObjectURL(file), isPrimary: false, file }));
-      setPhotos((prev) => [...prev, ...newPhotos]);
+      const selected = Array.from(files).slice(0, MAX_PHOTOS - photos.length);
+      if (selected.some(isImageTooLarge)) {
+        alert('Ukuran foto maksimal 5MB.');
+      } else {
+        const newPhotos = selected.map((file) => ({ src: URL.createObjectURL(file), isPrimary: false, file }));
+        setPhotos((prev) => [...prev, ...newPhotos]);
+      }
     }
     e.target.value = '';
   };

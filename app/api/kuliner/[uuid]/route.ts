@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { toKuliner } from '@/lib/mappers/kuliner.mapper';
 import { uploadImage, deleteImage } from '@/lib/cloudinary';
+import { isImageTooLarge } from '@/lib/utils';
 
 interface RouteParams {
   params: Promise<{ uuid: string }>;
@@ -66,6 +67,10 @@ export async function PUT(request: Request, { params }: RouteParams) {
 
   if (photoOrder.length === 0) {
     return NextResponse.json({ success: false, message: 'Minimal harus ada satu foto.' }, { status: 400 });
+  }
+
+  if (newFiles.some(isImageTooLarge)) {
+    return NextResponse.json({ success: false, message: 'Ukuran foto maksimal 5MB.' }, { status: 400 });
   }
 
   const keptPhotoIds = new Set(

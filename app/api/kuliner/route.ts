@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma';
 import type { Prisma } from '@prisma/client';
 import { toKuliner } from '@/lib/mappers/kuliner.mapper';
 import { uploadImage, deleteImage } from '@/lib/cloudinary';
-import { slugify } from '@/lib/utils';
+import { slugify, isImageTooLarge } from '@/lib/utils';
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -61,6 +61,10 @@ export async function POST(request: NextRequest) {
     photos.length === 0
   ) {
     return NextResponse.json({ success: false, message: 'Data kuliner tidak lengkap.' }, { status: 400 });
+  }
+
+  if (photos.some(isImageTooLarge)) {
+    return NextResponse.json({ success: false, message: 'Ukuran foto maksimal 5MB.' }, { status: 400 });
   }
 
   const slug = `${slugify(nama)}-${Date.now()}`;

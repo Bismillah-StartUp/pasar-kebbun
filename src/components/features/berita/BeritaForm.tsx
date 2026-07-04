@@ -1,18 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { FiLink } from 'react-icons/fi';
 import { HiOutlineUpload } from 'react-icons/hi';
 import { ROUTES } from '@/constants/routes';
+import { isImageTooLarge } from '@/lib/utils';
 
 export interface BeritaFormValues {
   judul: string;
   link: string;
+  gambar?: File;
 }
 
 interface BeritaFormProps {
-  initialValues?: Partial<BeritaFormValues>;
+  initialValues?: Partial<BeritaFormValues> & { gambarPreview?: string };
   submitLabel: string;
   onSubmit: (values: BeritaFormValues) => void;
 }
@@ -20,10 +23,26 @@ interface BeritaFormProps {
 export function BeritaForm({ initialValues, submitLabel, onSubmit }: BeritaFormProps) {
   const [judul, setJudul] = useState(initialValues?.judul ?? '');
   const [link, setLink] = useState(initialValues?.link ?? '');
+  const [gambar, setGambar] = useState<File | undefined>(undefined);
+  const [preview, setPreview] = useState<string | undefined>(initialValues?.gambarPreview);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (isImageTooLarge(file)) {
+        alert('Ukuran gambar maksimal 5MB.');
+      } else {
+        setGambar(file);
+        setPreview(URL.createObjectURL(file));
+      }
+    }
+    e.target.value = '';
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ judul, link });
+    onSubmit({ judul, link, gambar });
   };
 
   return (
@@ -63,17 +82,34 @@ export function BeritaForm({ initialValues, submitLabel, onSubmit }: BeritaFormP
 
       <div className="space-y-1.5">
         <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-          Gambar Berita <span className="text-red-500">*</span>
+          Gambar Berita {!initialValues && <span className="text-red-500">*</span>}
         </label>
 
-        <div className="w-full py-10 border border-dashed border-slate-200 rounded-2xl flex flex-col items-center justify-center bg-white cursor-pointer hover:bg-slate-50/40 transition-colors select-none">
-          <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-primary mb-3">
-            <HiOutlineUpload className="w-5 h-5" />
+        <input ref={inputRef} type="file" accept="image/png,image/jpeg,image/webp" hidden onChange={handleFileChange} />
+
+        {preview ? (
+          <div
+            onClick={() => inputRef.current?.click()}
+            className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-sm bg-slate-100 cursor-pointer group"
+          >
+            <Image src={preview} alt="Preview" className="object-cover" fill />
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+              <HiOutlineUpload className="w-6 h-6 text-white" />
+            </div>
           </div>
-          <p className="text-xs font-bold text-slate-700 mb-1">Upload gambar berita</p>
-          <p className="text-[10px] font-medium text-slate-400 mb-1">Drag & drop atau klik untuk memilih file</p>
-          <p className="text-[9px] font-medium text-slate-300">PNG, JPG, WEBP hingga 10MB</p>
-        </div>
+        ) : (
+          <div
+            onClick={() => inputRef.current?.click()}
+            className="w-full py-10 border border-dashed border-slate-200 rounded-2xl flex flex-col items-center justify-center bg-white cursor-pointer hover:bg-slate-50/40 transition-colors select-none"
+          >
+            <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-primary mb-3">
+              <HiOutlineUpload className="w-5 h-5" />
+            </div>
+            <p className="text-xs font-bold text-slate-700 mb-1">Upload gambar berita</p>
+            <p className="text-[10px] font-medium text-slate-400 mb-1">Drag & drop atau klik untuk memilih file</p>
+            <p className="text-[9px] font-medium text-slate-300">PNG, JPG, WEBP hingga 5MB</p>
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
