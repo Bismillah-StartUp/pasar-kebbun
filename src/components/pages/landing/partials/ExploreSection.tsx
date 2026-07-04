@@ -46,7 +46,7 @@ export default function ExploreSection() {
           Jelajahi
         </p>
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-black text-gray-900 mb-2">Ada Apa di Pasar Kebbun?</h2>
+          <h2 className="text-[30px] leading-9 font-bold text-gray-900 mb-2">Ada Apa di Pasar Kebbun?</h2>
           <p className="text-sm text-gray-500 max-w-md mx-auto">
             Satu tempat, ragam pengalaman
             <br />

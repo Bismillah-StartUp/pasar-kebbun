@@ -15,7 +15,7 @@ export default async function NewsSection() {
         <p className="text-[10px] font-semibold tracking-widest text-gray-400 uppercase border border-gray-200 rounded-full inline-block px-3 py-1 mb-4">
           Terbaru
         </p>
-        <h2 className="text-2xl font-black text-gray-900 mb-8">Berita &amp; Informasi</h2>
+        <h2 className="text-2xl leading-8 font-bold text-gray-900 mb-8">Berita &amp; Informasi</h2>
 
         {news.length === 0 ? (
           <p className="text-sm text-gray-500">Belum ada berita saat ini.</p>

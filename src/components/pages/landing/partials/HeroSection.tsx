@@ -36,15 +36,15 @@ export default function HeroSection() {
       <div className="absolute inset-0 flex flex-col justify-end pb-16 px-8 md:px-16 lg:px-24 z-10">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div>
-            <p className="text-xs font-semibold tracking-widest text-white/70 uppercase mb-3">
+            <p className="text-xs font-semibold text-[12px] leading-4 tracking-[3.36px] text-white/70 uppercase mb-3">
               Pasar Rakyat Berwawasan Alam
             </p>
-            <h1 className="text-4xl md:text-6xl font-black text-white leading-tight max-w-xl">
-              Tradisi &amp; Alam<br />Dalam Satu Pasar
+            <h1 className="text-4xl md:text-[75px] font-extrabold text-white leading-[70px] tracking-[-2px] max-w-2xl">
+              Tradisi &amp; Alam Dalam Satu Pasar
             </h1>
           </div>
           <div className="flex flex-col gap-6 max-w-xs">
-            <p className="text-sm text-white/80 leading-relaxed">
+            <p className="text-[14px] leading-[22.8px] font-normal text-white/80">
               Temukan ragam kuliner tradisional, produk UMKM lokal, dan pengalaman pasar rakyat yang hidup setiap Minggu pagi.
             </p>
             <div className="flex items-center gap-3 flex-wrap">

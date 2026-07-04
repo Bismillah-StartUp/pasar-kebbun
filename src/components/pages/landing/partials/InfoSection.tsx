@@ -10,7 +10,7 @@ export default function InfoSection() {
             <p className="text-[10px] font-semibold tracking-widest text-gray-400 uppercase border border-gray-200 bg-white rounded-full inline-block px-3 py-1 mb-2">
               Info Kunjungan
             </p>
-            <h2 className="text-[2rem] md:text-[2.25rem] font-black leading-[1.05] tracking-[-0.02em] text-gray-900">Lokasi &amp;<br />Jam Buka</h2>
+            <h2 className="text-2xl leading-8 font-bold text-gray-900">Lokasi &amp;<br />Jam Buka</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
