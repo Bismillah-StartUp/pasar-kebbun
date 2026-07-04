@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { HiOutlineUpload } from 'react-icons/hi';
-import { FiPlus, FiCamera } from 'react-icons/fi';
+import { FiPlus, FiCamera, FiX } from 'react-icons/fi';
 import { cn } from '@/lib/utils';
 
 interface UploadedPhoto {
@@ -18,6 +18,7 @@ interface FileUploadProps {
   accept?: string;
   onFilesSelected: (files: FileList) => void;
   onReplacePhoto?: (id: string, file: File) => void;
+  onRemovePhoto?: (id: string) => void;
   helperText?: string;
 }
 
@@ -27,6 +28,7 @@ export function FileUpload({
   accept = 'image/jpeg,image/png,image/webp',
   onFilesSelected,
   onReplacePhoto,
+  onRemovePhoto,
   helperText = `JPG, PNG, WEBP · Bisa pilih hingga ${maxFiles} foto sekaligus`,
 }: FileUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -103,6 +105,19 @@ export function FileUpload({
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
                   <FiCamera className="w-5 h-5 text-white" />
                 </div>
+              )}
+              {onRemovePhoto && photos.length > 1 && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onRemovePhoto(photo.id);
+                  }}
+                  aria-label="Hapus foto"
+                  className="absolute top-2 right-2 p-1 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-sm transition-colors"
+                >
+                  <FiX className="w-3 h-3" />
+                </button>
               )}
             </div>
           ))}

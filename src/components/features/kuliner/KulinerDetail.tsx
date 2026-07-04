@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { FiTrash2, FiCamera, FiChevronDown } from 'react-icons/fi';
+import { FiTrash2, FiCamera, FiChevronDown, FiX } from 'react-icons/fi';
 import { BiPencil } from 'react-icons/bi';
 import { cn } from '@/lib/utils';
 import type { Kuliner, KulinerJenis } from '@/types/kuliner.types';
@@ -54,6 +54,14 @@ export function KulinerDetail({ kuliner, onDelete, onSave, isSaving }: KulinerDe
     e.target.value = '';
   };
 
+  const handleRemovePhoto = (index: number) => {
+    setPhotos((prev) => {
+      const remaining = prev.filter((_, i) => i !== index);
+      const hasPrimary = remaining.some((photo) => photo.isPrimary);
+      return remaining.map((photo, i) => (!hasPrimary && i === 0 ? { ...photo, isPrimary: true } : photo));
+    });
+  };
+
   const handleCancel = () => {
     setNama(kuliner.nama);
     setJenis(kuliner.jenis);
@@ -99,6 +107,19 @@ export function KulinerDetail({ kuliner, onDelete, onSave, isSaving }: KulinerDe
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
                 <FiCamera className="w-5 h-5 text-white" />
               </div>
+            )}
+            {isEditing && photos.length > 1 && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleRemovePhoto(index);
+                }}
+                aria-label="Hapus foto"
+                className="absolute top-2 right-2 p-1 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-sm transition-colors"
+              >
+                <FiX className="w-3 h-3" />
+              </button>
             )}
           </div>
         ))}

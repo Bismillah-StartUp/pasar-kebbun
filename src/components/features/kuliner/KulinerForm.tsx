@@ -52,6 +52,12 @@ export function KulinerForm({ initialValues, submitLabel, onSubmit }: KulinerFor
     setPhotos(photos.map((photo) => (photo.id === id ? { ...photo, src: URL.createObjectURL(file), file } : photo)));
   };
 
+  const handleRemovePhoto = (id: string) => {
+    const remaining = photos.filter((photo) => photo.id !== id);
+    const hasPrimary = remaining.some((photo) => photo.isPrimary);
+    setPhotos(remaining.map((photo, index) => (!hasPrimary && index === 0 ? { ...photo, isPrimary: true } : photo)));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit({ nama, jenis, penjelasan, hargaKoin, photos });
@@ -137,7 +143,8 @@ export function KulinerForm({ initialValues, submitLabel, onSubmit }: KulinerFor
         photos={photos}
         maxFiles={MAX_PHOTOS}
         onFilesSelected={handleFilesSelected}
-        onReplacePhoto={initialValues ? handleReplacePhoto : undefined}
+        onReplacePhoto={handleReplacePhoto}
+        onRemovePhoto={handleRemovePhoto}
       />
 
       <div className="pt-4">
