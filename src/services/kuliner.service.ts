@@ -30,3 +30,24 @@ export async function deleteKuliner(uuid: string): Promise<void> {
   const res = await fetch(`/api/kuliner/${uuid}`, { method: 'DELETE' });
   if (!res.ok) throw new Error('Gagal menghapus kuliner');
 }
+
+export interface CreateKulinerPayload {
+  nama: string;
+  jenis: 'makanan' | 'minuman';
+  penjelasan: string;
+  hargaKoin: number;
+  photos: { file: File; isPrimary?: boolean }[];
+}
+
+export async function createKuliner(payload: CreateKulinerPayload): Promise<ApiResponse<Kuliner>> {
+  const formData = new FormData();
+  formData.set('nama', payload.nama);
+  formData.set('jenis', payload.jenis);
+  formData.set('penjelasan', payload.penjelasan);
+  formData.set('hargaKoin', String(payload.hargaKoin));
+  payload.photos.forEach((photo) => formData.append('photos', photo.file));
+
+  const res = await fetch('/api/kuliner', { method: 'POST', body: formData });
+  if (!res.ok) throw new Error('Gagal menambahkan kuliner');
+  return res.json();
+}

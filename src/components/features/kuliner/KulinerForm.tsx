@@ -11,7 +11,8 @@ export interface KulinerFormValues {
   nama: string;
   jenis: KulinerJenis | '';
   penjelasan: string;
-  photos: { id: string; src: string; isPrimary?: boolean }[];
+  hargaKoin: number;
+  photos: { id: string; src: string; isPrimary?: boolean; file?: File }[];
 }
 
 interface KulinerFormProps {
@@ -24,6 +25,7 @@ export function KulinerForm({ initialValues, submitLabel, onSubmit }: KulinerFor
   const [nama, setNama] = useState(initialValues?.nama ?? '');
   const [jenis, setJenis] = useState<KulinerJenis | ''>(initialValues?.jenis ?? '');
   const [penjelasan, setPenjelasan] = useState(initialValues?.penjelasan ?? '');
+  const [hargaKoin, setHargaKoin] = useState(initialValues?.hargaKoin ?? 1);
   const [photos, setPhotos] = useState(initialValues?.photos ?? []);
 
   const handleFilesSelected = (files: FileList) => {
@@ -33,13 +35,14 @@ export function KulinerForm({ initialValues, submitLabel, onSubmit }: KulinerFor
         id: `${Date.now()}-${index}`,
         src: URL.createObjectURL(file),
         isPrimary: photos.length === 0 && index === 0,
+        file,
       }));
     setPhotos([...photos, ...newPhotos]);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ nama, jenis, penjelasan, photos });
+    onSubmit({ nama, jenis, penjelasan, hargaKoin, photos });
   };
 
   return (
@@ -94,6 +97,28 @@ export function KulinerForm({ initialValues, submitLabel, onSubmit }: KulinerFor
           required
           className="w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:outline-none focus:border-slate-400 text-xs font-medium text-slate-700 placeholder-slate-300 transition-colors resize-none leading-relaxed"
         />
+      </div>
+
+      <div className="space-y-1.5 relative">
+        <label htmlFor="hargaKoin" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+          Harga Koin
+        </label>
+        <div className="relative">
+          <select
+            id="hargaKoin"
+            value={hargaKoin}
+            onChange={(e) => setHargaKoin(Number(e.target.value))}
+            required
+            className="w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:outline-none focus:border-slate-400 text-xs font-medium text-slate-700 placeholder-slate-300 transition-colors appearance-none cursor-pointer"
+          >
+            {[1, 2, 3, 4].map((value) => (
+              <option key={value} value={value}>
+                {value} Koin
+              </option>
+            ))}
+          </select>
+          <FiChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+        </div>
       </div>
 
       <FileUpload photos={photos} maxFiles={MAX_PHOTOS} onFilesSelected={handleFilesSelected} />
