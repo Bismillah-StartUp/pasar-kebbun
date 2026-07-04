@@ -12,8 +12,12 @@ export function AdminSidebar() {
   const pathname = usePathname();
   const { logout } = useAuth();
 
-  const isMenuActive = (href: string) =>
-    pathname === href || (href === ROUTES.ADMIN.DASHBOARD && pathname === ROUTES.USER.HOME);
+  const isMenuActive = (href: string) => {
+    if (href === ROUTES.ADMIN.DASHBOARD) {
+      return pathname === href || pathname === ROUTES.USER.HOME;
+    }
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   return (
     <aside className="w-64 h-screen sticky top-0 shrink-0 bg-primary text-white flex flex-col justify-between p-4 select-none overflow-y-auto">
