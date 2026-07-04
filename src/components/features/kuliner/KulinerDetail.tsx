@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { FiTrash2, FiCamera, FiChevronDown, FiX } from 'react-icons/fi';
+import { FiTrash2, FiCamera, FiChevronDown, FiX, FiPlus } from 'react-icons/fi';
 import { BiPencil } from 'react-icons/bi';
 import { cn } from '@/lib/utils';
 import type { Kuliner, KulinerJenis } from '@/types/kuliner.types';
@@ -25,16 +25,19 @@ interface KulinerDetailProps {
 const fieldClassName =
   'w-full px-4 py-3 bg-slate-50/60 border border-slate-200/60 rounded-xl text-xs font-bold text-slate-800 shadow-sm';
 
+const MAX_PHOTOS = 5;
+
 export function KulinerDetail({ kuliner, onDelete, onSave, isSaving }: KulinerDetailProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [nama, setNama] = useState(kuliner.nama);
   const [jenis, setJenis] = useState<KulinerJenis>(kuliner.jenis);
   const [penjelasan, setPenjelasan] = useState(kuliner.penjelasan);
   const [hargaKoin, setHargaKoin] = useState(kuliner.hargaKoin);
-  const [photos, setPhotos] = useState(
+  const [photos, setPhotos] = useState<KulinerEditValues['photos']>(
     kuliner.foto.map((photo) => ({ existingId: photo.id, src: photo.url, isPrimary: photo.isPrimary }))
   );
   const replaceInputRef = useRef<HTMLInputElement>(null);
+  const addInputRef = useRef<HTMLInputElement>(null);
   const [replacingIndex, setReplacingIndex] = useState<number | null>(null);
 
   const handleReplaceClick = (index: number) => {
@@ -51,6 +54,17 @@ export function KulinerDetail({ kuliner, onDelete, onSave, isSaving }: KulinerDe
       );
     }
     setReplacingIndex(null);
+    e.target.value = '';
+  };
+
+  const handleAddFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files) {
+      const newPhotos = Array.from(files)
+        .slice(0, MAX_PHOTOS - photos.length)
+        .map((file) => ({ src: URL.createObjectURL(file), isPrimary: false, file }));
+      setPhotos((prev) => [...prev, ...newPhotos]);
+    }
     e.target.value = '';
   };
 
@@ -79,6 +93,14 @@ export function KulinerDetail({ kuliner, onDelete, onSave, isSaving }: KulinerDe
   return (
     <>
       <input ref={replaceInputRef} type="file" accept="image/jpeg,image/png,image/webp" hidden onChange={handleReplaceFileChange} />
+      <input
+        ref={addInputRef}
+        type="file"
+        accept="image/jpeg,image/png,image/webp"
+        multiple
+        hidden
+        onChange={handleAddFiles}
+      />
 
       <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
         {photos.map((photo, index) => (
@@ -123,6 +145,21 @@ export function KulinerDetail({ kuliner, onDelete, onSave, isSaving }: KulinerDe
             )}
           </div>
         ))}
+
+        {isEditing &&
+          Array.from({ length: Math.max(MAX_PHOTOS - photos.length, 0) }).map((_, index) => (
+            <button
+              key={`empty-slot-${index}`}
+              type="button"
+              onClick={() => addInputRef.current?.click()}
+              className="aspect-square border border-dashed border-emerald-600/40 bg-emerald-50/20 rounded-2xl flex flex-col items-center justify-center gap-1 cursor-pointer hover:bg-emerald-50/40 transition-colors text-emerald-700 select-none"
+            >
+              <div className="p-1 bg-emerald-100/60 rounded-lg text-primary">
+                <FiPlus className="w-3.5 h-3.5" />
+              </div>
+              <span className="text-[10px] font-bold tracking-wide">Foto {photos.length + index + 1}</span>
+            </button>
+          ))}
       </div>
 
       <div className="flex flex-col gap-5 mt-2">
