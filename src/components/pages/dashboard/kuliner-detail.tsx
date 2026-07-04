@@ -1,9 +1,12 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { AdminLayout } from '@/components/layout';
 import { BackLink, Breadcrumb } from '@/components/ui';
-import { KulinerDetail } from '@/components/features/kuliner';
+import { KulinerDetail, type KulinerEditValues } from '@/components/features/kuliner';
 import { useKulinerDetail } from '@/hooks/useKulinerDetail';
+import { deleteKuliner, updateKuliner } from '@/services/kuliner.service';
 import { ROUTES } from '@/constants/routes';
 
 interface KulinerDetailPageProps {
@@ -11,7 +14,31 @@ interface KulinerDetailPageProps {
 }
 
 export default function KulinerDetailPage({ uuid }: KulinerDetailPageProps) {
+  const router = useRouter();
   const { kuliner, isLoading } = useKulinerDetail(uuid);
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleDelete = async () => {
+    if (!confirm('Apakah Anda yakin ingin menghapus kuliner ini?')) return;
+    await deleteKuliner(uuid);
+    router.push(ROUTES.ADMIN.KULINER);
+  };
+
+  const handleSave = async (values: KulinerEditValues) => {
+    setIsSaving(true);
+    try {
+      await updateKuliner(uuid, {
+        nama: values.nama,
+        jenis: values.jenis,
+        penjelasan: values.penjelasan,
+        hargaKoin: values.hargaKoin,
+        photos: values.photos.map((photo) => ({ file: photo.file, existingId: photo.existingId })),
+      });
+      router.refresh();
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   return (
     <AdminLayout header={<Breadcrumb items={['Kuliner', kuliner?.nama ?? '...']} />}>
@@ -22,7 +49,7 @@ export default function KulinerDetailPage({ uuid }: KulinerDetailPageProps) {
       ) : (
         <>
           <BackLink href={ROUTES.ADMIN.KULINER} label="Kembali ke Kuliner" />
-          <KulinerDetail kuliner={kuliner} />
+          <KulinerDetail kuliner={kuliner} onDelete={handleDelete} onSave={handleSave} isSaving={isSaving} />
         </>
       )}
     </AdminLayout>

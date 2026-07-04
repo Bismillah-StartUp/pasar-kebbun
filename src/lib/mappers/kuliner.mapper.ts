@@ -10,7 +10,7 @@ export function toKuliner(culinary: CulinaryWithPhotos): Kuliner {
     jenis: culinary.type === 'FOOD' ? 'makanan' : 'minuman',
     penjelasan: culinary.description,
     hargaKoin: culinary.coinPrice,
-    foto: culinary.photos.map((photo) => photo.url),
+    foto: culinary.photos.map((photo) => ({ id: photo.uuid, url: photo.url, isPrimary: photo.isPrimary })),
     slug: culinary.slug,
     createdAt: culinary.createdAt,
     updatedAt: culinary.updatedAt,

@@ -1,9 +1,9 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { HiOutlineUpload } from 'react-icons/hi';
-import { FiPlus } from 'react-icons/fi';
+import { FiPlus, FiCamera } from 'react-icons/fi';
 import { cn } from '@/lib/utils';
 
 interface UploadedPhoto {
@@ -17,6 +17,7 @@ interface FileUploadProps {
   maxFiles: number;
   accept?: string;
   onFilesSelected: (files: FileList) => void;
+  onReplacePhoto?: (id: string, file: File) => void;
   helperText?: string;
 }
 
@@ -25,10 +26,27 @@ export function FileUpload({
   maxFiles,
   accept = 'image/jpeg,image/png,image/webp',
   onFilesSelected,
+  onReplacePhoto,
   helperText = `JPG, PNG, WEBP · Bisa pilih hingga ${maxFiles} foto sekaligus`,
 }: FileUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const replaceInputRef = useRef<HTMLInputElement>(null);
+  const [replacingId, setReplacingId] = useState<string | null>(null);
   const remainingSlots = maxFiles - photos.length;
+
+  const handleReplaceClick = (id: string) => {
+    setReplacingId(id);
+    replaceInputRef.current?.click();
+  };
+
+  const handleReplaceFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && replacingId && onReplacePhoto) {
+      onReplacePhoto(replacingId, file);
+    }
+    setReplacingId(null);
+    e.target.value = '';
+  };
 
   return (
     <div className="space-y-3">
@@ -47,6 +65,10 @@ export function FileUpload({
         onChange={(e) => e.target.files && onFilesSelected(e.target.files)}
       />
 
+      {onReplacePhoto && (
+        <input ref={replaceInputRef} type="file" accept={accept} hidden onChange={handleReplaceFileChange} />
+      )}
+
       <button
         type="button"
         onClick={() => inputRef.current?.click()}
@@ -63,12 +85,24 @@ export function FileUpload({
       {photos.length > 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 pt-2">
           {photos.map((photo) => (
-            <div key={photo.id} className="relative aspect-square rounded-2xl overflow-hidden shadow-sm bg-slate-100">
+            <div
+              key={photo.id}
+              className={cn(
+                'relative aspect-square rounded-2xl overflow-hidden shadow-sm bg-slate-100',
+                onReplacePhoto && 'group cursor-pointer'
+              )}
+              onClick={onReplacePhoto ? () => handleReplaceClick(photo.id) : undefined}
+            >
               <Image src={photo.src} alt="Preview" className="w-full h-full object-cover" width={200} height={200} />
               {photo.isPrimary && (
                 <span className="absolute top-2 left-2 px-2 py-0.5 bg-primary text-white text-[9px] font-black tracking-widest rounded uppercase shadow-sm">
                   Utama
                 </span>
+              )}
+              {onReplacePhoto && (
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                  <FiCamera className="w-5 h-5 text-white" />
+                </div>
               )}
             </div>
           ))}

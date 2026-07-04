@@ -51,3 +51,34 @@ export async function createKuliner(payload: CreateKulinerPayload): Promise<ApiR
   if (!res.ok) throw new Error('Gagal menambahkan kuliner');
   return res.json();
 }
+
+export interface UpdateKulinerPhoto {
+  file?: File;
+  existingId?: string;
+}
+
+export interface UpdateKulinerPayload {
+  nama: string;
+  jenis: 'makanan' | 'minuman';
+  penjelasan: string;
+  hargaKoin: number;
+  photos: UpdateKulinerPhoto[];
+}
+
+export async function updateKuliner(uuid: string, payload: UpdateKulinerPayload): Promise<ApiResponse<Kuliner>> {
+  const formData = new FormData();
+  formData.set('nama', payload.nama);
+  formData.set('jenis', payload.jenis);
+  formData.set('penjelasan', payload.penjelasan);
+  formData.set('hargaKoin', String(payload.hargaKoin));
+
+  const photoOrder = payload.photos.map((photo) =>
+    photo.file ? { type: 'new' as const } : { type: 'existing' as const, photoId: photo.existingId as string }
+  );
+  formData.set('photoOrder', JSON.stringify(photoOrder));
+  payload.photos.forEach((photo) => photo.file && formData.append('photos', photo.file));
+
+  const res = await fetch(`/api/kuliner/${uuid}`, { method: 'PUT', body: formData });
+  if (!res.ok) throw new Error('Gagal memperbarui kuliner');
+  return res.json();
+}

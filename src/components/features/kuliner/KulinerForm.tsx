@@ -7,12 +7,20 @@ import type { KulinerJenis } from '@/types/kuliner.types';
 
 const MAX_PHOTOS = 5;
 
+export interface KulinerFormPhoto {
+  id: string;
+  src: string;
+  isPrimary?: boolean;
+  file?: File;
+  existingId?: string;
+}
+
 export interface KulinerFormValues {
   nama: string;
   jenis: KulinerJenis | '';
   penjelasan: string;
   hargaKoin: number;
-  photos: { id: string; src: string; isPrimary?: boolean; file?: File }[];
+  photos: KulinerFormPhoto[];
 }
 
 interface KulinerFormProps {
@@ -38,6 +46,10 @@ export function KulinerForm({ initialValues, submitLabel, onSubmit }: KulinerFor
         file,
       }));
     setPhotos([...photos, ...newPhotos]);
+  };
+
+  const handleReplacePhoto = (id: string, file: File) => {
+    setPhotos(photos.map((photo) => (photo.id === id ? { ...photo, src: URL.createObjectURL(file), file } : photo)));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -121,7 +133,12 @@ export function KulinerForm({ initialValues, submitLabel, onSubmit }: KulinerFor
         </div>
       </div>
 
-      <FileUpload photos={photos} maxFiles={MAX_PHOTOS} onFilesSelected={handleFilesSelected} />
+      <FileUpload
+        photos={photos}
+        maxFiles={MAX_PHOTOS}
+        onFilesSelected={handleFilesSelected}
+        onReplacePhoto={initialValues ? handleReplacePhoto : undefined}
+      />
 
       <div className="pt-4">
         <button
