@@ -69,9 +69,9 @@ export default function AboutPage() {
           <SectionLabel text="Temukan Kami" />
           <h2 className="text-[36px] leading-11.25 font-bold text-gray-900 mb-1">Lokasi Pasar Kebbun</h2>
           <p className="text-[15px] leading-[24.5px] font-normal text-justify text-gray-600 mb-6">Dsn. Mora&apos;an, Desa Saroka, Kecamatan Saronggi, Sumenep, Jawa Timur</p>
-          <div className="rounded-xl overflow-hidden border border-gray-200 w-full h-80">
+          <div className="rounded-xl overflow-hidden border border-gray-200 w-full h-128">
             <iframe
-              src="https://www.google.com/maps?q=Pasar+Kebbun+Sumenep&output=embed"
+              src="https://www.theasys.io/viewer/BoziQItkHitW5sFYuzvcQqafWNGRQ6/"
               width="100%"
               height="100%"
               style={{ border: 0 }}
