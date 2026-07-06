@@ -15,13 +15,16 @@ export async function uploadImage(file: File, folder: string): Promise<Cloudinar
   const buffer = Buffer.from(await file.arrayBuffer());
 
   return new Promise((resolve, reject) => {
-    const uploadStream = cloudinary.uploader.upload_stream({ folder }, (error, result) => {
-      if (error || !result) {
-        reject(error ?? new Error('Upload ke Cloudinary gagal.'));
-        return;
+    const uploadStream = cloudinary.uploader.upload_stream(
+      { folder: `pasar-kebbun/${folder}` },
+      (error, result) => {
+        if (error || !result) {
+          reject(error ?? new Error('Upload ke Cloudinary gagal.'));
+          return;
+        }
+        resolve({ publicId: result.public_id, url: result.secure_url });
       }
-      resolve({ publicId: result.public_id, url: result.secure_url });
-    });
+    );
     uploadStream.end(buffer);
   });
 }
