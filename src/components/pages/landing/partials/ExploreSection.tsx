@@ -72,7 +72,7 @@ export default function ExploreSection() {
                 <div className="flex items-center gap-4 shrink-0">
                   {isActive && item.image && (
                     <div className="relative w-24 h-12 rounded-lg overflow-hidden shrink-0">
-                      <Image src={item.image} alt={item.label} fill className="object-cover" />
+                      <Image src={item.image} alt={item.label} fill className="object-cover" sizes="96px" />
                     </div>
                   )}
                   <Link

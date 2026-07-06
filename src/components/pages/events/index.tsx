@@ -49,6 +49,7 @@ export default function EventsPage() {
                 alt="Event Mingguan"
                 fill
                 className="object-cover"
+                sizes="(min-width: 768px) 50vw, 100vw"
               />
             </div>
             <p className="text-sm text-gray-600 leading-relaxed">
@@ -73,6 +74,7 @@ export default function EventsPage() {
                 alt="Event Bulanan"
                 fill
                 className="object-cover"
+                sizes="(min-width: 768px) 50vw, 100vw"
               />
             </div>
           </div>
