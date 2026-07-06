@@ -2,8 +2,8 @@ import { Navbar, Footer } from '@/components/layout';
 import CulinariesList from '@/components/pages/culinaries';
 
 export const metadata = {
-  title: 'Kuliner Madura | Pasar Kebun Tanean',
-  description: 'Jelajahi kelezatan autentik kuliner tradisional Madura di Pasar Kebun Tanean',
+  title: 'Kuliner Madura | Pasar Kebbun',
+  description: 'Jelajahi kelezatan autentik kuliner tradisional Madura di Pasar Kebbun',
 };
 
 export default function KulinerPage() {

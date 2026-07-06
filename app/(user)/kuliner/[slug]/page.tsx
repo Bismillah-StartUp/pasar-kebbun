@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: PageProps) {
   const culinary = await prisma.culinary.findUnique({ where: { slug } });
 
   return {
-    title: culinary ? `${culinary.name} | Pasar Kebun Tanean` : 'Kuliner | Pasar Kebun Tanean',
+    title: culinary ? `${culinary.name} | Pasar Kebbun` : 'Kuliner | Pasar Kebbun',
   };
 }
 
