@@ -3,6 +3,7 @@ import Link from 'next/link';
 import prisma from '@/lib/prisma';
 import PageHero from '@/components/pages/(user)/partials/PageHero';
 import SectionLabel from '@/components/pages/(user)/partials/SectionLabel';
+
 const KOIN_TO_RUPIAH: Record<number, string> = {
   1: 'Rp 2.500',
   2: 'Rp 5.000',

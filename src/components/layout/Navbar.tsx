@@ -24,7 +24,7 @@ export function Navbar() {
     href === ROUTES.USER.HOME ? pathname === href : pathname.startsWith(href);
 
   return (
-    <nav className="bg-primary shadow-md">
+    <nav className="sticky top-0 z-50 bg-primary shadow-md">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
