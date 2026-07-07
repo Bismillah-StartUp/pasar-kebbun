@@ -65,6 +65,21 @@ export interface UpdateKulinerPayload {
   photos: UpdateKulinerPhoto[];
 }
 
+export interface ImportKulinerResult {
+  created: number;
+  errors: { row: number; message: string }[];
+}
+
+export async function importKulinerExcel(file: File): Promise<ApiResponse<ImportKulinerResult>> {
+  const formData = new FormData();
+  formData.set('file', file);
+
+  const res = await fetch('/api/kuliner/import', { method: 'POST', body: formData });
+  const body = await res.json();
+  if (!res.ok && res.status !== 207) throw new Error(body.message ?? 'Gagal mengimpor kuliner');
+  return body;
+}
+
 export async function updateKuliner(uuid: string, payload: UpdateKulinerPayload): Promise<ApiResponse<Kuliner>> {
   const formData = new FormData();
   formData.set('nama', payload.nama);

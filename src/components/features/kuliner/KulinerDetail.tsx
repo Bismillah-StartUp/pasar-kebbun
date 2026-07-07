@@ -110,6 +110,11 @@ export function KulinerDetail({ kuliner, onDelete, onSave, isSaving }: KulinerDe
       />
 
       <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
+        {!isEditing && photos.length === 0 && (
+          <div className="col-span-2 sm:col-span-5 aspect-3/1 rounded-2xl bg-slate-100 flex items-center justify-center text-xs font-medium text-slate-400">
+            Tidak ada foto
+          </div>
+        )}
         {photos.map((photo, index) => (
           <div
             key={photo.existingId ?? index}
