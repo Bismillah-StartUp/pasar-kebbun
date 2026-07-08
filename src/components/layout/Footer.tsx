@@ -6,11 +6,12 @@ import { ROUTES } from '@/constants/routes';
 
 const HALAMAN_LINKS = [
   { label: 'Beranda', href: ROUTES.USER.HOME },
-  { label: 'Tentang Kami', href: ROUTES.USER.ABOUT },
-  { label: 'Fasilitas', href: ROUTES.USER.FASILITAS },
-  { label: 'Event', href: ROUTES.USER.EVENT },
-  { label: 'UMKM', href: ROUTES.USER.UMKM },
   { label: 'Kuliner', href: ROUTES.USER.KULINER },
+  { label: 'Berita', href: ROUTES.USER.BERITA },
+  { label: 'UMKM', href: ROUTES.USER.UMKM },
+  { label: 'Event', href: ROUTES.USER.EVENT },
+  { label: 'Fasilitas', href: ROUTES.USER.FASILITAS },
+  { label: 'Tentang Kami', href: ROUTES.USER.ABOUT },
 ];
 
 export function Footer() {
@@ -98,8 +99,12 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <p className="text-xs text-white/40 text-center">© 2026 Pasar Kebbun. Seluruh hak cipta dilindungi.</p>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
+          <p className="text-xs text-white/40">© 2026 Pasar Kebbun. Seluruh hak cipta dilindungi.</p>
+          <Link href={ROUTES.ADMIN.LOGIN}
+            className="text-xs font-semibold text-white/70 hover:text-white transition-colors shrink-0">
+            Login
+          </Link>
         </div>
       </div>
     </footer>
