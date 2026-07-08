@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Pasar Kebbun",
   description: "Wisata Kuliner, Budaya, dan Alam Pasar Kebbun",
   icons: {
-    icon: "/assets/icons/logo-pk-green.png",
+    icon: "/assets/icons/logo-pk-white.png",
   },
 };
 
