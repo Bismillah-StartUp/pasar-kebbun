@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { toast } from 'sonner';
 import { FiPlus, FiTrash2, FiLink } from 'react-icons/fi';
 import { BiPencil } from 'react-icons/bi';
 import { DataTable } from '@/components/ui';
@@ -14,9 +15,13 @@ import type { Berita } from '@/types/berita.types';
 export default function NewsListPage() {
   const { data, isLoading, removeBerita } = useBerita();
 
-  const handleDelete = (uuid: string) => {
-    if (confirm('Apakah Anda yakin ingin menghapus berita ini?')) {
-      removeBerita(uuid);
+  const handleDelete = async (uuid: string) => {
+    if (!confirm('Apakah Anda yakin ingin menghapus berita ini?')) return;
+    try {
+      await removeBerita(uuid);
+      toast.success('Berita berhasil dihapus.');
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Gagal menghapus berita.');
     }
   };
 

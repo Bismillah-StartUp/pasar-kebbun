@@ -9,3 +9,4 @@ export { FileUpload } from './FileUpload';
 export { Pagination } from './Pagination';
 export { SearchBar } from './SearchBar';
 export { Tabs } from './Tabs';
+export { Toaster } from './sonner';

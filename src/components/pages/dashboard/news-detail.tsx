@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 import { BackLink, Card } from '@/components/ui';
 import { BeritaForm, type BeritaFormValues } from '@/components/features/berita';
 import { useBeritaDetail } from '@/hooks/useBeritaDetail';
@@ -15,15 +15,14 @@ interface NewsDetailPageProps {
 export default function NewsDetailPage({ uuid }: NewsDetailPageProps) {
   const router = useRouter();
   const { berita, isLoading } = useBeritaDetail(uuid);
-  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (values: BeritaFormValues) => {
-    setError(null);
     try {
       await updateBerita(uuid, { judul: values.judul, link: values.link, gambar: values.gambar });
+      toast.success('Berita berhasil diperbarui.');
       router.push(ROUTES.ADMIN.NEWS);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Gagal memperbarui berita');
+      toast.error(err instanceof Error ? err.message : 'Gagal memperbarui berita');
     }
   };
 
@@ -41,7 +40,6 @@ export default function NewsDetailPage({ uuid }: NewsDetailPageProps) {
 
       <Card className="flex flex-col gap-6">
         <h2 className="text-base font-black text-slate-800 tracking-tight select-none">Edit Berita</h2>
-        {error && <p className="text-xs font-medium text-red-500">{error}</p>}
         <BeritaForm
           initialValues={{ judul: berita.judul, link: berita.link, gambarPreview: berita.gambar }}
           submitLabel="Simpan Perubahan"

@@ -10,7 +10,7 @@ import { ROUTES } from '@/constants/routes';
 export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { login, isLoading, error } = useAuth();
+  const { login, isLoading } = useAuth();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,8 +79,6 @@ export default function LoginPage() {
                 required
               />
             </div>
-
-            {error && <p className="text-sm text-red-600">{error}</p>}
 
             {/* Login Button */}
             <Button

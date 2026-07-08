@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { toast } from 'sonner';
 import { FiLink } from 'react-icons/fi';
 import { HiOutlineUpload } from 'react-icons/hi';
 import { ROUTES } from '@/constants/routes';
@@ -31,7 +32,7 @@ export function BeritaForm({ initialValues, submitLabel, onSubmit }: BeritaFormP
     const file = e.target.files?.[0];
     if (file) {
       if (isImageTooLarge(file)) {
-        alert('Ukuran gambar maksimal 5MB.');
+        toast.warning('Ukuran gambar maksimal 5MB.');
       } else {
         setGambar(file);
         setPreview(URL.createObjectURL(file));

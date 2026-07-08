@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import Image from 'next/image';
+import { toast } from 'sonner';
 import { HiOutlineUpload } from 'react-icons/hi';
 import { FiPlus, FiCamera, FiX } from 'react-icons/fi';
 import { cn, isImageTooLarge } from '@/lib/utils';
@@ -45,7 +46,7 @@ export function FileUpload({
     const file = e.target.files?.[0];
     if (file && replacingId && onReplacePhoto) {
       if (isImageTooLarge(file)) {
-        alert('Ukuran foto maksimal 5MB.');
+        toast.warning('Ukuran foto maksimal 5MB.');
       } else {
         onReplacePhoto(replacingId, file);
       }
@@ -57,7 +58,7 @@ export function FileUpload({
   const handleFilesSelected = (files: FileList) => {
     const oversized = Array.from(files).some(isImageTooLarge);
     if (oversized) {
-      alert('Ukuran foto maksimal 5MB.');
+      toast.warning('Ukuran foto maksimal 5MB.');
       return;
     }
     onFilesSelected(files);

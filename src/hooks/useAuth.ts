@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 import { useAuthStore } from '@/stores/auth.store';
 import { ROUTES } from '@/constants/routes';
 
@@ -14,11 +15,9 @@ export function useAuth() {
   const router = useRouter();
   const { setUser, clearUser } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const login = async (username: string, password: string) => {
     setIsLoading(true);
-    setError(null);
 
     try {
       const res = await fetch(API_AUTH.LOGIN, {
@@ -30,14 +29,15 @@ export function useAuth() {
       const json = await res.json();
 
       if (!res.ok) {
-        setError(json.message ?? 'Login gagal.');
+        toast.error(json.message ?? 'Login gagal.');
         return;
       }
 
       setUser(json.data);
+      toast.success('Berhasil masuk.');
       router.push(ROUTES.ADMIN.DASHBOARD);
     } catch {
-      setError('Terjadi kesalahan. Silakan coba lagi.');
+      toast.error('Terjadi kesalahan. Silakan coba lagi.');
     } finally {
       setIsLoading(false);
     }
@@ -52,5 +52,5 @@ export function useAuth() {
     }
   };
 
-  return { login, logout, isLoading, error };
+  return { login, logout, isLoading };
 }

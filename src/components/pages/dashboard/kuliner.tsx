@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { toast } from 'sonner';
 import { FiPlus, FiEye, FiTrash2 } from 'react-icons/fi';
 import { Tabs, SearchBar, DataTable, Pagination, Badge } from '@/components/ui';
 import type { DataTableColumn } from '@/components/ui/DataTable';
@@ -14,9 +15,13 @@ export default function KulinerListPage() {
   const { data, total, totalPages, isLoading, activeTab, setActiveTab, search, setSearch, page, goToPage, removeKuliner } =
     useKuliner();
 
-  const handleDelete = (uuid: string) => {
-    if (confirm('Apakah Anda yakin ingin menghapus kuliner ini?')) {
-      removeKuliner(uuid);
+  const handleDelete = async (uuid: string) => {
+    if (!confirm('Apakah Anda yakin ingin menghapus kuliner ini?')) return;
+    try {
+      await removeKuliner(uuid);
+      toast.success('Kuliner berhasil dihapus.');
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Gagal menghapus kuliner.');
     }
   };
 

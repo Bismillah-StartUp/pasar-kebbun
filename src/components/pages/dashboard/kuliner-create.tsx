@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import { BackLink, Card } from '@/components/ui';
 import { KulinerForm, KulinerImportForm, type KulinerFormValues } from '@/components/features/kuliner';
@@ -13,13 +14,11 @@ type CreateMode = 'manual' | 'import';
 export default function KulinerCreatePage() {
   const router = useRouter();
   const [mode, setMode] = useState<CreateMode>('manual');
-  const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (values: KulinerFormValues) => {
     if (!values.jenis) return;
 
-    setError(null);
     setIsSubmitting(true);
 
     try {
@@ -32,15 +31,17 @@ export default function KulinerCreatePage() {
           .filter((photo) => photo.file)
           .map((photo) => ({ file: photo.file as File, isPrimary: photo.isPrimary })),
       });
+      toast.success('Kuliner berhasil ditambahkan.');
       router.push(ROUTES.ADMIN.KULINER);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Gagal menambahkan kuliner');
+      toast.error(err instanceof Error ? err.message : 'Gagal menambahkan kuliner');
       setIsSubmitting(false);
     }
   };
 
   const handleImported = (result: ImportKulinerResult) => {
     if (result.created > 0 && result.errors.length === 0) {
+      toast.success(`${result.created} kuliner berhasil diimpor.`);
       router.push(ROUTES.ADMIN.KULINER);
     }
   };
@@ -77,10 +78,7 @@ export default function KulinerCreatePage() {
         </div>
 
         {mode === 'manual' ? (
-          <>
-            {error && <p className="text-xs font-medium text-red-500">{error}</p>}
-            <KulinerForm submitLabel={isSubmitting ? 'Menyimpan...' : 'Tambah +'} onSubmit={handleSubmit} />
-          </>
+          <KulinerForm submitLabel={isSubmitting ? 'Menyimpan...' : 'Tambah +'} onSubmit={handleSubmit} />
         ) : (
           <KulinerImportForm onImported={handleImported} />
         )}

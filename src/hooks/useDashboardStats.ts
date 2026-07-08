@@ -1,12 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 import { getDashboardStats, type DashboardStats } from '@/services/dashboard.service';
 
 export function useDashboardStats() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -16,7 +16,7 @@ export function useDashboardStats() {
         if (isMounted) setStats(data);
       })
       .catch((err) => {
-        if (isMounted) setError(err instanceof Error ? err : new Error('Failed to load stats'));
+        if (isMounted) toast.error(err instanceof Error ? err.message : 'Gagal memuat data dashboard.');
       })
       .finally(() => {
         if (isMounted) setIsLoading(false);
@@ -27,5 +27,5 @@ export function useDashboardStats() {
     };
   }, []);
 
-  return { stats, isLoading, error };
+  return { stats, isLoading };
 }

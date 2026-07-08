@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { toast } from 'sonner';
 import { FiUploadCloud, FiDownload } from 'react-icons/fi';
 import { importKulinerExcel, type ImportKulinerResult } from '@/services/kuliner.service';
 
@@ -12,34 +13,36 @@ export function KulinerImportForm({ onImported }: KulinerImportFormProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [fileName, setFileName] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<ImportKulinerResult | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     setFileName(file?.name ?? null);
     setResult(null);
-    setError(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const file = inputRef.current?.files?.[0];
     if (!file) {
-      setError('Pilih file Excel terlebih dahulu.');
+      toast.warning('Pilih file Excel terlebih dahulu.');
       return;
     }
 
     setIsSubmitting(true);
-    setError(null);
     setResult(null);
 
     try {
       const response = await importKulinerExcel(file);
       setResult(response.data);
+      if (response.data.errors.length > 0) {
+        toast.warning(`${response.data.created} berhasil, ${response.data.errors.length} baris gagal diimpor.`);
+      } else {
+        toast.success(`${response.data.created} kuliner berhasil diimpor.`);
+      }
       onImported(response.data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Gagal mengimpor kuliner');
+      toast.error(err instanceof Error ? err.message : 'Gagal mengimpor kuliner');
     } finally {
       setIsSubmitting(false);
     }
@@ -82,8 +85,6 @@ export function KulinerImportForm({ onImported }: KulinerImportFormProps) {
           onChange={handleFileChange}
         />
       </div>
-
-      {error && <p className="text-xs font-medium text-red-500">{error}</p>}
 
       {result && (
         <div className="p-4 bg-slate-50/60 border border-slate-200/60 rounded-xl space-y-2">

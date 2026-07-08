@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { AdminLayout } from '@/components/layout';
 import { BackLink, Breadcrumb } from '@/components/ui';
 import { KulinerDetail, type KulinerEditValues } from '@/components/features/kuliner';
@@ -20,8 +21,13 @@ export default function KulinerDetailPage({ uuid }: KulinerDetailPageProps) {
 
   const handleDelete = async () => {
     if (!confirm('Apakah Anda yakin ingin menghapus kuliner ini?')) return;
-    await deleteKuliner(uuid);
-    router.push(ROUTES.ADMIN.KULINER);
+    try {
+      await deleteKuliner(uuid);
+      toast.success('Kuliner berhasil dihapus.');
+      router.push(ROUTES.ADMIN.KULINER);
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Gagal menghapus kuliner.');
+    }
   };
 
   const handleSave = async (values: KulinerEditValues) => {
