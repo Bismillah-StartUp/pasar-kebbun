@@ -37,7 +37,7 @@ const ITEMS = [
 ];
 
 export default function ExploreSection() {
-  const [active, setActive] = useState('kuliner');
+  const [hovered, setHovered] = useState('kuliner');
 
   return (
     <section className="w-full bg-surface py-14 px-4">
@@ -56,13 +56,14 @@ export default function ExploreSection() {
 
         <div className="space-y-2">
           {ITEMS.map((item) => {
-            const isActive = active === item.key;
+            const isActive = hovered === item.key;
             return (
-              <div
+              <Link
                 key={item.key}
-                onClick={() => setActive(item.key)}
-                className={`flex items-center justify-between rounded-xl px-5 py-4 cursor-pointer transition-all ${
-                  isActive ? 'bg-primary text-white' : 'bg-white text-gray-800 hover:bg-gray-100'
+                href={item.href}
+                onMouseEnter={() => setHovered(item.key)}
+                className={`flex items-center justify-between rounded-xl px-5 py-4 transition-all ${
+                  isActive ? 'bg-primary text-white' : 'bg-white text-gray-800'
                 }`}
               >
                 <div className="flex-1">
@@ -75,19 +76,17 @@ export default function ExploreSection() {
                       <Image src={item.image} alt={item.label} fill className="object-cover" sizes="96px" />
                     </div>
                   )}
-                  <Link
-                    href={item.href}
-                    onClick={(e) => e.stopPropagation()}
+                  <div
                     className={`w-8 h-8 rounded-full border flex items-center justify-center shrink-0 transition-colors ${
-                      isActive ? 'border-white/40 text-white hover:bg-white/10' : 'border-gray-200 text-gray-500 hover:bg-gray-50'
+                      isActive ? 'border-white/40 text-white' : 'border-gray-200 text-gray-500'
                     }`}
                   >
                     <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
                     </svg>
-                  </Link>
+                  </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
