@@ -103,7 +103,7 @@ export function Footer() {
           <p className="text-xs text-white/40">© 2026 Pasar Kebbun. Seluruh hak cipta dilindungi.</p>
           <Link href={ROUTES.ADMIN.LOGIN}
             className="text-xs font-semibold text-white/70 hover:text-white transition-colors shrink-0">
-            Login
+            Login Admin
           </Link>
         </div>
       </div>
