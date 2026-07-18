@@ -1,6 +1,7 @@
 'use client';
 
 import { FiBell } from 'react-icons/fi';
+import { SidebarTrigger } from '@/components/ui/sidebar';
 
 interface BreadcrumbProps {
   items: string[];
@@ -15,7 +16,8 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
 
   return (
     <header className="flex items-center justify-between w-full px-6 py-4 bg-white border-b border-gray-100">
-      <div className="flex items-center gap-2 text-xs font-semibold tracking-wide">
+      <div className="flex items-center gap-3 text-xs font-semibold tracking-wide">
+        <SidebarTrigger className="cursor-pointer" />
         {items.map((item, index) => (
           <span key={item} className="contents">
             <span className={index === items.length - 1 ? 'text-slate-800' : 'text-slate-400'}>{item}</span>

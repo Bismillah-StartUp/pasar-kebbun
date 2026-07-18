@@ -1,6 +1,7 @@
 'use client';
 
 import { FiBell } from 'react-icons/fi';
+import { SidebarTrigger } from '@/components/ui/sidebar';
 
 interface AdminHeaderProps {
   title?: string;
@@ -15,7 +16,8 @@ export function AdminHeader({ title = 'Dashboard' }: AdminHeaderProps) {
 
   return (
     <header className="flex items-center justify-between w-full px-6 py-4 bg-white border-b border-gray-100">
-      <div>
+      <div className="flex items-center gap-3">
+        <SidebarTrigger className="cursor-pointer" />
         <h1 className="text-lg font-bold text-slate-800 tracking-wide">{title}</h1>
       </div>
 
