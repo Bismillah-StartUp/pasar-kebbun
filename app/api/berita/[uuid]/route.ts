@@ -31,11 +31,23 @@ export async function PUT(request: Request, { params }: RouteParams) {
   const formData = await request.formData();
 
   const judul = formData.get('judul');
+  const tipe = formData.get('tipe');
   const link = formData.get('link');
+  const konten = formData.get('konten');
   const gambar = formData.get('gambar');
 
-  if (typeof judul !== 'string' || !judul.trim() || typeof link !== 'string' || !link.trim()) {
+  if (typeof judul !== 'string' || !judul.trim()) {
     return NextResponse.json({ success: false, message: 'Data berita tidak lengkap.' }, { status: 400 });
+  }
+
+  const isManual = tipe === 'manual';
+
+  if (isManual) {
+    if (typeof konten !== 'string' || !konten.trim()) {
+      return NextResponse.json({ success: false, message: 'Isi berita wajib diisi.' }, { status: 400 });
+    }
+  } else if (typeof link !== 'string' || !link.trim()) {
+    return NextResponse.json({ success: false, message: 'Link berita wajib diisi.' }, { status: 400 });
   }
 
   if (gambar instanceof File && isImageTooLarge(gambar)) {
@@ -49,7 +61,9 @@ export async function PUT(request: Request, { params }: RouteParams) {
       where: { uuid },
       data: {
         title: judul,
-        link,
+        type: isManual ? 'MANUAL' : 'LINK',
+        link: isManual ? null : (link as string),
+        content: isManual ? (konten as string) : null,
         ...(newImage && { imageUrl: newImage.url, publicId: newImage.publicId }),
       },
     });

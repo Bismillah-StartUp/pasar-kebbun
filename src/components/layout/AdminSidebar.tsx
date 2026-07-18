@@ -22,7 +22,10 @@ export function AdminSidebar() {
   return (
     <aside className="w-64 h-screen sticky top-0 shrink-0 bg-primary text-white flex flex-col justify-between p-4 select-none overflow-y-auto">
       <div className="flex flex-col gap-6">
-        <div className="flex items-center gap-3 px-2 py-4 border-b border-white/10">
+        <Link
+          href={ROUTES.USER.HOME}
+          className="flex items-center gap-3 px-2 py-4 border-b border-white/10 hover:opacity-80 transition-opacity"
+        >
           <Image
             src="/assets/icons/logo-pk-green.png"
             alt="Pasar Kebbun Logo"
@@ -36,7 +39,7 @@ export function AdminSidebar() {
               PANEL ADMIN
             </span>
           </div>
-        </div>
+        </Link>
 
         <nav className="flex flex-col gap-1.5">
           {ADMIN_MENU_ITEMS.map((item) => {

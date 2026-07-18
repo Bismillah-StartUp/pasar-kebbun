@@ -14,17 +14,23 @@ export async function POST(request: Request) {
   const formData = await request.formData();
 
   const judul = formData.get('judul');
+  const tipe = formData.get('tipe');
   const link = formData.get('link');
+  const konten = formData.get('konten');
   const gambar = formData.get('gambar');
 
-  if (
-    typeof judul !== 'string' ||
-    !judul.trim() ||
-    typeof link !== 'string' ||
-    !link.trim() ||
-    !(gambar instanceof File)
-  ) {
+  if (typeof judul !== 'string' || !judul.trim() || !(gambar instanceof File)) {
     return NextResponse.json({ success: false, message: 'Data berita tidak lengkap.' }, { status: 400 });
+  }
+
+  const isManual = tipe === 'manual';
+
+  if (isManual) {
+    if (typeof konten !== 'string' || !konten.trim()) {
+      return NextResponse.json({ success: false, message: 'Isi berita wajib diisi.' }, { status: 400 });
+    }
+  } else if (typeof link !== 'string' || !link.trim()) {
+    return NextResponse.json({ success: false, message: 'Link berita wajib diisi.' }, { status: 400 });
   }
 
   if (isImageTooLarge(gambar)) {
@@ -37,7 +43,9 @@ export async function POST(request: Request) {
     const news = await prisma.news.create({
       data: {
         title: judul,
-        link,
+        type: isManual ? 'MANUAL' : 'LINK',
+        link: isManual ? null : (link as string),
+        content: isManual ? (konten as string) : null,
         imageUrl: uploaded.url,
         publicId: uploaded.publicId,
         category: 'GENERAL',

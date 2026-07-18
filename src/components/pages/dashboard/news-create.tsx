@@ -17,7 +17,13 @@ export default function NewsCreatePage() {
     }
 
     try {
-      await createBerita({ judul: values.judul, link: values.link, gambar: values.gambar });
+      await createBerita({
+        judul: values.judul,
+        tipe: values.tipe,
+        link: values.link,
+        konten: values.konten,
+        gambar: values.gambar,
+      });
       toast.success('Berita berhasil ditambahkan.');
       router.push(ROUTES.ADMIN.NEWS);
     } catch (err) {

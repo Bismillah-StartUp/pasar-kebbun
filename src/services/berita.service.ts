@@ -20,14 +20,18 @@ export async function deleteBerita(uuid: string): Promise<void> {
 
 export interface CreateBeritaPayload {
   judul: string;
-  link: string;
+  tipe: 'link' | 'manual';
+  link?: string;
+  konten?: string;
   gambar: File;
 }
 
 export async function createBerita(payload: CreateBeritaPayload): Promise<ApiResponse<Berita>> {
   const formData = new FormData();
   formData.set('judul', payload.judul);
-  formData.set('link', payload.link);
+  formData.set('tipe', payload.tipe);
+  if (payload.link) formData.set('link', payload.link);
+  if (payload.konten) formData.set('konten', payload.konten);
   formData.set('gambar', payload.gambar);
 
   const res = await fetch('/api/berita', { method: 'POST', body: formData });
@@ -37,14 +41,18 @@ export async function createBerita(payload: CreateBeritaPayload): Promise<ApiRes
 
 export interface UpdateBeritaPayload {
   judul: string;
-  link: string;
+  tipe: 'link' | 'manual';
+  link?: string;
+  konten?: string;
   gambar?: File;
 }
 
 export async function updateBerita(uuid: string, payload: UpdateBeritaPayload): Promise<ApiResponse<Berita>> {
   const formData = new FormData();
   formData.set('judul', payload.judul);
-  formData.set('link', payload.link);
+  formData.set('tipe', payload.tipe);
+  if (payload.link) formData.set('link', payload.link);
+  if (payload.konten) formData.set('konten', payload.konten);
   if (payload.gambar) formData.set('gambar', payload.gambar);
 
   const res = await fetch(`/api/berita/${uuid}`, { method: 'PUT', body: formData });

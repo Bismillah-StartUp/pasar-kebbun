@@ -21,8 +21,11 @@ export default async function NewsSection() {
           <p className="text-sm text-gray-500">Belum ada berita saat ini.</p>
         ) : (
           <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-2 -mx-4 px-4 md:mx-0 md:px-0">
-            {news.map((item) => (
-              <Link key={item.uuid} href={item.link} target="_blank"
+            {news.map((item) => {
+              const isManual = item.type === 'MANUAL';
+
+              return (
+              <Link key={item.uuid} href={isManual ? `/berita/${item.uuid}` : (item.link ?? '#')} target={isManual ? undefined : '_blank'}
                 className="group flex flex-col shrink-0 snap-start w-[85%] sm:w-[320px] rounded-xl overflow-hidden border border-gray-100 hover:shadow-md transition-shadow">
                 <div className="relative w-full h-44 bg-gray-100">
                   <Image src={item.imageUrl} alt={item.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
@@ -35,7 +38,8 @@ export default async function NewsSection() {
                   </p>
                 </div>
               </Link>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

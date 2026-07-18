@@ -9,9 +9,13 @@ import { HiOutlineUpload } from 'react-icons/hi';
 import { ROUTES } from '@/constants/routes';
 import { isImageTooLarge } from '@/lib/utils';
 
+export type BeritaTipe = 'link' | 'manual';
+
 export interface BeritaFormValues {
   judul: string;
+  tipe: BeritaTipe;
   link: string;
+  konten: string;
   gambar?: File;
 }
 
@@ -23,7 +27,9 @@ interface BeritaFormProps {
 
 export function BeritaForm({ initialValues, submitLabel, onSubmit }: BeritaFormProps) {
   const [judul, setJudul] = useState(initialValues?.judul ?? '');
+  const [tipe, setTipe] = useState<BeritaTipe>(initialValues?.tipe ?? 'link');
   const [link, setLink] = useState(initialValues?.link ?? '');
+  const [konten, setKonten] = useState(initialValues?.konten ?? '');
   const [gambar, setGambar] = useState<File | undefined>(undefined);
   const [preview, setPreview] = useState<string | undefined>(initialValues?.gambarPreview);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -43,7 +49,7 @@ export function BeritaForm({ initialValues, submitLabel, onSubmit }: BeritaFormP
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ judul, link, gambar });
+    onSubmit({ judul, tipe, link, konten, gambar });
   };
 
   return (
@@ -64,22 +70,65 @@ export function BeritaForm({ initialValues, submitLabel, onSubmit }: BeritaFormP
       </div>
 
       <div className="space-y-1.5">
-        <label htmlFor="link" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-          Link Berita <span className="text-red-500">*</span>
+        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+          Sumber Berita <span className="text-red-500">*</span>
         </label>
-        <div className="relative flex items-center">
-          <FiLink className="absolute left-4 w-4 h-4 text-slate-300 pointer-events-none" />
-          <input
-            id="link"
-            type="url"
-            required
-            value={link}
-            onChange={(e) => setLink(e.target.value)}
-            placeholder="https://contoh.com/berita"
-            className="w-full pl-11 pr-4 py-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:outline-none focus:border-slate-400 text-xs font-medium text-slate-700 placeholder-slate-300 transition-colors"
-          />
+        <div className="inline-flex p-1 bg-slate-50/50 border border-slate-200 rounded-full">
+          <button
+            type="button"
+            onClick={() => setTipe('link')}
+            className={`px-4 py-2 rounded-full text-xs font-bold transition-colors ${
+              tipe === 'link' ? 'bg-primary text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'
+            }`}
+          >
+            Link Eksternal
+          </button>
+          <button
+            type="button"
+            onClick={() => setTipe('manual')}
+            className={`px-4 py-2 rounded-full text-xs font-bold transition-colors ${
+              tipe === 'manual' ? 'bg-primary text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'
+            }`}
+          >
+            Tulis Manual
+          </button>
         </div>
       </div>
+
+      {tipe === 'link' ? (
+        <div className="space-y-1.5">
+          <label htmlFor="link" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+            Link Berita <span className="text-red-500">*</span>
+          </label>
+          <div className="relative flex items-center">
+            <FiLink className="absolute left-4 w-4 h-4 text-slate-300 pointer-events-none" />
+            <input
+              id="link"
+              type="url"
+              required
+              value={link}
+              onChange={(e) => setLink(e.target.value)}
+              placeholder="https://contoh.com/berita"
+              className="w-full pl-11 pr-4 py-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:outline-none focus:border-slate-400 text-xs font-medium text-slate-700 placeholder-slate-300 transition-colors"
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="space-y-1.5">
+          <label htmlFor="konten" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+            Isi Berita <span className="text-red-500">*</span>
+          </label>
+          <textarea
+            id="konten"
+            required
+            rows={8}
+            value={konten}
+            onChange={(e) => setKonten(e.target.value)}
+            placeholder="Tulis isi berita di sini..."
+            className="w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:outline-none focus:border-slate-400 text-xs font-medium text-slate-700 placeholder-slate-300 transition-colors resize-y"
+          />
+        </div>
+      )}
 
       <div className="space-y-1.5">
         <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">

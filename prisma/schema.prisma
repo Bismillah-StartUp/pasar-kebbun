@@ -68,7 +68,9 @@ model News {
   id        Int          @id @default(autoincrement())
   uuid      String       @unique @default(uuid())
   title     String
-  link      String
+  type      NewsType     @default(LINK)
+  link      String?      // required when type = LINK
+  content   String?      @db.Text // required when type = MANUAL
   imageUrl  String       // Cloudinary secure_url
   publicId  String       // Cloudinary public_id (for deletion)
   category  NewsCategory
@@ -77,6 +79,11 @@ model News {
   updatedAt DateTime     @updatedAt
 
   @@map("news")
+}
+
+enum NewsType {
+  LINK
+  MANUAL
 }
 
 enum NewsCategory {

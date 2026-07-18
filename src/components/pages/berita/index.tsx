@@ -32,11 +32,14 @@ export default async function BeritaSection() {
             </p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {news.map((item) => (
+              {news.map((item) => {
+                const isManual = item.type === 'MANUAL';
+
+                return (
                 <Link
                   key={item.uuid}
-                  href={item.link}
-                  target="_blank"
+                  href={isManual ? `/berita/${item.uuid}` : (item.link ?? '#')}
+                  target={isManual ? undefined : '_blank'}
                   className="group flex flex-col rounded-xl overflow-hidden border border-gray-100 hover:shadow-md transition-shadow"
                 >
                   <div className="relative w-full h-44 bg-gray-100">
@@ -57,7 +60,8 @@ export default async function BeritaSection() {
                     </p>
                   </div>
                 </Link>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>

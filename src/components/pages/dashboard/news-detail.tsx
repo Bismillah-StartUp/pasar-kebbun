@@ -18,7 +18,13 @@ export default function NewsDetailPage({ uuid }: NewsDetailPageProps) {
 
   const handleSubmit = async (values: BeritaFormValues) => {
     try {
-      await updateBerita(uuid, { judul: values.judul, link: values.link, gambar: values.gambar });
+      await updateBerita(uuid, {
+        judul: values.judul,
+        tipe: values.tipe,
+        link: values.link,
+        konten: values.konten,
+        gambar: values.gambar,
+      });
       toast.success('Berita berhasil diperbarui.');
       router.push(ROUTES.ADMIN.NEWS);
     } catch (err) {
@@ -41,7 +47,13 @@ export default function NewsDetailPage({ uuid }: NewsDetailPageProps) {
       <Card className="flex flex-col gap-6">
         <h2 className="text-base font-black text-slate-800 tracking-tight select-none">Edit Berita</h2>
         <BeritaForm
-          initialValues={{ judul: berita.judul, link: berita.link, gambarPreview: berita.gambar }}
+          initialValues={{
+            judul: berita.judul,
+            tipe: berita.tipe,
+            link: berita.link ?? '',
+            konten: berita.konten ?? '',
+            gambarPreview: berita.gambar,
+          }}
           submitLabel="Simpan Perubahan"
           onSubmit={handleSubmit}
         />

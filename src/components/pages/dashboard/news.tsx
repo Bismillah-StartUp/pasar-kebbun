@@ -44,19 +44,25 @@ export default function NewsListPage() {
     },
     {
       key: 'link',
-      header: 'Link',
+      header: 'Sumber',
       className: 'w-[25%] whitespace-nowrap',
-      render: (item) => (
-        <a
-          href={item.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 hover:text-emerald-700 transition-colors"
-        >
-          <FiLink className="w-3.5 h-3.5 shrink-0" />
-          <span className="truncate max-w-50">{item.link}</span>
-        </a>
-      ),
+      render: (item) =>
+        item.tipe === 'manual' ? (
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold text-accent">
+            <BiPencil className="w-3.5 h-3.5 shrink-0" />
+            Tulis Manual
+          </span>
+        ) : (
+          <a
+            href={item.link ?? '#'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 hover:text-emerald-700 transition-colors"
+          >
+            <FiLink className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate max-w-50">{item.link}</span>
+          </a>
+        ),
     },
     {
       key: 'tanggal',
