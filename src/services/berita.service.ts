@@ -18,6 +18,17 @@ export async function deleteBerita(uuid: string): Promise<void> {
   if (!res.ok) throw new Error('Gagal menghapus berita');
 }
 
+export async function uploadBeritaContentImage(file: File): Promise<string> {
+  const formData = new FormData();
+  formData.set('gambar', file);
+
+  const res = await fetch('/api/berita/upload-image', { method: 'POST', body: formData });
+  if (!res.ok) throw new Error('Gagal mengunggah gambar');
+
+  const json: ApiResponse<{ url: string }> = await res.json();
+  return json.data.url;
+}
+
 export interface CreateBeritaPayload {
   judul: string;
   tipe: 'link' | 'manual';

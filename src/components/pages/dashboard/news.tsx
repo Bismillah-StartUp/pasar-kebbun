@@ -3,10 +3,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'sonner';
-import { FiPlus, FiTrash2, FiLink } from 'react-icons/fi';
+import { FiTrash2, FiLink } from 'react-icons/fi';
 import { BiPencil } from 'react-icons/bi';
 import { DataTable } from '@/components/ui';
 import type { DataTableColumn } from '@/components/ui/DataTable';
+import { AddBeritaMenu } from '@/components/features/berita';
 import { useBerita } from '@/hooks/useBerita';
 import { ROUTES } from '@/constants/routes';
 import { formatDate } from '@/lib/utils';
@@ -104,13 +105,7 @@ export default function NewsListPage() {
           <p className="text-[11px] font-bold text-slate-400 mt-0.5">{data.length} berita tersedia</p>
         </div>
 
-        <Link
-          href={ROUTES.ADMIN.NEWS_CREATE}
-          className="flex items-center gap-1.5 px-4 py-2 bg-primary hover:bg-primary-light text-white font-bold text-xs rounded-full shadow-sm transition-all whitespace-nowrap"
-        >
-          <FiPlus className="w-4 h-4" />
-          Tambah Berita
-        </Link>
+        <AddBeritaMenu />
       </div>
 
       <DataTable

@@ -1,14 +1,16 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 import { BackLink, Card } from '@/components/ui';
-import { BeritaForm, type BeritaFormValues } from '@/components/features/berita';
+import { BeritaForm, type BeritaFormValues, type BeritaTipe } from '@/components/features/berita';
 import { createBerita } from '@/services/berita.service';
 import { ROUTES } from '@/constants/routes';
 
 export default function NewsCreatePage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const initialTipe: BeritaTipe = searchParams.get('tipe') === 'manual' ? 'manual' : 'link';
 
   const handleSubmit = async (values: BeritaFormValues) => {
     if (!values.gambar) {
@@ -37,7 +39,7 @@ export default function NewsCreatePage() {
 
       <Card className="flex flex-col gap-6">
         <h2 className="text-base font-black text-slate-800 tracking-tight select-none">Tambah Berita Baru</h2>
-        <BeritaForm submitLabel="Tambah Berita" onSubmit={handleSubmit} />
+        <BeritaForm initialValues={{ tipe: initialTipe }} submitLabel="Tambah Berita" onSubmit={handleSubmit} />
       </Card>
     </>
   );

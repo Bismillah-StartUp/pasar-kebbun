@@ -8,6 +8,7 @@ import { FiLink } from 'react-icons/fi';
 import { HiOutlineUpload } from 'react-icons/hi';
 import { ROUTES } from '@/constants/routes';
 import { isImageTooLarge } from '@/lib/utils';
+import { RichTextEditor } from './RichTextEditor';
 
 export type BeritaTipe = 'link' | 'manual';
 
@@ -27,7 +28,7 @@ interface BeritaFormProps {
 
 export function BeritaForm({ initialValues, submitLabel, onSubmit }: BeritaFormProps) {
   const [judul, setJudul] = useState(initialValues?.judul ?? '');
-  const [tipe, setTipe] = useState<BeritaTipe>(initialValues?.tipe ?? 'link');
+  const tipe: BeritaTipe = initialValues?.tipe ?? 'link';
   const [link, setLink] = useState(initialValues?.link ?? '');
   const [konten, setKonten] = useState(initialValues?.konten ?? '');
   const [gambar, setGambar] = useState<File | undefined>(undefined);
@@ -47,8 +48,16 @@ export function BeritaForm({ initialValues, submitLabel, onSubmit }: BeritaFormP
     e.target.value = '';
   };
 
+  const isKontenEmpty = (html: string) => !html.replace(/<[^>]*>/g, '').trim();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (tipe === 'manual' && isKontenEmpty(konten)) {
+      toast.warning('Isi berita wajib diisi.');
+      return;
+    }
+
     onSubmit({ judul, tipe, link, konten, gambar });
   };
 
@@ -67,32 +76,6 @@ export function BeritaForm({ initialValues, submitLabel, onSubmit }: BeritaFormP
           placeholder="Masukkan judul berita"
           className="w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:outline-none focus:border-slate-400 text-xs font-medium text-slate-700 placeholder-slate-300 transition-colors"
         />
-      </div>
-
-      <div className="space-y-1.5">
-        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-          Sumber Berita <span className="text-red-500">*</span>
-        </label>
-        <div className="inline-flex p-1 bg-slate-50/50 border border-slate-200 rounded-full">
-          <button
-            type="button"
-            onClick={() => setTipe('link')}
-            className={`px-4 py-2 rounded-full text-xs font-bold transition-colors ${
-              tipe === 'link' ? 'bg-primary text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'
-            }`}
-          >
-            Link Eksternal
-          </button>
-          <button
-            type="button"
-            onClick={() => setTipe('manual')}
-            className={`px-4 py-2 rounded-full text-xs font-bold transition-colors ${
-              tipe === 'manual' ? 'bg-primary text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'
-            }`}
-          >
-            Tulis Manual
-          </button>
-        </div>
       </div>
 
       {tipe === 'link' ? (
@@ -115,18 +98,10 @@ export function BeritaForm({ initialValues, submitLabel, onSubmit }: BeritaFormP
         </div>
       ) : (
         <div className="space-y-1.5">
-          <label htmlFor="konten" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+          <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
             Isi Berita <span className="text-red-500">*</span>
           </label>
-          <textarea
-            id="konten"
-            required
-            rows={8}
-            value={konten}
-            onChange={(e) => setKonten(e.target.value)}
-            placeholder="Tulis isi berita di sini..."
-            className="w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:outline-none focus:border-slate-400 text-xs font-medium text-slate-700 placeholder-slate-300 transition-colors resize-y"
-          />
+          <RichTextEditor value={konten} onChange={setKonten} />
         </div>
       )}
 
