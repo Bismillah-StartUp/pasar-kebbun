@@ -78,7 +78,13 @@ export function Footer() {
             <ul className="space-y-3.5">
               <li className="flex items-start gap-2.5 text-sm text-white/80">
                 <HiOutlineLocationMarker className="w-4 h-4 mt-0.5 text-accent shrink-0" />
-                <span>Desa Saroka, Kec. Saronggi, Kabupaten Sumenep, Jawa Timur</span>
+                <Link
+                  href="https://www.google.com/maps/place/Pasar+Kebbun/@-7.0897378,113.7615019,13z/data=!4m6!3m5!1s0x2dd9e11c6a26aa4d:0xd2975624110e527d!8m2!3d-7.0897378!4d113.8377196!16s%2Fg%2F11mdjdtw5c"
+                  target="_blank"
+                  className="hover:text-white hover:underline transition-colors"
+                >
+                  Desa Saroka, Kec. Saronggi, Kabupaten Sumenep, Jawa Timur
+                </Link>
               </li>
               <li className="flex items-start gap-2.5 text-sm text-white/80">
                 <HiOutlineClock className="w-4 h-4 mt-0.5 text-accent shrink-0" />
@@ -86,11 +92,23 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2.5 text-sm text-white/80">
                 <FaInstagram className="w-4 h-4 text-accent shrink-0" />
-                <span>@pasarkebbun</span>
+                <Link
+                  href="https://instagram.com/pasarkebbun"
+                  target="_blank"
+                  className="hover:text-white hover:underline transition-colors"
+                >
+                  @pasarkebbun
+                </Link>
               </li>
               <li className="flex items-center gap-2.5 text-sm text-white/80">
                 <HiOutlinePhone className="w-4 h-4 text-accent shrink-0" />
-                <span>087713300678</span>
+                <Link
+                  href="https://wa.me/6287713300678"
+                  target="_blank"
+                  className="hover:text-white hover:underline transition-colors"
+                >
+                  087713300678
+                </Link>
               </li>
             </ul>
           </div>
