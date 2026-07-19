@@ -20,7 +20,7 @@ export default function AboutSection() {
           <div className="relative w-full h-56 md:h-auto rounded-xl overflow-hidden">
             <Image
               src="/assets/images/landings/landing_two.png"
-              alt="Pasar Kebbun"
+              alt="Suasana Pasar Kebbun tampak dari area kebun dan kuliner tradisional"
               fill
               className="object-cover"
             />

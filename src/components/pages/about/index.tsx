@@ -19,8 +19,11 @@ export default function AboutPage() {
           <h2 className="text-[36px] leading-11.25 font-bold text-gray-900 mb-4">
             Berawal dari Semangat Melestarikan Budaya Lokal
           </h2>
+          <p className="text-[15px] leading-[24.5px] font-normal text-justify text-gray-600 mb-4">
+            Terbentuknya Pasar Kebbun bermula dari ide sekelompok anak muda Desa Saroka yang peduli terhadap tradisi, budaya, dan kuliner masa lampau yang hari ini hampir dilupakan karena maraknya kuliner serba kekinian. Dari keresahan itu, mereka mulai mengonsep sebuah pasar rakyat dengan nuansa tempo dulu, memadukan kembali kekayaan kuliner khas Madura dengan suasana alam pedesaan yang asri. Pasar Kebbun resmi diluncurkan pada tanggal 20 April 2025 dan sejak itu tumbuh menjadi destinasi wisata kuliner dan budaya yang digemari warga Sumenep maupun wisatawan dari luar daerah.
+          </p>
           <p className="text-[15px] leading-[24.5px] font-normal text-justify text-gray-600">
-            Terbentuknya pasar kebbun bermula dari ide anak muda yang kemudian peduli terhadap tradisi, budaya dan kuliner terdahulu yang hari ini hampir dilupakan, karena maraknya kuliner yang serba serbi kekinian. Nah dari situlah saya bersama teman-teman memulai dan mengonsep, pasar kebbun tersebut dengan nuansa lampau. Dan di launching pada tgl 20 april 2025.
+            Berlokasi di Dsn. Mora&apos;an, Desa Saroka, Kecamatan Saronggi, Kabupaten Sumenep, Pasar Kebbun buka setiap hari Minggu pukul 06.00–14.00 WIB, serta pada malam bulan purnama pukul 17.00–23.00 WIB dengan suasana yang berbeda dan lebih syahdu. Salah satu keunikan yang membedakan Pasar Kebbun dari pasar tradisional lain adalah sistem transaksinya yang tidak menggunakan uang rupiah secara langsung, melainkan koin atau kepeng khusus yang harus ditukarkan terlebih dahulu di loket penukaran. Konsep ini bukan sekadar gimmick, melainkan cara untuk menghadirkan kembali nuansa pasar rakyat zaman dahulu sekaligus mengedukasi pengunjung tentang nilai gotong royong dan kesederhanaan.
           </p>
         </div>
       </section>
@@ -48,7 +51,7 @@ export default function AboutPage() {
               Pasar Kebun Sumenep adalah inisiatif wisata kuliner dan edukasi swasta yang didirikan oleh Fajor Siddiq serta dikelola bersama anak-anak muda Desa Saroka dan sekitarnya.
             </p>
             <p className="text-[15px] leading-[24.5px] font-normal text-justify text-gray-600">
-              Pasar Kwebbun mencerminkan harmoni antara budaya, alam, dan kearifan lokal, menghadirkan nuansa masa lampau di tengah kebun yang subur dan dikelilingi sumber air, ini bukan hanya pasar, tetapi juga pusat wisata yang menghidupkan kembali warisan budaya dan menciptakan pengalaman autentik bagi setiap pengunjung.
+              Pasar Kebbun mencerminkan harmoni antara budaya, alam, dan kearifan lokal, menghadirkan nuansa masa lampau di tengah kebun yang subur dan dikelilingi sumber air. Ini bukan hanya pasar, tetapi juga pusat wisata yang menghidupkan kembali warisan budaya dan menciptakan pengalaman autentik bagi setiap pengunjung, sekaligus membuka ruang ekonomi bagi para pedagang UMKM dan warga sekitar Desa Saroka.
             </p>
           </div>
           <div className="flex justify-center md:justify-end mt-11">
@@ -110,7 +113,7 @@ export default function AboutPage() {
               </div>
             </Link>
 
-            <Link href="https://wa.me/6208771330678" target="_blank"
+            <Link href="https://wa.me/6287713300678" target="_blank"
               className="border border-gray-100 rounded-xl p-6 flex flex-col gap-3 hover:shadow-md transition-shadow">
               <FaWhatsapp className="w-7 h-7 text-primary" />
               <div>

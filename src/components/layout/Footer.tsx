@@ -45,7 +45,7 @@ export function Footer() {
                 className="w-9 h-9 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 transition-colors">
                 <FaInstagram className="w-4 h-4" />
               </Link>
-              <Link href="https://wa.me/6208771330678" target="_blank" aria-label="WhatsApp"
+              <Link href="https://wa.me/6287713300678" target="_blank" aria-label="WhatsApp"
                 className="w-9 h-9 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 transition-colors">
                 <FaWhatsapp className="w-4 h-4" />
               </Link>

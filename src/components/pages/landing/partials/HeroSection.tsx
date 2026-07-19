@@ -6,11 +6,11 @@ import { useState, useEffect } from 'react';
 import { ROUTES } from '@/constants/routes';
 
 const IMAGES = [
-  '/assets/images/landings/landing_one.png',
-  '/assets/images/landings/landing_two.png',
-  '/assets/images/landings/landing_three.png',
-  '/assets/images/landings/landing_four.png',
-  '/assets/images/landings/landing_five.png',
+  { src: '/assets/images/landings/landing_one.png', alt: 'Suasana Pasar Kebbun dengan konsep tempo dulu di Saronggi, Sumenep' },
+  { src: '/assets/images/landings/landing_two.png', alt: 'Area kebun dan lanskap alam Pasar Kebbun Sumenep' },
+  { src: '/assets/images/landings/landing_three.png', alt: 'Pengunjung menikmati kuliner tradisional khas Madura di Pasar Kebbun' },
+  { src: '/assets/images/landings/landing_four.png', alt: 'Pedagang UMKM lokal menjajakan produk di Pasar Kebbun' },
+  { src: '/assets/images/landings/landing_five.png', alt: 'Transaksi non-rupiah dengan koin kepeng di Pasar Kebbun Sumenep' },
 ];
 
 export default function HeroSection() {
@@ -23,13 +23,13 @@ export default function HeroSection() {
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-gray-900">
-      {IMAGES.map((src, i) => (
+      {IMAGES.map((img, i) => (
         <div
-          key={src}
+          key={img.src}
           className="absolute inset-0 transition-opacity duration-700"
           style={{ opacity: i === active ? 1 : 0, zIndex: i === active ? 1 : 0 }}
         >
-          <Image src={src} alt={`Pasar Kebbun ${i + 1}`} fill className="object-cover" priority={i === 0} sizes="100vw" />
+          <Image src={img.src} alt={img.alt} fill className="object-cover" priority={i === 0} sizes="100vw" />
         </div>
       ))}
       <div className="absolute inset-0 bg-black/50" style={{ zIndex: 2 }} />

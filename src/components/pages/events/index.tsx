@@ -4,9 +4,50 @@ import SectionLabel from '@/components/pages/(user)/partials/SectionLabel';
 import { HiOutlineClock } from 'react-icons/hi';
 import { IoCalendarSharp } from 'react-icons/io5';
 
+function nextSunday(hour: number, minute: number) {
+  const now = new Date();
+  const daysUntilSunday = (7 - now.getDay()) % 7;
+  const date = new Date(now);
+  date.setDate(now.getDate() + daysUntilSunday);
+  date.setHours(hour, minute, 0, 0);
+  return date.toISOString();
+}
+
+const eventSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: 'Pasar Kebbun Mingguan',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  eventStatus: 'https://schema.org/EventScheduled',
+  startDate: nextSunday(6, 0),
+  endDate: nextSunday(14, 0),
+  location: {
+    '@type': 'Place',
+    name: 'Pasar Kebbun',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: "Dsn. Mora'an, Desa Saroka",
+      addressLocality: 'Saronggi',
+      addressRegion: 'Jawa Timur',
+      addressCountry: 'ID',
+    },
+  },
+  organizer: {
+    '@type': 'Organization',
+    name: 'Pasar Kebbun',
+    url: 'https://www.pasar-kebbun.id',
+  },
+  description:
+    'Pertunjukan seni dan budaya lokal Madura setiap hari Minggu di Pasar Kebbun, dipadukan dengan wisata kuliner tradisional.',
+};
+
 export default function EventsPage() {
   return (
     <div className="w-full bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
+      />
       <PageHero
         image="/assets/images/events/weekly/weekly_one.png"
         title="Event"
@@ -46,7 +87,7 @@ export default function EventsPage() {
             <div className="relative w-full h-60 rounded-xl overflow-hidden">
               <Image
                 src="/assets/images/events/weekly/weekly_one.png"
-                alt="Event Mingguan"
+                alt="Pertunjukan seni dan budaya lokal Madura pada event mingguan Pasar Kebbun"
                 fill
                 className="object-cover"
                 sizes="(min-width: 768px) 50vw, 100vw"
@@ -71,7 +112,7 @@ export default function EventsPage() {
             <div className="relative w-full h-60 rounded-xl overflow-hidden order-1 md:order-2">
               <Image
                 src="/assets/images/events/monthly/monthly_one.png"
-                alt="Event Bulanan"
+                alt="Suasana malam Bulan Purnama di Pasar Kebbun Saronggi Sumenep"
                 fill
                 className="object-cover"
                 sizes="(min-width: 768px) 50vw, 100vw"

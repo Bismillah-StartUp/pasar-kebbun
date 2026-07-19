@@ -4,8 +4,9 @@ import CulinariesList from '@/components/pages/culinaries';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: 'Kuliner Madura | Pasar Kebbun',
-  description: 'Jelajahi kelezatan autentik kuliner tradisional Madura di Pasar Kebbun',
+  title: 'Kuliner Tradisional Khas Madura',
+  description: 'Jelajahi ragam kuliner tradisional khas Madura yang dijajakan setiap Minggu di Pasar Kebbun, Saronggi, Sumenep.',
+  alternates: { canonical: '/kuliner' },
 };
 
 export default function KulinerPage() {

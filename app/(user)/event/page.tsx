@@ -1,5 +1,12 @@
+import type { Metadata } from 'next';
 import { Navbar, Footer } from '@/components/layout';
 import EventsSection from '@/components/pages/events';
+
+export const metadata: Metadata = {
+  title: 'Event, Festival & Pertunjukan Budaya',
+  description: 'Agenda pertunjukan, workshop, dan festival budaya di Pasar Kebbun, Saronggi, Sumenep.',
+  alternates: { canonical: '/event' },
+};
 
 export default function EventPage() {
   return (

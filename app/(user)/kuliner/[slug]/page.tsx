@@ -11,8 +11,14 @@ export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const culinary = await prisma.culinary.findUnique({ where: { slug } });
 
+  if (!culinary) {
+    return { title: 'Kuliner' };
+  }
+
   return {
-    title: culinary ? `${culinary.name} | Pasar Kebbun` : 'Kuliner | Pasar Kebbun',
+    title: culinary.name,
+    description: culinary.description.slice(0, 160),
+    alternates: { canonical: `/kuliner/${culinary.slug}` },
   };
 }
 

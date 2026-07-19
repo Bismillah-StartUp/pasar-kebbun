@@ -35,7 +35,7 @@ export default function InfoSection() {
               <div>
                 <p className="text-[10px] font-semibold tracking-widest text-gray-400 uppercase mb-1">Lokasi</p>
                 <p className="text-sm font-semibold text-gray-800">Dsn. Mora&apos;an, Desa Saroka, Kecamatan Saronggi, Sumenep, Jawa Timur</p>
-                <Link href={`https://maps.google.com`} target="_blank" className="text-xs text-primary font-semibold mt-1 flex items-center gap-1 hover:underline">
+                <Link href="https://www.google.com/maps/search/?api=1&query=Pasar+Kebbun+Saronggi+Sumenep" target="_blank" className="text-xs text-primary font-semibold mt-1 flex items-center gap-1 hover:underline">
                   Lihat di Peta <span>›</span>
                 </Link>
               </div>
