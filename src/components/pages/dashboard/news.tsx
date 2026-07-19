@@ -51,7 +51,7 @@ export default function NewsListPage() {
         item.tipe === 'manual' ? (
           <span className="inline-flex items-center gap-1.5 text-xs font-bold text-accent">
             <BiPencil className="w-3.5 h-3.5 shrink-0" />
-            Tulis Manual
+            Admin Pasar Kebbun
           </span>
         ) : (
           <a
