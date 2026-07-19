@@ -108,7 +108,7 @@ export function KulinerImportForm({ onImported }: KulinerImportFormProps) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-3.5 bg-primary hover:bg-primary-light text-white text-xs font-bold rounded-full shadow-md transition-all duration-150 tracking-wider text-center disabled:opacity-50"
+          className="w-full py-3.5 bg-primary hover:bg-primary-light text-white text-xs font-bold rounded-full shadow-md transition-all duration-150 tracking-wider text-center cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isSubmitting ? 'Mengimpor...' : 'Import Excel'}
         </button>

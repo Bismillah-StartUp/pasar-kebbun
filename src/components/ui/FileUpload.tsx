@@ -128,7 +128,7 @@ export function FileUpload({
                     onRemovePhoto(photo.id);
                   }}
                   aria-label="Hapus foto"
-                  className="absolute top-2 right-2 p-1 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-sm transition-colors"
+                  className="absolute top-2 right-2 p-1 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-sm transition-colors cursor-pointer"
                 >
                   <FiX className="w-3 h-3" />
                 </button>

@@ -58,7 +58,7 @@ export default function KulinerCreatePage() {
               type="button"
               onClick={() => setMode('manual')}
               className={cn(
-                'px-4 py-1.5 text-xs font-bold rounded-full transition-colors',
+                'px-4 py-1.5 text-xs font-bold rounded-full transition-colors cursor-pointer',
                 mode === 'manual' ? 'bg-primary text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'
               )}
             >
@@ -68,7 +68,7 @@ export default function KulinerCreatePage() {
               type="button"
               onClick={() => setMode('import')}
               className={cn(
-                'px-4 py-1.5 text-xs font-bold rounded-full transition-colors',
+                'px-4 py-1.5 text-xs font-bold rounded-full transition-colors cursor-pointer',
                 mode === 'import' ? 'bg-primary text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'
               )}
             >

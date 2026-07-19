@@ -71,7 +71,7 @@ export default function NewPasswordPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-0 bottom-2.5 text-slate-400 hover:text-slate-600 transition-colors"
+                  className="absolute right-0 bottom-2.5 text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
                 >
                   {showPassword ? <FiEyeOff className="w-4 h-4" /> : <FiEye className="w-4 h-4" />}
                 </button>
@@ -111,7 +111,7 @@ export default function NewPasswordPage() {
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-0 bottom-2.5 text-slate-400 hover:text-slate-600 transition-colors"
+                  className="absolute right-0 bottom-2.5 text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
                 >
                   {showConfirmPassword ? <FiEyeOff className="w-4 h-4" /> : <FiEye className="w-4 h-4" />}
                 </button>
@@ -127,7 +127,7 @@ export default function NewPasswordPage() {
             <button
               type="submit"
               disabled={isLoading || !passwordsMatch}
-              className="w-full py-4 bg-primary hover:bg-primary-light disabled:bg-slate-300 text-white font-bold text-sm rounded-2xl shadow-md transition-all duration-150 tracking-wide mt-4"
+              className="w-full py-4 bg-primary hover:bg-primary-light disabled:bg-slate-300 text-white font-bold text-sm rounded-2xl shadow-md transition-all duration-150 tracking-wide mt-4 cursor-pointer disabled:cursor-not-allowed"
             >
               {isLoading ? 'Memproses...' : 'Simpan Password Baru'}
             </button>

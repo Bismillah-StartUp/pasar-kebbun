@@ -147,7 +147,7 @@ export function BeritaForm({ initialValues, submitLabel, onSubmit }: BeritaFormP
 
         <button
           type="submit"
-          className="w-full py-3.5 bg-primary hover:bg-primary-light text-white font-bold text-xs rounded-full flex items-center justify-center transition-all shadow-md tracking-wide text-center"
+          className="w-full py-3.5 bg-primary hover:bg-primary-light text-white font-bold text-xs rounded-full flex items-center justify-center transition-all shadow-md tracking-wide text-center cursor-pointer"
         >
           {submitLabel}
         </button>

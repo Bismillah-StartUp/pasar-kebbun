@@ -58,7 +58,7 @@ export function Navbar() {
 
           {/* Mobile toggle */}
           <button
-            className="md:hidden text-white p-1"
+            className="md:hidden text-white p-1 cursor-pointer"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Menu"
           >

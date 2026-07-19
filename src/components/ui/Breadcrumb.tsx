@@ -29,7 +29,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
       <div className="flex items-center gap-4">
         <button
           type="button"
-          className="relative p-2.5 text-gray-500 transition-all duration-200 bg-gray-50 rounded-full hover:bg-gray-100 hover:text-gray-700 focus:outline-none"
+          className="relative p-2.5 text-gray-500 transition-all duration-200 bg-gray-50 rounded-full hover:bg-gray-100 hover:text-gray-700 focus:outline-none cursor-pointer"
           aria-label="Notifikasi"
         >
           <span className="absolute top-2 right-2 w-2 h-2 bg-amber-500 rounded-full ring-1 ring-white" />

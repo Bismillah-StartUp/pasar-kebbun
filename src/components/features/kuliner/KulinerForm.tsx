@@ -150,7 +150,7 @@ export function KulinerForm({ initialValues, submitLabel, onSubmit }: KulinerFor
       <div className="pt-4">
         <button
           type="submit"
-          className="w-full py-3.5 bg-primary hover:bg-primary-light text-white text-xs font-bold rounded-full shadow-md transition-all duration-150 tracking-wider text-center"
+          className="w-full py-3.5 bg-primary hover:bg-primary-light text-white text-xs font-bold rounded-full shadow-md transition-all duration-150 tracking-wider text-center cursor-pointer"
         >
           {submitLabel}
         </button>

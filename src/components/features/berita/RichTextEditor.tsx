@@ -35,7 +35,7 @@ function ToolbarButton({ active, disabled, onClick, label, children }: ToolbarBu
       title={label}
       aria-label={label}
       className={cn(
-        'w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 transition-colors disabled:opacity-30 disabled:cursor-not-allowed',
+        'w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 transition-colors cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed',
         active ? 'bg-primary text-white' : 'hover:bg-slate-100 hover:text-slate-700'
       )}
     >

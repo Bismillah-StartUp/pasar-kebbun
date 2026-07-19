@@ -60,7 +60,7 @@ export default function KulinerListPage() {
           <button
             type="button"
             onClick={() => handleDelete(item.id)}
-            className="p-1.5 bg-red-50 hover:bg-red-100 text-red-500 rounded-lg transition-colors"
+            className="p-1.5 bg-red-50 hover:bg-red-100 text-red-500 rounded-lg transition-colors cursor-pointer"
             aria-label="Hapus"
           >
             <FiTrash2 className="w-4 h-4" />

@@ -134,13 +134,13 @@ export function ProfileForm({ user, onSubmit }: ProfileFormProps) {
             <button
               type="button"
               onClick={handleCancel}
-              className="w-full py-3.5 bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs rounded-full border border-slate-200 transition-all shadow-sm"
+              className="w-full py-3.5 bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs rounded-full border border-slate-200 transition-all shadow-sm cursor-pointer"
             >
               Batal
             </button>
             <button
               type="submit"
-              className="w-full py-3.5 bg-primary hover:bg-primary-light text-white font-bold text-xs rounded-full transition-all shadow-md"
+              className="w-full py-3.5 bg-primary hover:bg-primary-light text-white font-bold text-xs rounded-full transition-all shadow-md cursor-pointer"
             >
               Simpan
             </button>
@@ -149,7 +149,7 @@ export function ProfileForm({ user, onSubmit }: ProfileFormProps) {
           <button
             type="button"
             onClick={() => setIsEditing(true)}
-            className="w-full py-3.5 bg-primary hover:bg-primary-light text-white font-bold text-xs rounded-full flex items-center justify-center gap-2 transition-all shadow-md"
+            className="w-full py-3.5 bg-primary hover:bg-primary-light text-white font-bold text-xs rounded-full flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer"
           >
             <BiPencil className="w-4 h-4" />
             Edit

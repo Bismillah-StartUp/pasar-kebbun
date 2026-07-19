@@ -16,7 +16,7 @@ export function Tabs<T extends string>({ tabs, active, onChange, className }: Ta
           type="button"
           onClick={() => onChange(tab)}
           className={cn(
-            'px-4 py-1.5 text-xs font-semibold rounded-lg transition-all',
+            'px-4 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer',
             active === tab ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'
           )}
         >

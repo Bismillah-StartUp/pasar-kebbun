@@ -156,7 +156,7 @@ export function KulinerDetail({ kuliner, onDelete, onSave, isSaving }: KulinerDe
                   handleRemovePhoto(index);
                 }}
                 aria-label="Hapus foto"
-                className="absolute top-2 right-2 p-1 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-sm transition-colors"
+                className="absolute top-2 right-2 p-1 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-sm transition-colors cursor-pointer"
               >
                 <FiX className="w-3 h-3" />
               </button>
@@ -268,7 +268,7 @@ export function KulinerDetail({ kuliner, onDelete, onSave, isSaving }: KulinerDe
               type="button"
               onClick={handleCancel}
               disabled={isSaving}
-              className="w-full py-3.5 bg-slate-50 hover:bg-slate-100 text-slate-600 font-bold text-xs rounded-full flex items-center justify-center gap-2 border border-slate-200 transition-all shadow-sm disabled:opacity-50"
+              className="w-full py-3.5 bg-slate-50 hover:bg-slate-100 text-slate-600 font-bold text-xs rounded-full flex items-center justify-center gap-2 border border-slate-200 transition-all shadow-sm cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
             >
               Batal
             </button>
@@ -276,7 +276,7 @@ export function KulinerDetail({ kuliner, onDelete, onSave, isSaving }: KulinerDe
               type="button"
               onClick={handleSave}
               disabled={isSaving}
-              className="w-full py-3.5 bg-primary hover:bg-primary-light text-white font-bold text-xs rounded-full flex items-center justify-center gap-2 transition-all shadow-sm disabled:opacity-50"
+              className="w-full py-3.5 bg-primary hover:bg-primary-light text-white font-bold text-xs rounded-full flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isSaving ? 'Menyimpan...' : 'Simpan Perubahan'}
             </button>
@@ -286,7 +286,7 @@ export function KulinerDetail({ kuliner, onDelete, onSave, isSaving }: KulinerDe
             <button
               type="button"
               onClick={onDelete}
-              className="w-full py-3.5 bg-red-50 hover:bg-red-100 text-red-600 font-bold text-xs rounded-full flex items-center justify-center gap-2 border border-red-100 transition-all shadow-sm"
+              className="w-full py-3.5 bg-red-50 hover:bg-red-100 text-red-600 font-bold text-xs rounded-full flex items-center justify-center gap-2 border border-red-100 transition-all shadow-sm cursor-pointer"
             >
               <FiTrash2 className="w-4 h-4" />
               Hapus
@@ -295,7 +295,7 @@ export function KulinerDetail({ kuliner, onDelete, onSave, isSaving }: KulinerDe
             <button
               type="button"
               onClick={() => setIsEditing(true)}
-              className="w-full py-3.5 bg-primary hover:bg-primary-light text-white font-bold text-xs rounded-full flex items-center justify-center gap-2 transition-all shadow-sm"
+              className="w-full py-3.5 bg-primary hover:bg-primary-light text-white font-bold text-xs rounded-full flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer"
             >
               <BiPencil className="w-4 h-4" />
               Edit

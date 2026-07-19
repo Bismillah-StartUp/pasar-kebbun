@@ -19,7 +19,7 @@ export function Pagination({ currentPage, totalPages, onPageChange, className }:
         type="button"
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage <= 1}
-        className="p-2 bg-white border border-slate-200 rounded-lg text-slate-500 hover:bg-slate-50 disabled:opacity-40 disabled:hover:bg-white transition-colors"
+        className="p-2 bg-white border border-slate-200 rounded-lg text-slate-500 hover:bg-slate-50 cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-white transition-colors"
         aria-label="Halaman sebelumnya"
       >
         <FiChevronLeft className="w-4 h-4" />
@@ -31,7 +31,7 @@ export function Pagination({ currentPage, totalPages, onPageChange, className }:
           type="button"
           onClick={() => onPageChange(page)}
           className={cn(
-            'w-8 h-8 text-xs font-bold rounded-lg transition-colors',
+            'w-8 h-8 text-xs font-bold rounded-lg transition-colors cursor-pointer',
             page === currentPage
               ? 'bg-primary text-white'
               : 'bg-white border border-slate-200 text-slate-500 hover:bg-slate-50'
@@ -45,7 +45,7 @@ export function Pagination({ currentPage, totalPages, onPageChange, className }:
         type="button"
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage >= totalPages}
-        className="p-2 bg-white border border-slate-200 rounded-lg text-slate-500 hover:bg-slate-50 disabled:opacity-40 disabled:hover:bg-white transition-colors"
+        className="p-2 bg-white border border-slate-200 rounded-lg text-slate-500 hover:bg-slate-50 cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-white transition-colors"
         aria-label="Halaman berikutnya"
       >
         <FiChevronRight className="w-4 h-4" />

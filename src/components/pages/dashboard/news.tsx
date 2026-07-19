@@ -87,7 +87,7 @@ export default function NewsListPage() {
           <button
             type="button"
             onClick={() => handleDelete(item.id)}
-            className="p-1.5 bg-red-50 hover:bg-red-100 text-red-500 rounded-full transition-colors"
+            className="p-1.5 bg-red-50 hover:bg-red-100 text-red-500 rounded-full transition-colors cursor-pointer"
             title="Hapus Berita"
           >
             <FiTrash2 className="w-3.5 h-3.5" />
