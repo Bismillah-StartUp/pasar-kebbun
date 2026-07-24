@@ -52,7 +52,13 @@ export default function FacilitiesPage() {
   return (
     <div className="w-full bg-white">
       <PageHero
-        image="/assets/images/fasilities/duduk.webp"
+        images={[
+          { src: '/assets/images/fasilities/tukar_uang.webp' },
+          { src: '/assets/images/fasilities/duduk.webp' },
+          { src: '/assets/images/fasilities/tikar.webp' },
+          { src: '/assets/images/fasilities/perahu.webp' },
+          { src: '/assets/images/fasilities/kamera360.webp' },
+        ]}
         title="Fasilitas"
       />
 

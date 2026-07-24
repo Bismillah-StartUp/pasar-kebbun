@@ -49,7 +49,17 @@ export default function EventsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
       />
       <PageHero
-        image="/assets/images/events/weekly/weekly_one.webp"
+        images={[
+          { src: '/assets/images/events/weekly/weekly_one.webp' },
+          { src: '/assets/images/events/weekly/weekly_two.webp' },
+          { src: '/assets/images/events/weekly/weekly_three.webp' },
+          { src: '/assets/images/events/weekly/weekly_four.webp' },
+          { src: '/assets/images/events/weekly/weekly_five.webp' },
+          { src: '/assets/images/events/weekly/weekly_six.webp' },
+          { src: '/assets/images/events/monthly/monthly_one.webp' },
+          { src: '/assets/images/events/monthly/monthly_two.webp' },
+          { src: '/assets/images/events/monthly/monthly_three.webp' },
+        ]}
         title="Event"
       />
 

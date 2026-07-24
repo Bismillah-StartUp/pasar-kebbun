@@ -13,7 +13,13 @@ export default async function BeritaSection() {
   return (
     <div className="w-full bg-white">
       <PageHero
-        image="/assets/images/landings/landing_three.webp"
+        images={[
+          { src: '/assets/images/landings/landing_one.webp' },
+          { src: '/assets/images/landings/landing_two.webp' },
+          { src: '/assets/images/landings/landing_three.webp' },
+          { src: '/assets/images/landings/landing_four.webp' },
+          { src: '/assets/images/landings/landing_five.webp' },
+        ]}
         title="Berita"
       />
 

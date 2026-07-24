@@ -75,7 +75,13 @@ export default function TenantsPage() {
   return (
     <div className="w-full bg-white">
       <PageHero
-        image="/assets/images/tenants/heads/head_one.webp"
+        images={[
+          { src: '/assets/images/tenants/heads/head_one.webp' },
+          { src: '/assets/images/tenants/heads/head_two.webp' },
+          { src: '/assets/images/tenants/heads/head_three.webp' },
+          { src: '/assets/images/tenants/heads/head_four.webp' },
+          { src: '/assets/images/tenants/heads/head_five.webp' },
+        ]}
         title="UMKM"
       />
 
