@@ -1,8 +1,8 @@
-import Image from 'next/image';
+﻿import Image from 'next/image';
 import PageHero from '@/components/pages/(user)/partials/PageHero';
 import SectionLabel from '@/components/pages/(user)/partials/SectionLabel';
 
-const COIN_IMAGE = '/assets/images/tenants/coins/one.png';
+const COIN_IMAGE = '/assets/images/tenants/coins/one.webp';
 
 const COIN_TIERS = [
   {
@@ -75,7 +75,7 @@ export default function TenantsPage() {
   return (
     <div className="w-full bg-white">
       <PageHero
-        image="/assets/images/tenants/heads/head_one.png"
+        image="/assets/images/tenants/heads/head_one.webp"
         title="UMKM"
       />
 

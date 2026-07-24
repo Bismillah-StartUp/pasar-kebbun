@@ -12,45 +12,45 @@ export interface LandingArticle {
 }
 
 export const LANDING_IMAGES = [
-  pathImages('landings/landing_one.png'),
-  pathImages('landings/landing_two.png'),
-  pathImages('landings/landing_three.png'),
-  pathImages('landings/landing_four.png'),
-  pathImages('landings/landing_five.png'),
+  pathImages('landings/landing_one.webp'),
+  pathImages('landings/landing_two.webp'),
+  pathImages('landings/landing_three.webp'),
+  pathImages('landings/landing_four.webp'),
+  pathImages('landings/landing_five.webp'),
 ];
 
 export const LANDING_ARTICLES: LandingArticle[] = [
   {
     id: '1',
-    image: pathImages('landings/landing_one.png'),
+    image: pathImages('landings/landing_one.webp'),
     title: 'Pasar Kebbun Sumenep, Wisata Nostalgia di Madura',
     source: 'detik.com',
     href: '#',
   },
   {
     id: '2',
-    image: pathImages('landings/landing_two.png'),
+    image: pathImages('landings/landing_two.webp'),
     title: 'Pasar Kebun: Wisata Kuliner Tradisional Bernuansa Tempo Dulu',
     source: 'rri.co.id',
     href: '#',
   },
   {
     id: '3',
-    image: pathImages('landings/landing_three.png'),
+    image: pathImages('landings/landing_three.webp'),
     title: 'Pasar Kebun Jadi Objek Wisata Unik dengan Suasana Tempo Dulu',
     source: 'portalja.com',
     href: '#',
   },
   {
     id: '4',
-    image: pathImages('landings/landing_four.png'),
+    image: pathImages('landings/landing_four.webp'),
     title: 'Waktu yang Tepat untuk Berkunjung ke Pasar Kebun Sumenep',
     source: 'javapos.com',
     href: '#',
   },
   {
     id: '5',
-    image: pathImages('landings/landing_five.png'),
+    image: pathImages('landings/landing_five.webp'),
     title: 'Pasar Kebun Beami Dibuka, Jadi Objek Wisata Kuliner Baru di Sumenep',
     source: 'gosumenep.com',
     href: '#',

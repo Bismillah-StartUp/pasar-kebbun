@@ -1,4 +1,4 @@
-import Image from 'next/image';
+﻿import Image from 'next/image';
 import PageHero from '@/components/pages/(user)/partials/PageHero';
 import SectionLabel from '@/components/pages/(user)/partials/SectionLabel';
 import { MdOutlineWc, MdOutlineLocalParking, MdOutlineDeleteOutline, MdOutlineLightbulb } from 'react-icons/md';
@@ -8,35 +8,35 @@ const FACILITIES = [
     number: '01',
     title: 'Penukaran Uang',
     description: 'Pengunjung wajib menukarkan uang tunai Rupiah mereka dengan koin kayu yang berfungsi sebagai alat pembayaran tunggal di seluruh area pasar setiap pasar. Setiap koin kayu memiliki nilai nominal setara dengan 2.500 Rupiah. Sistem ini merupakan bagian dari konsep unik pasar untuk menciptakan kembali suasana belanja tradisional dan nostalgia zaman dahulu.',
-    image: '/assets/images/fasilities/tukar_uang.png',
+    image: '/assets/images/fasilities/tukar_uang.webp',
     imageLeft: true,
   },
   {
     number: '02',
     title: 'Tempat Duduk',
     description: 'Tempat duduk tersedia dalam berbagai bentuk dan lokasi yang menyebar di area pasar. Keberadaan tempat duduk ini sangat memadai untuk menampung ratusan pengunjung setiap minggunya, memungkinkan mereka untuk bersantai, berinteraksi, menikmati makanan dan pertunjukan, serta suasana alam pedesaan yang tenang.',
-    image: '/assets/images/fasilities/duduk.png',
+    image: '/assets/images/fasilities/duduk.webp',
     imageLeft: false,
   },
   {
     number: '03',
     title: 'Tikar',
     description: 'Tikar-tikar ini biasanya tersedia di area lesehan yang tersebar di bawah pepohonan rindang sebagai alternatif tempat duduk, memungkinkan pengunjung untuk benar-benar menikmati suasana asri dan pertunjukan pasar sambil menyantap makanan dan minuman tradisional yang mereka beli, menciptakan suasana piknik pedesaan yang nyaman dan berkesan.',
-    image: '/assets/images/fasilities/tikar.png',
+    image: '/assets/images/fasilities/tikar.webp',
     imageLeft: true,
   },
   {
     number: '04',
     title: 'Perahu',
     description: 'Di area pasar terdapat aliran sungai atau saluran air yang dikelola, cukup dengan 2 koin pengunjung dapat menyewa perahu dayung tradisional berkeliling area pasar. Fasilitas ini memberikan kesempatan bagi keluarga, terutama anak-anak, untuk menikmati suasana pasar dari sudut pandang yang berbeda.',
-    image: '/assets/images/fasilities/perahu.png',
+    image: '/assets/images/fasilities/perahu.webp',
     imageLeft: false,
   },
   {
     number: '05',
     title: 'Kamera 360',
     description: 'Cukup dengan 2 koin pengunjung dapat mendokumentasikan kunjungan bersama teman dan keluarga dengan kamera 360. Hasil rekaman berupa video sinematik 360 derajat ini dapat langsung dibagikan secara instan ke media sosial.',
-    image: '/assets/images/fasilities/kamera360.png',
+    image: '/assets/images/fasilities/kamera360.webp',
     imageLeft: true,
   },
 ];
@@ -52,7 +52,7 @@ export default function FacilitiesPage() {
   return (
     <div className="w-full bg-white">
       <PageHero
-        image="/assets/images/fasilities/duduk.png"
+        image="/assets/images/fasilities/duduk.webp"
         title="Fasilitas"
       />
 

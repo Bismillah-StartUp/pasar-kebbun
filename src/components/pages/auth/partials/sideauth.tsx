@@ -1,11 +1,11 @@
-import Image from 'next/image';
+﻿import Image from 'next/image';
 
 export default function SideAuth() {
   return (
     <div className="hidden lg:flex w-[42%] flex-col justify-between p-12 text-white relative overflow-hidden">
       {/* Background image */}
       <Image
-        src="/assets/images/landings/landing_one.png"
+        src="/assets/images/landings/landing_one.webp"
         alt="Pasar Kebbun"
         fill
         className="object-cover"

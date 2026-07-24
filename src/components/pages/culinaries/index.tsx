@@ -1,4 +1,4 @@
-import Image from 'next/image';
+﻿import Image from 'next/image';
 import Link from 'next/link';
 import prisma from '@/lib/prisma';
 import PageHero from '@/components/pages/(user)/partials/PageHero';
@@ -26,7 +26,7 @@ export default async function CulinariesPage() {
   return (
     <div className="w-full min-h-screen bg-white">
       <PageHero
-        image="/assets/images/landings/landing_one.png"
+        image="/assets/images/landings/landing_one.webp"
         title="Kuliner"
       />
 

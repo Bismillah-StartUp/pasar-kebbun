@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -11,28 +11,28 @@ const ITEMS = [
     label: 'Kuliner',
     desc: 'Menu tradisional nusantara autentik setiap minggu',
     href: ROUTES.USER.KULINER,
-    image: '/assets/images/landings/landing_one.png',
+    image: '/assets/images/landings/landing_one.webp',
   },
   {
     key: 'umkm',
     label: 'UMKM',
     desc: '100+ produk lokal berkualitas dari pedagang pilihan',
     href: ROUTES.USER.UMKM,
-    image: '/assets/images/landings/landing_two.png',
+    image: '/assets/images/landings/landing_two.webp',
   },
   {
     key: 'event',
     label: 'Event',
     desc: 'Pertunjukan, workshop, dan festival budaya rutin',
     href: ROUTES.USER.EVENT,
-    image: '/assets/images/landings/landing_three.png',
+    image: '/assets/images/landings/landing_three.webp',
   },
   {
     key: 'fasilitas',
     label: 'Fasilitas',
     desc: 'Area lengkap dan nyaman untuk semua pengunjung',
     href: ROUTES.USER.FASILITAS,
-    image: '/assets/images/landings/landing_four.png',
+    image: '/assets/images/landings/landing_four.webp',
   },
 ];
 

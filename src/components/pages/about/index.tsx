@@ -1,4 +1,4 @@
-import Image from 'next/image';
+﻿import Image from 'next/image';
 import Link from 'next/link';
 import { FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
 import PageHero from '@/components/pages/(user)/partials/PageHero';
@@ -8,7 +8,7 @@ export default function AboutPage() {
   return (
     <div className="w-full bg-white">
       <PageHero
-        image="/assets/images/landings/landing_three.png"
+        image="/assets/images/landings/landing_three.webp"
         title="Tentang Kami"
       />
 

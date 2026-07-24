@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Toaster } from "@/components/ui";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     url: "https://www.pasar-kebbun.id",
     images: [
       {
-        url: "/assets/images/landings/landing_one.png",
+        url: "/assets/images/landings/landing_one.webp",
         width: 1200,
         height: 630,
         alt: "Pasar Kebbun - Wisata Kuliner & Pasar Tradisional Sumenep",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     title: "Pasar Kebbun – Wisata Kuliner & Pasar Tradisional di Saronggi, Sumenep",
     description:
       "Pasar rakyat berwawasan alam dengan konsep tempo dulu, kuliner khas Madura, produk UMKM lokal, dan sistem transaksi non-rupiah.",
-    images: ["/assets/images/landings/landing_one.png"],
+    images: ["/assets/images/landings/landing_one.webp"],
   },
   icons: {
     icon: "/assets/icons/logo-pk-white.png",

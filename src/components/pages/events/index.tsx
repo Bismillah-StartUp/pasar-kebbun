@@ -1,4 +1,4 @@
-import Image from 'next/image';
+﻿import Image from 'next/image';
 import PageHero from '@/components/pages/(user)/partials/PageHero';
 import SectionLabel from '@/components/pages/(user)/partials/SectionLabel';
 import { HiOutlineClock } from 'react-icons/hi';
@@ -49,7 +49,7 @@ export default function EventsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
       />
       <PageHero
-        image="/assets/images/events/weekly/weekly_one.png"
+        image="/assets/images/events/weekly/weekly_one.webp"
         title="Event"
       />
 
@@ -86,7 +86,7 @@ export default function EventsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="relative w-full h-60 rounded-xl overflow-hidden">
               <Image
-                src="/assets/images/events/weekly/weekly_one.png"
+                src="/assets/images/events/weekly/weekly_one.webp"
                 alt="Pertunjukan seni dan budaya lokal Madura pada event mingguan Pasar Kebbun"
                 fill
                 className="object-cover"
@@ -111,7 +111,7 @@ export default function EventsPage() {
             </p>
             <div className="relative w-full h-60 rounded-xl overflow-hidden order-1 md:order-2">
               <Image
-                src="/assets/images/events/monthly/monthly_one.png"
+                src="/assets/images/events/monthly/monthly_one.webp"
                 alt="Suasana malam Bulan Purnama di Pasar Kebbun Saronggi Sumenep"
                 fill
                 className="object-cover"

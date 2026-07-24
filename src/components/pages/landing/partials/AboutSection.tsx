@@ -1,4 +1,4 @@
-import Image from 'next/image';
+﻿import Image from 'next/image';
 import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
 
@@ -19,7 +19,7 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 md:grid-cols-[320px_1fr] gap-6 items-stretch">
           <div className="relative w-full h-56 md:h-auto rounded-xl overflow-hidden">
             <Image
-              src="/assets/images/landings/landing_two.png"
+              src="/assets/images/landings/landing_two.webp"
               alt="Suasana Pasar Kebbun tampak dari area kebun dan kuliner tradisional"
               fill
               className="object-cover"

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import LandingPage from '@/components/pages/landing';
 
 export const dynamic = 'force-dynamic';
@@ -17,7 +17,7 @@ const localBusinessSchema = {
   description:
     'Pasar rakyat berwawasan alam dengan konsep tempo dulu, kuliner khas Madura, produk UMKM lokal, dan sistem transaksi non-rupiah.',
   url: 'https://www.pasar-kebbun.id',
-  image: 'https://www.pasar-kebbun.id/assets/images/landings/landing_one.png',
+  image: 'https://www.pasar-kebbun.id/assets/images/landings/landing_one.webp',
   address: {
     '@type': 'PostalAddress',
     streetAddress: "Dsn. Mora'an, Desa Saroka",

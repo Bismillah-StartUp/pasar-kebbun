@@ -10,7 +10,7 @@ export interface CoinCardProps {
 
 export default function CoinCard({ denomination, pricePerCoin, items }: CoinCardProps) {
   const totalPrice = pricePerCoin * denomination;
-  const coinImage = `/assets/images/tenants/coins/${['one', 'two', 'three', 'four'][denomination - 1]}.png`;
+  const coinImage = `/assets/images/tenants/coins/${['one', 'two', 'three', 'four'][denomination - 1]}.webp`;
   
   // Format mata uang sesuai dengan "Rp 2.500,00"
   const formattedPrice = new Intl.NumberFormat('id-ID', {

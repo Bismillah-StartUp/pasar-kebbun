@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -6,11 +6,11 @@ import { useState, useEffect } from 'react';
 import { ROUTES } from '@/constants/routes';
 
 const IMAGES = [
-  { src: '/assets/images/landings/landing_one.png', alt: 'Suasana Pasar Kebbun dengan konsep tempo dulu di Saronggi, Sumenep' },
-  { src: '/assets/images/landings/landing_two.png', alt: 'Area kebun dan lanskap alam Pasar Kebbun Sumenep' },
-  { src: '/assets/images/landings/landing_three.png', alt: 'Pengunjung menikmati kuliner tradisional khas Madura di Pasar Kebbun' },
-  { src: '/assets/images/landings/landing_four.png', alt: 'Pedagang UMKM lokal menjajakan produk di Pasar Kebbun' },
-  { src: '/assets/images/landings/landing_five.png', alt: 'Transaksi non-rupiah dengan koin kepeng di Pasar Kebbun Sumenep' },
+  { src: '/assets/images/landings/landing_one.webp', alt: 'Suasana Pasar Kebbun dengan konsep tempo dulu di Saronggi, Sumenep' },
+  { src: '/assets/images/landings/landing_two.webp', alt: 'Area kebun dan lanskap alam Pasar Kebbun Sumenep' },
+  { src: '/assets/images/landings/landing_three.webp', alt: 'Pengunjung menikmati kuliner tradisional khas Madura di Pasar Kebbun' },
+  { src: '/assets/images/landings/landing_four.webp', alt: 'Pedagang UMKM lokal menjajakan produk di Pasar Kebbun' },
+  { src: '/assets/images/landings/landing_five.webp', alt: 'Transaksi non-rupiah dengan koin kepeng di Pasar Kebbun Sumenep' },
 ];
 
 export default function HeroSection() {

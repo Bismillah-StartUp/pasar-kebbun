@@ -1,4 +1,4 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 import Image from 'next/image';
 import PageHero from '@/components/pages/(user)/partials/PageHero';
 import SectionLabel from '@/components/pages/(user)/partials/SectionLabel';
@@ -13,7 +13,7 @@ export default async function BeritaSection() {
   return (
     <div className="w-full bg-white">
       <PageHero
-        image="/assets/images/landings/landing_three.png"
+        image="/assets/images/landings/landing_three.webp"
         title="Berita"
       />
 
